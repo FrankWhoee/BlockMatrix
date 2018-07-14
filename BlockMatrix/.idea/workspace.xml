@@ -21,20 +21,23 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Weapon.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Weapon.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/blockchain/app/blockmatrix/Weapon.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="51">
-              <caret line="3" column="22" lean-forward="true" selection-start-line="3" selection-start-column="22" selection-end-line="3" selection-end-column="22" />
+            <state relative-caret-position="170">
+              <caret line="10" column="37" selection-start-line="10" selection-start-column="37" selection-end-line="10" selection-end-column="37" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Item.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Item.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/blockchain/app/blockmatrix/Item.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="68">
-              <caret line="4" column="22" selection-start-line="4" selection-start-column="22" selection-end-line="4" selection-end-column="22" />
+            <state relative-caret-position="221">
+              <caret line="13" column="6" lean-forward="true" selection-start-line="5" selection-start-column="4" selection-end-line="13" selection-end-column="6" />
             </state>
           </provider>
         </entry>
@@ -52,6 +55,21 @@
                 <element signature="e#327#328#0" expanded="true" />
                 <element signature="e#372#373#0" expanded="true" />
                 <element signature="e#404#405#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Event.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/blockchain/app/blockmatrix/Event.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="323">
+              <caret line="19" column="28" lean-forward="true" selection-start-line="19" selection-start-column="28" selection-end-line="19" selection-end-column="28" />
+              <folding>
+                <element signature="e#233#234#0" expanded="true" />
+                <element signature="e#258#259#0" expanded="true" />
+                <element signature="e#283#284#0" expanded="true" />
+                <element signature="e#301#302#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -89,6 +107,7 @@
       <list>
         <option value="$PROJECT_DIR$/src/main/java/blockchain/app/blockmatrix/Player.java" />
         <option value="$PROJECT_DIR$/src/main/java/blockchain/app/blockmatrix/Item.java" />
+        <option value="$PROJECT_DIR$/src/main/java/blockchain/app/blockmatrix/Weapon.java" />
       </list>
     </option>
   </component>
@@ -217,7 +236,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="-7" width="1839" height="1200" extended-state="7" />
+    <frame x="-7" y="-7" width="1839" height="1200" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info anchor="right" id="Palette" />
@@ -285,6 +304,30 @@
     <entry file="file://$PROJECT_DIR$/src/main/java/blockchain/app/blockmatrix/GUI.form">
       <provider selected="true" editor-type-id="ui-designer" />
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/blockchain/app/blockmatrix/personal/User.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="17" selection-start-line="2" selection-start-column="17" selection-end-line="2" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/blockchain/app/blockmatrix/Weapon.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="20" selection-start-line="20" selection-end-line="20" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/blockchain/app/blockmatrix/Item.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="13" column="6" lean-forward="true" selection-start-line="5" selection-start-column="4" selection-end-line="13" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/blockchain/app/blockmatrix/Player.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="323">
@@ -301,6 +344,36 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/blockchain/app/blockmatrix/Event.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="19" column="28" lean-forward="true" selection-start-line="19" selection-start-column="28" selection-end-line="19" selection-end-column="28" />
+          <folding>
+            <element signature="e#233#234#0" expanded="true" />
+            <element signature="e#258#259#0" expanded="true" />
+            <element signature="e#283#284#0" expanded="true" />
+            <element signature="e#301#302#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/blockchain/app/blockmatrix/GUI.form">
+      <provider selected="true" editor-type-id="ui-designer" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/blockchain/app/blockmatrix/GUI.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/blockchain/app/blockmatrix/Block.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="19" column="36" selection-start-line="19" selection-start-column="36" selection-end-line="19" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/blockchain/app/blockmatrix/personal/User.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
@@ -308,17 +381,53 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/blockchain/app/blockmatrix/Weapon.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/blockchain/app/blockmatrix/GUI.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" column="22" lean-forward="true" selection-start-line="3" selection-start-column="22" selection-end-line="3" selection-end-column="22" />
+        <state relative-caret-position="34">
+          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/blockchain/app/blockmatrix/GUI.form">
+      <provider selected="true" editor-type-id="ui-designer" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/blockchain/app/blockmatrix/personal/User.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="17" selection-start-line="2" selection-start-column="17" selection-end-line="2" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/blockchain/app/blockmatrix/Player.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="19" column="25" lean-forward="true" selection-start-line="19" selection-start-column="25" selection-end-line="19" selection-end-column="25" />
+          <folding>
+            <element signature="e#153#154#0" expanded="true" />
+            <element signature="e#185#186#0" expanded="true" />
+            <element signature="e#193#199#0" expanded="true" />
+            <element signature="e#300#301#0" expanded="true" />
+            <element signature="e#327#328#0" expanded="true" />
+            <element signature="e#372#373#0" expanded="true" />
+            <element signature="e#404#405#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/blockchain/app/blockmatrix/Item.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="22" selection-start-line="4" selection-start-column="22" selection-end-line="4" selection-end-column="22" />
+        <state relative-caret-position="221">
+          <caret line="13" column="6" lean-forward="true" selection-start-line="5" selection-start-column="4" selection-end-line="13" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/blockchain/app/blockmatrix/Weapon.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" column="37" selection-start-line="10" selection-start-column="37" selection-end-line="10" selection-end-column="37" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
