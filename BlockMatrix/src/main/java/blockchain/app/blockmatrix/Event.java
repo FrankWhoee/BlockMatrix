@@ -9,7 +9,7 @@ public abstract class Event {
 	protected String modifier; //weapon stat changes
 	protected HashMap modStats;
 	
-	public Event(String modifier, byte region) {
+	public Event(String modifier, byte region, ConditionReader cr) {
 		this.modifier = modifier;
 		this.region = region;
 	}
@@ -38,7 +38,11 @@ public abstract class Event {
 
 class TenKills extends Event {
 	public TenKills() {
-		super("Goblin Slayer", Event.TITLE_PROPER);
+		super("Sharp", Event.TITLE_PREFIX, new ConditionReader() {
+			public void conditionMet() {
+				//work on this later
+			}
+		});
 		modStats.put("Damage", 1);
 	}
 }
