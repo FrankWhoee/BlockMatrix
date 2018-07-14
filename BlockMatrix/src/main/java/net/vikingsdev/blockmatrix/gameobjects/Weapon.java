@@ -13,16 +13,16 @@ public class Weapon extends Item{
 	String prefix;
 	String proper;
 	String suffix;
-	
-	Event event = new Event();
+
+	AvailableEvents availableEvents = new AvailableEvents();
 	
 	private ArrayList<ClickTriggerable> availableClickTriggerable;
 	private ArrayList<KillTriggerable> availableKillTriggerable;
 	
     public Weapon(String name) {
     	super(name);
-    	this.availableClickTriggerable = event.availableClickTriggerable;
-    	this.availableKillTriggerable = event.availableKillTriggerable;
+    	this.availableClickTriggerable = availableEvents.getAvailableClickTriggerable();
+    	this.availableKillTriggerable = availableEvents.getAvailableKillTriggerable();
     	kills = 0;
         this.name = name;
 		history = new ArrayList<Event>();
