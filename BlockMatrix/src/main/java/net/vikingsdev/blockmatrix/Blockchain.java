@@ -42,24 +42,28 @@ public class Blockchain {
 	public static int difficulty = 5;
 	private static JsonObject localSave;
 	
-	private static final String privateKeyString = "MIICWgIBAAKBgFggG2repM9WfEyYfUnIpyE30p50VzwiR/v5zOqXjsbfm4qTNswO\n" + 
-			"XUqqyCYBGyAAm4WFudQwczq1EYhfxjehEyZvsESxWlrJU9lQsHiXZi+TXA2C8U91\n" + 
-			"FTcGSd08JCXi45SMj6L5d7nrIcWoh6vzYuZJgVliPCOeOlsqrtxOOxmZAgMBAAEC\n" + 
-			"gYAgxVfMxxy8qamxhidZL8/Oz4Z4PEVQbGMedcdZGaETnYWm45XGDjVtFdM2JsUi\n" + 
-			"gndTEOaI3LeNBlaNwyff+fs3qIg6xxHrNSWSCOFVrLXyJBycMHCgVAzmwEQ3qlcJ\n" + 
-			"F4EMlx8A1TMK2CQXsBno56YnHMS9IBfK+VX4soQw6amb7QJBAKc39yRgQlPuxiBs\n" + 
-			"0lSz/Rt+KiQycXo4ClI+iBj54LdzUB9D03yAeSW0JToaZQbtvzaJYoJp3sas1cOk\n" + 
-			"SZI2LpMCQQCG6fIQ0cb0gnFq8qUi1y8uBjNRVWKvGsjLla9tJmO7QwOKSB+9IJjx\n" + 
-			"OKUVLRiFNds2hEVwCRxw799VyK+PTAajAkB/gHHmf6szemYBxVgfE9qTgwC49umF\n" + 
-			"yoM8MMfvW2CYIMnf/QSd8wvszs5v3j5YKSHagKjnTbh6/sBD29npLX0XAkAtHbbR\n" + 
-			"YRWDVsvO0+3dRNCGN5SZslAZ9n8HdbsAaUIYsURRzeSvPmNm52ZtOnNkuKniBUGj\n" + 
-			"Qai9K7on2cC7ztS5AkAXa3U3l1eOyW425tWFoi3Ayc7Xb4e+9qpx50dL2WHd9aux\n" + 
-			"Wz4TT0dFtab+xG0qtTd8W8ekpFkYvyZwWISgfbJ8";
+	private static final String privateKeyString = "-----BEGIN RSA PRIVATE KEY-----\n" + 
+			"MIICWgIBAAKBgGpYA60Dbe1MGCYDZo3q9KccjX4X9N1TGJjkE5uDGs8tBoK4ntZv\n" + 
+			"rwfIerBZdx6eaARSOySxlaQTuukKgj/ZCNI3otwL9KVKOqRceRRHgl/49YPdMonR\n" + 
+			"zHippGaEx5HMMT1ITK3Bx1f5qY4ogsXk5qm6U490YYvPgbaVsBtos/azAgMBAAEC\n" + 
+			"gYA/hTcc3xGITo2WFy3o01EziICTsueWVA47NPDpURRwb6qV5oUp/SgFdCCkuavH\n" + 
+			"ZEMpYZzmPBTwHsDkdlx6mr8DWW1faIWpyQZCMJz8YtKx1VCTJMMTQ757WhGD18FY\n" + 
+			"DKiFVDRT2ZZYEah9aLYPYa6AYgYIPCtvzd5QDddnMf6ioQJBAMfdEUJpWRzGTr//\n" + 
+			"mw6xCz4Hoev1VBj8ljnQ0nk82UY6SQYbZz6+TDS8m+R8ks9V+y/cqRyOD1NNpT2i\n" + 
+			"dUM1i6kCQQCINoec7IAfsd1Db7kTeCpd0MCK08PL3sLzlMJgZGm4idIusY5otJ8o\n" + 
+			"wXogAeiw8oOcgtblKZz9224j4j7MWMj7AkAG0/+l9DFuMTw5hQMIInZO3TXj+NKx\n" + 
+			"s9dyDDdUmwaVRqJ+CeuiEiBKYPM2gCcH3FkjjndcmWHep7VwgJ9e93JZAkBp8N9w\n" + 
+			"8ZCFFjVdadushN2OsfnO//1c5xkBkkXL6s0/NhI/NuHoFfNkI3b0xgdQ+I3cgPba\n" + 
+			"rY7o8m2rgyAMl1FZAkBTW7afGlSF5jeUmfW21eWxTl+dlDyYhJi6RuIRhy1/ZrLM\n" + 
+			"rx/aT0O8FQYTo1xiKgM2cNrVvoeY03WKbpgurODp\n" + 
+			"-----END RSA PRIVATE KEY-----";
 	private static PrivateKey privateKey;
-	private static final String publicKeyString = "MIGeMA0GCSqGSIb3DQEBAQUAA4GMADCBiAKBgFggG2repM9WfEyYfUnIpyE30p50\n" + 
-			"VzwiR/v5zOqXjsbfm4qTNswOXUqqyCYBGyAAm4WFudQwczq1EYhfxjehEyZvsESx\n" + 
-			"WlrJU9lQsHiXZi+TXA2C8U91FTcGSd08JCXi45SMj6L5d7nrIcWoh6vzYuZJgVli\n" + 
-			"PCOeOlsqrtxOOxmZAgMBAAE=";
+	private static final String publicKeyString = "-----BEGIN PUBLIC KEY-----\n" + 
+			"MIGeMA0GCSqGSIb3DQEBAQUAA4GMADCBiAKBgGpYA60Dbe1MGCYDZo3q9KccjX4X\n" + 
+			"9N1TGJjkE5uDGs8tBoK4ntZvrwfIerBZdx6eaARSOySxlaQTuukKgj/ZCNI3otwL\n" + 
+			"9KVKOqRceRRHgl/49YPdMonRzHippGaEx5HMMT1ITK3Bx1f5qY4ogsXk5qm6U490\n" + 
+			"YYvPgbaVsBtos/azAgMBAAE=\n" + 
+			"-----END PUBLIC KEY-----";
 	private static PublicKey publicKey;
 	static {
 	    KeyFactory kf;
@@ -69,12 +73,14 @@ public class Blockchain {
 	        PKCS8EncodedKeySpec keySpecPv = new PKCS8EncodedKeySpec(encodedPv);
 	        privateKey = kf.generatePrivate(keySpecPv);
 
+	        System.out.println(publicKeyString);
 	        byte[] encodedPb = Base64.getDecoder().decode(publicKeyString);
+	        System.out.println(encodedPb);
 	        X509EncodedKeySpec keySpecPb = new X509EncodedKeySpec(encodedPb);
 	        publicKey = kf.generatePublic(keySpecPb);
 
 	    } catch (Exception e) {
-
+	    	e.printStackTrace();
 	    }
 	}
 	

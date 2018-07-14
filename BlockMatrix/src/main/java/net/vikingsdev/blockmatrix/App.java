@@ -22,6 +22,8 @@ public class App {
 		System.out.println("Player's name: " + p.getName());
 		System.out.println("Player's id: " + p.getId());
 
+		Blockchain.save();
+		
 		Game game = new Game(1280, 720, "Meme", p);
 		game.start();
 		
