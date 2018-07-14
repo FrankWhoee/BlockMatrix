@@ -29,8 +29,8 @@ public class App {
 		Player sender = new Player("Sender");
 		Player receiver = new Player("Receiver");
 		
-		Weapon sendItem = new Weapon("The glory hole of the sender");
-		Weapon receiveItem = new Weapon("The magnum dong of the receiver");
+		Weapon sendItem = new Weapon("Brutal waraxe of Supreme Jeremius");
+		Weapon receiveItem = new Weapon("Master Devito's mighty magnum dong");
 		
 		sender.getInventory().add(sendItem);
 		receiver.getInventory().add(receiveItem);
