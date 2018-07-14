@@ -1,5 +1,13 @@
 package blockchain.app.blockmatrix;
 
-public class Player {
+import java.util.ArrayList;
 
+//only gui (front end) is public
+public class Player {
+	private String name;
+	ArrayList<Item> Inventory;
+	
+	//get name
+	//get inventory
+	
 }
