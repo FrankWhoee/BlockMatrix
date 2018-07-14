@@ -1,7 +1,10 @@
 package blockchain.app.blockmatrix;
 
 import java.util.ArrayList;
-import com.google.gson.*;
+
+import javax.swing.JFrame;
+
+import com.google.gson.GsonBuilder;
 
 public class App 
 {
@@ -19,8 +22,6 @@ public class App
 		register("my naaaaaaaaame jeff");
 		System.out.println("Player's name: " + Player.toPlayer(playerchain.get(1).getData()).getName());
 		System.out.println("Player's id: " + Player.toPlayer(playerchain.get(1).getData()).getId());
-		
-		GUI gui = new GUI(playerchain.get(1).getPlayer());
 
 		String playerchainJson = new GsonBuilder().setPrettyPrinting().create().toJson(playerchain);
 		System.out.println("\nThe block chain: ");

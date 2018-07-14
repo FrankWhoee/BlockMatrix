@@ -16,8 +16,8 @@
       <file leaf-file-name="App.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/blockchain/app/blockmatrix/App.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="85">
-              <caret line="5" selection-start-line="5" selection-end-line="5" />
+            <state relative-caret-position="136">
+              <caret line="8" selection-start-line="8" selection-end-line="8" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -34,11 +34,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="pom.xml" pinned="false" current-in-tab="true">
+      <file leaf-file-name="pom.xml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pom.xml">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="408">
-              <caret line="24" column="4" lean-forward="true" selection-start-line="24" selection-start-column="4" selection-end-line="24" selection-end-column="4" />
+              <caret line="24" column="4" selection-start-line="24" selection-start-column="4" selection-end-line="24" selection-end-column="4" />
             </state>
           </provider>
         </entry>
@@ -91,13 +91,13 @@
       <file leaf-file-name="GUI.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/blockchain/app/blockmatrix/GUI.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="442">
-              <caret line="26" column="30" selection-start-line="26" selection-start-column="30" selection-end-line="26" selection-end-column="30" />
+            <state relative-caret-position="459">
+              <caret line="27" column="30" selection-start-line="27" selection-start-column="30" selection-end-line="27" selection-end-column="30" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GUI.form" pinned="false" current-in-tab="false">
+      <file leaf-file-name="GUI.form" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/blockchain/app/blockmatrix/GUI.form">
           <provider selected="true" editor-type-id="ui-designer" />
         </entry>
@@ -119,11 +119,11 @@
       <list>
         <option value="$PROJECT_DIR$/src/main/java/blockchain/app/blockmatrix/Item.java" />
         <option value="$PROJECT_DIR$/src/main/java/blockchain/app/blockmatrix/Weapon.java" />
-        <option value="$PROJECT_DIR$/src/main/java/blockchain/app/blockmatrix/GUI.form" />
         <option value="$PROJECT_DIR$/src/main/java/blockchain/app/blockmatrix/GUI.java" />
         <option value="$PROJECT_DIR$/src/main/java/blockchain/app/blockmatrix/App.java" />
         <option value="$PROJECT_DIR$/src/main/java/blockchain/app/blockmatrix/Player.java" />
         <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/blockchain/app/blockmatrix/GUI.form" />
       </list>
     </option>
   </component>
@@ -181,15 +181,6 @@
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="blockmatrix" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="BlockMatrix" type="b2602c69:ProjectViewProjectNode" />
-              <item name="BlockMatrix" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="blockmatrix" type="462c0819:PsiDirectoryNode" />
-              <item name="GUI" type="e9f4de52:FormNode" />
             </path>
             <path>
               <item name="BlockMatrix" type="b2602c69:ProjectViewProjectNode" />
@@ -595,9 +586,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/blockchain/app/blockmatrix/GUI.form">
-      <provider selected="true" editor-type-id="ui-designer" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/blockchain/app/blockmatrix/Item.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="102">
@@ -607,8 +595,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/blockchain/app/blockmatrix/GUI.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="442">
-          <caret line="26" column="30" selection-start-line="26" selection-start-column="30" selection-end-line="26" selection-end-column="30" />
+        <state relative-caret-position="459">
+          <caret line="27" column="30" selection-start-line="27" selection-start-column="30" selection-end-line="27" selection-end-column="30" />
         </state>
       </provider>
     </entry>
@@ -621,8 +609,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/blockchain/app/blockmatrix/App.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" selection-start-line="5" selection-end-line="5" />
+        <state relative-caret-position="136">
+          <caret line="8" selection-start-line="8" selection-end-line="8" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -639,9 +627,12 @@
     <entry file="file://$PROJECT_DIR$/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="408">
-          <caret line="24" column="4" lean-forward="true" selection-start-line="24" selection-start-column="4" selection-end-line="24" selection-end-column="4" />
+          <caret line="24" column="4" selection-start-line="24" selection-start-column="4" selection-end-line="24" selection-end-column="4" />
         </state>
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/blockchain/app/blockmatrix/GUI.form">
+      <provider selected="true" editor-type-id="ui-designer" />
     </entry>
   </component>
 </project>
