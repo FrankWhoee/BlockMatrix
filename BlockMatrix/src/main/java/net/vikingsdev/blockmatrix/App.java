@@ -2,8 +2,6 @@ package net.vikingsdev.blockmatrix;
 
 import java.util.ArrayList;
 
-import javax.swing.JFrame;
-
 import com.google.gson.GsonBuilder;
 
 import net.vikingsdev.blockmatrix.gameobjects.Player;
