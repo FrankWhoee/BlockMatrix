@@ -1,21 +1,18 @@
 package blockchain.app.blockmatrix;
 
+import java.util.HashMap;
+
 public abstract class Event {
-	public static final int TITLE_PREFIX = 0, TITLE_PROPER = 1, TITLE_SUFFIX = 2;
+	public static final byte TITLE_PREFIX = 0, TITLE_PROPER = 1, TITLE_SUFFIX = 2;
+	protected byte region; //where the title change occurs (prefix, proper, suffix)
 	
 	protected String modifier; //weapon stat changes
-	protected byte region; //where the title change occurs (prefix, proper, suffix)
-	protected long date; //a date for when the event occured
+	protected HashMap modStats;
 	
-	public Event(String modifier, byte region, long date) {
+	public Event(String modifier, byte region) {
 		this.modifier = modifier;
-		this.date = date;
 		this.region = region;
 	}
-	
-	public abstract void checkForEvent();
-	
-	public abstract void modifyStats();
 	
 	//Accessors
 	
@@ -23,12 +20,12 @@ public abstract class Event {
 		return modifier;
 	}
 	
-	public long getDate() {
-		return date;
-	}
-	
 	public long getRegion() {
 		return region;
+	}
+	
+	public HashMap getModStats() {
+		return modStats;
 	}
 	
 	/*every event has
@@ -37,4 +34,11 @@ public abstract class Event {
 	 * 
 	 * a modification to the item name (
 	 */
+}
+
+class TenKills extends Event {
+	public TenKills() {
+		super("Goblin Slayer", Event.TITLE_PROPER);
+		modStats.put("dmg", 1);
+	}
 }
