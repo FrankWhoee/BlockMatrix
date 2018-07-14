@@ -1,5 +1,6 @@
 package blockchain.app.blockmatrix;
 
+<<<<<<< HEAD
 
 public abstract class Item{
 	/*every item has:
@@ -13,5 +14,14 @@ public abstract class Item{
 	*/
 	
 	
+=======
+import java.util.ArrayList;
 
+public class Item {
+>>>>>>> master
+
+
+
+    private String name;
+    private ArrayList<String> History;
 }
