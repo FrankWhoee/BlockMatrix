@@ -14,13 +14,19 @@ public class GUI {
     private JTextField playerName;
     private JButton takeWeaponButton;
     private JTextField eventField;
+    
+    // accesses the player in the app.java
     private Player player;
 
     //You're mother gay and homosexual
 
     public GUI(Player player) {
-        // temporary player
-        App.register("temporary");
+        
+        this.player = player;
+        
+        playerName.setText(player.getName());
+        playerName.setEditable(false);
+        
         hitButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
