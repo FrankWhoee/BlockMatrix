@@ -13,4 +13,16 @@ public class Weapon extends Item{
     public Weapon(String name) {
         this.name = name;
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public HashMap getStats() {
+        return stats;
+    }
+
+    public ArrayList<Event> getHistory() {
+        return history;
+    }
 }
