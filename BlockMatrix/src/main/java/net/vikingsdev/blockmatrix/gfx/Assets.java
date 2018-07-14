@@ -34,5 +34,9 @@ public class Assets {
 		button[2][0] = UISheet.crop(0, UICellSize * 9, UICellSize * 4, UICellSize * 2);
 		button[2][1] = UISheet.crop(UICellSize * 4, UICellSize * 9, UICellSize * 4, UICellSize * 2);
 		button[2][2] = UISheet.crop(UICellSize * 8, UICellSize * 9, UICellSize * 4, UICellSize * 2);
+
+		eventBackground = UISheet.crop(UICellSize * 12, 0, UICellSize * 8, UICellSize * 2);
+		statsBackground = UISheet.crop(UICellSize * 13, UICellSize * 6, UICellSize * 7, UICellSize * 5);
+		enemyBackground = UISheet.crop(0, 0, UICellSize * 12, UICellSize * 9);
 	}
 }
