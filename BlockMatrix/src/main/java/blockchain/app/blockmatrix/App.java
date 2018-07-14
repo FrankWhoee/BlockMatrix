@@ -22,9 +22,9 @@ public class App
 		
 		GUI gui = new GUI(playerchain.get(1).getPlayer());
 
-		//String playerchainJson = new GsonBuilder().setPrettyPrinting().create().toJson(playerchain);
-		//System.out.println("\nThe block chain: ");
-		//System.out.println(playerchainJson);
+		String playerchainJson = new GsonBuilder().setPrettyPrinting().create().toJson(playerchain);
+		System.out.println("\nThe block chain: ");
+		System.out.println(playerchainJson);
 	}
 	
 	public static void register(String name) {

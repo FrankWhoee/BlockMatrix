@@ -25,9 +25,8 @@ public class GUI {
     //You're mother gay and homosexual
 
     public GUI(Player player) {
-        
         this.player = player;
-        
+
         frame = new JFrame();
         frame.setVisible(true);
         frame.setSize(new Dimension(1280, 720));
@@ -36,6 +35,9 @@ public class GUI {
         frame.setContentPane(panel1);
         
         /*playerName.setText(player.getName());
+
+/*      playerName.setText(player.getName());
+
         playerName.setEditable(false);
         
         hitButton.addActionListener(new ActionListener() {
