@@ -3,6 +3,7 @@ package net.vikingsdev.blockmatrix.gameobjects;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.ArrayList;
 
 public class Weapon extends Item{
 	ArrayList<Event> history;
@@ -41,8 +42,6 @@ public class Weapon extends Item{
         return history;
     }
     
-    public
-
     private void addToHistory(Event event){		//this will run every time the event's trigger condition is met, and should include deleting that completed event off the array list of possible events, and updating the name
         history.add(event);
         if(event.getModStats().containsKey("Damage"))
