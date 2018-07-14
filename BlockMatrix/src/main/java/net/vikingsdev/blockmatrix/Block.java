@@ -1,7 +1,10 @@
-package blockchain.app.blockmatrix;
+package net.vikingsdev.blockmatrix;
 
 
 import java.util.Date;
+
+import net.vikingsdev.blockmatrix.gameobjects.Player;
+import net.vikngsdev.blockmatrix.utils.StringUtil;
 
 public class Block {
 	

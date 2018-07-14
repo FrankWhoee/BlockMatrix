@@ -1,4 +1,4 @@
-package blockchain.app.blockmatrix;
+package net.vikngsdev.blockmatrix.utils;
 import java.security.MessageDigest;
 
 public class StringUtil {
