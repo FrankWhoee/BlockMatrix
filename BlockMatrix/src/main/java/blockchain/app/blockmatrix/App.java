@@ -1,8 +1,7 @@
 package blockchain.app.blockmatrix;
 
 import java.util.ArrayList;
-
-import com.google.gson.GsonBuilder;
+import com.google.gson.*;
 
 public class App 
 {
