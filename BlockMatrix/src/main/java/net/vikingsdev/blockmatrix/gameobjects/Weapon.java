@@ -5,11 +5,20 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Weapon extends Item{
+	ArrayList<Event> history;
+	HashMap<String, Integer> stats;
+	int kills;
 
-
+	String prefix;
+	String proper;
+	String suffix;
+	
     public Weapon(String name) {
     	super(name);
+    	kills = 0;
         this.name = name;
+		history = new ArrayList<Event>();
+		stats = new HashMap<String, Integer>();
         stats.put("Damage", 1);		//i think weapon dmg needs to start at 1 lol, cuz for this mvp the point is all ur stats r tied up in ur weapon
     }
 
@@ -24,21 +33,42 @@ public class Weapon extends Item{
     public ArrayList<Event> getHistory() {
         return history;
     }
+    
+    public
 
-    public void addToHistory(Event event){		//this will run every time the event's trigger condition is met, and should include deleting that completed event off the array list of possible events, and updating the name
+    private void addToHistory(Event event){		//this will run every time the event's trigger condition is met, and should include deleting that completed event off the array list of possible events, and updating the name
         history.add(event);
-        stats.put("Damage", (int) (stats.get("Damage")) + (int) (event.getModStats().get("Damage")));
+        if(event.getModStats().containsKey("Damage"))
+        	stats.put("Damage", (int) (stats.get("Damage")) + (int) (event.getModStats().get("Damage")))
+    }
+    
+    private void updateName(Event event) {
+    	if(event.getRegion == 0) {
+    		if(prefix == null) {
+    			prefix = event.getModifier();
+    		}
+    		else
+    			prefix = prefix + "-" + event.getModifier();
+    	}
+    	
+    	else if(event.getRegion == 1) {
+    		if(proper == null) {
+    			proper = event.getModifier();
+    		}
+    		else
+    			proper = proper + "-" + event.getModifier();
+    	}
+    	
+    	else{
+    		if(suffix == null) {
+    			suffix = event.getModifier();
+    		}
+    		else
+    			suffix = suffix + "-" + event.getModifier();
+    	}
+    	super.name = prefix + " " + proper + " " + suffix;
     }
 	
-	/*every item has:
-	*string name
-	*hashmap stats
-	*arraylist<Event> history
-	*
-	*name and stats depend on history
-	*
-	*function for turning history into stats
-	*/
 
     /*List of stuff to add (roughly in high to low priority)
      * 		add int goblinsKilled or smt (another trackable)
