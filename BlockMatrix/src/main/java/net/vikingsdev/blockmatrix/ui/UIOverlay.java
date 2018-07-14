@@ -1,14 +1,19 @@
 package net.vikingsdev.blockmatrix.ui; 
  
 import java.awt.Graphics; 
-import java.awt.Rectangle; 
+import java.awt.Rectangle;
+
+import net.vikingsdev.blockmatrix.Game; 
  
 public abstract class UIOverlay { 
-	protected UIManager uim; 
+	protected UIManager uim;
+	protected Game game;
 	protected boolean active; 
 	protected Rectangle bounds; 
    
-	public UIOverlay(int x, int y, int width, int height) { 
+	public UIOverlay(int x, int y, int width, int height, Game game) { 
+		this.game = game;
+		
 		bounds = new Rectangle(x, y, width, height); 
 		
 		active = false;
@@ -17,8 +22,22 @@ public abstract class UIOverlay {
    
 	public abstract void init(); 
 	public abstract void render(Graphics g); 
-   
-	public void tick() { 
-		uim.tick(); 
-	 } 
+	
+	//Accessors and mutators
+
+	public boolean isActive() {
+		return active;
+	}
+
+	public void setActive(boolean active) {
+		this.active = active;
+	}
+
+	public UIManager getUIM() {
+		return uim;
+	}
+
+	public Rectangle getBounds() {
+		return bounds;
+	}
 } 

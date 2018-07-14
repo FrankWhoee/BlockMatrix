@@ -2,14 +2,18 @@ package net.vikingsdev.blockmatrix.states;
 
 import java.awt.Graphics;
 
+import net.vikingsdev.blockmatrix.Game;
 import net.vikingsdev.blockmatrix.ui.UIManager;
 
 public abstract class State {
 	protected UIManager uim;
+	protected Game game;
 	
 	private static State activeState = null;
 	
-	public State() {
+	public State(Game game) {
+		this.game = game;
+		
 		uim = new UIManager();
 	}
 	
