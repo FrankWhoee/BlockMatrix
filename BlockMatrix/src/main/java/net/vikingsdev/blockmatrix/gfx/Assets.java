@@ -13,11 +13,13 @@ public class Assets {
 	 * [1][i] - trade button
 	 * 
 	 * [i][0] - button rested
-	 * [i][1] - button active
+	 * [i][1] - button hovered/active
+	 * [i][2] - button clicked
 	 */
 	
 	public static void init() {
 		SpriteSheet UISheet = new SpriteSheet(ImageLoader.loadImage("/uisheet.png"));
+		button = new BufferedImage[2][3];
 		
 		// UI sprites
 		
