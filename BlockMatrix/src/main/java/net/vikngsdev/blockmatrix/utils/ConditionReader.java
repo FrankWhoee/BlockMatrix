@@ -1,4 +1,4 @@
-package blockchain.app.blockmatrix;
+package net.vikngsdev.blockmatrix.utils;
 
 public interface ConditionReader {
 	public void conditionMet();
