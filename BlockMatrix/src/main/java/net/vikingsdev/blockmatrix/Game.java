@@ -21,7 +21,6 @@ public class Game implements Runnable{
 	// rendering
 	private BufferStrategy buffer;
 	private Graphics g;
-	
 	private BufferedImage image;
 	
 	private Thread thread;
@@ -41,10 +40,11 @@ public class Game implements Runnable{
 	}
 	
 	private void update() {
-		
+		//game updates code
 	}
 	
 	private void render() {
+		// set up rendering object
 		buffer = display.getCanvas().getBufferStrategy();
 		
 		if(buffer == null) {
@@ -68,6 +68,7 @@ public class Game implements Runnable{
 	public void run() {
 		init();
 		
+		// game tick limiter
 		int MAX_FPS = 60;
 		double timePerFrame = 1000000000 / MAX_FPS;
 		double delta = 0;
