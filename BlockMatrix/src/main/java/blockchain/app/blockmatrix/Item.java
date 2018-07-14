@@ -12,5 +12,5 @@ public abstract class Item{
 	*
 	*function for turning history into stats
 	*/
-	
+
 }
