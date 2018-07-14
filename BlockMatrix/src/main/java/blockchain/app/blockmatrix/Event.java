@@ -39,6 +39,6 @@ public abstract class Event {
 class TenKills extends Event {
 	public TenKills() {
 		super("Goblin Slayer", Event.TITLE_PROPER);
-		modStats.put("dmg", 1);
+		modStats.put("Damage", 1);
 	}
 }
