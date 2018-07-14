@@ -1,6 +1,7 @@
 package net.vikingsdev.blockmatrix.gfx;
 
 import java.awt.Canvas;
+import java.awt.Component;
 import java.awt.Dimension;
 
 import javax.swing.JFrame;
@@ -41,6 +42,10 @@ public class Display {
 	
 	public Canvas getCanvas() {
 		return canvas;
+	}
+
+	public JFrame getFrame() {
+		return frame;
 	}
 	
 }

@@ -6,6 +6,8 @@ import java.awt.image.BufferStrategy;
 import net.vikingsdev.blockmatrix.gameobjects.Player;
 import net.vikingsdev.blockmatrix.gfx.Assets;
 import net.vikingsdev.blockmatrix.gfx.Display;
+import net.vikingsdev.blockmatrix.input.KeyManager;
+import net.vikingsdev.blockmatrix.input.MouseManager;
 import net.vikingsdev.blockmatrix.states.*;
 
 public class Game implements Runnable{
@@ -33,18 +35,36 @@ public class Game implements Runnable{
 	
 	private State gameState;
 	
+	//input
+	
+	private KeyManager keyboard;
+	private MouseManager mouse;
+	
 	public Game(int width, int height, String title, Player player) {
 		this.width = width;
 		this.height = height;
 		this.title = title;
 		this.player = player;
-	}
-	
-	private void init() {
+		
+	    keyboard = new KeyManager();
+	    mouse = new MouseManager();
+	 
 		display = new Display(width, height, title);
 		
 		gameState = new GameState();
-		
+	 
+	    display.getFrame().addKeyListener(keyboard);
+	    display.getFrame().addMouseListener(mouse);
+	    display.getFrame().addMouseMotionListener(mouse);
+	    display.getFrame().addMouseWheelListener(mouse);
+	 
+	    display.getCanvas().addKeyListener(keyboard);
+	    display.getCanvas().addMouseListener(mouse);
+	    display.getCanvas().addMouseMotionListener(mouse);
+	    display.getCanvas().addMouseWheelListener(mouse);
+	}
+	
+	private void init() {
 		Assets.init();
 		
 		gameState.init();
@@ -67,6 +87,8 @@ public class Game implements Runnable{
 		}
 		
 		g = buffer.getDrawGraphics();
+		
+		g.clearRect(0, 0, width, height);
 		
 		// render zone
 		
