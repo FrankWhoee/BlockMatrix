@@ -22,8 +22,8 @@ public class UIButton {
 		bounds = new Rectangle(x, y, width, height);
 	}
 	
-	public void tick() {
-		
+	public void reset() {
+		state = RESTING;
 	}
 	
 	public void render(Graphics g) {
