@@ -11,18 +11,25 @@ public class GameState extends State {
 	private UIOverlay inventory, settings, trading;
 	
 	public GameState(Game game) {
-		inventory = new InventoryOverlay(64, 64, 1152, 592);
-		settings = new SettingsOverlay(64, 64, 1152, 592);
-		trading = new TradingOverlay(64, 64, 1152, 592);
+		super(game);
+		
+		inventory = new InventoryOverlay(64, 64, 1152, 592, game);
+		settings = new SettingsOverlay(64, 64, 1152, 592, game);
+		trading = new TradingOverlay(64, 64, 1152, 592, game);
 	}
 
 	@Override
 	public void init() {
+		inventory.init();
+		settings.init();
+		trading.init();
+		
 		uim.addObject(new UIButton(1024, 128, 256, 128, Assets.button[0], new UIListener() {
 			//Inventory
 			@Override
 			public void onClick() {
-				
+				game.getMouse().setUIM(inventory.getUIM());
+				inventory.setActive(true);
 			}
 		}));
 		
@@ -30,7 +37,8 @@ public class GameState extends State {
 			//Trading
 			@Override
 			public void onClick() {
-				
+				game.getMouse().setUIM(trading.getUIM());
+				trading.setActive(true);
 			}
 		}));
 		
@@ -38,14 +46,16 @@ public class GameState extends State {
 			//Wage jihad on the infidels inshallah
 			@Override
 			public void onClick() {
-				
+				//unused
 			}
 		}));
+		
+		/* game.getMouse().setUIM(settings.getUIM());
+				settings.setActive(true); */
 	}
 
 	@Override
 	public void tick() {
-		uim.tick();
 	}
 
 	@Override
@@ -58,6 +68,9 @@ public class GameState extends State {
 		g.setColor(Color.GRAY);
 		g.fillRect(42, 69, 550, 12);
 		
-		uim.render(g);
+		if(settings.isActive()) settings.render(g);
+		else if(inventory.isActive()) inventory.render(g);
+		else if(trading.isActive()) trading.render(g);
+		else uim.render(g);
 	}
 }

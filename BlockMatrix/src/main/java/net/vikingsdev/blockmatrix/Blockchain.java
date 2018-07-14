@@ -15,6 +15,7 @@ import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
 
 import java.security.*;
+import java.security.interfaces.RSAPublicKey;
 import java.security.spec.ECGenParameterSpec;
 import java.security.spec.PKCS8EncodedKeySpec;
 import java.security.spec.X509EncodedKeySpec;
@@ -42,42 +43,47 @@ public class Blockchain {
 	public static int difficulty = 5;
 	private static JsonObject localSave;
 	
-	private static final String privateKeyString = "-----BEGIN RSA PRIVATE KEY-----\n" + 
-			"MIICWgIBAAKBgGpYA60Dbe1MGCYDZo3q9KccjX4X9N1TGJjkE5uDGs8tBoK4ntZv\n" + 
-			"rwfIerBZdx6eaARSOySxlaQTuukKgj/ZCNI3otwL9KVKOqRceRRHgl/49YPdMonR\n" + 
-			"zHippGaEx5HMMT1ITK3Bx1f5qY4ogsXk5qm6U490YYvPgbaVsBtos/azAgMBAAEC\n" + 
-			"gYA/hTcc3xGITo2WFy3o01EziICTsueWVA47NPDpURRwb6qV5oUp/SgFdCCkuavH\n" + 
-			"ZEMpYZzmPBTwHsDkdlx6mr8DWW1faIWpyQZCMJz8YtKx1VCTJMMTQ757WhGD18FY\n" + 
-			"DKiFVDRT2ZZYEah9aLYPYa6AYgYIPCtvzd5QDddnMf6ioQJBAMfdEUJpWRzGTr//\n" + 
-			"mw6xCz4Hoev1VBj8ljnQ0nk82UY6SQYbZz6+TDS8m+R8ks9V+y/cqRyOD1NNpT2i\n" + 
-			"dUM1i6kCQQCINoec7IAfsd1Db7kTeCpd0MCK08PL3sLzlMJgZGm4idIusY5otJ8o\n" + 
-			"wXogAeiw8oOcgtblKZz9224j4j7MWMj7AkAG0/+l9DFuMTw5hQMIInZO3TXj+NKx\n" + 
-			"s9dyDDdUmwaVRqJ+CeuiEiBKYPM2gCcH3FkjjndcmWHep7VwgJ9e93JZAkBp8N9w\n" + 
-			"8ZCFFjVdadushN2OsfnO//1c5xkBkkXL6s0/NhI/NuHoFfNkI3b0xgdQ+I3cgPba\n" + 
-			"rY7o8m2rgyAMl1FZAkBTW7afGlSF5jeUmfW21eWxTl+dlDyYhJi6RuIRhy1/ZrLM\n" + 
-			"rx/aT0O8FQYTo1xiKgM2cNrVvoeY03WKbpgurODp\n" + 
-			"-----END RSA PRIVATE KEY-----";
+	private static final String privateKeyString = 
+			"MIICWgIBAAKBgGpYA60Dbe1MGCYDZo3q9KccjX4X9N1TGJjkE5uDGs8tBoK4ntZv" + 
+			"rwfIerBZdx6eaARSOySxlaQTuukKgj/ZCNI3otwL9KVKOqRceRRHgl/49YPdMonR" + 
+			"zHippGaEx5HMMT1ITK3Bx1f5qY4ogsXk5qm6U490YYvPgbaVsBtos/azAgMBAAEC" + 
+			"gYA/hTcc3xGITo2WFy3o01EziICTsueWVA47NPDpURRwb6qV5oUp/SgFdCCkuavH" + 
+			"ZEMpYZzmPBTwHsDkdlx6mr8DWW1faIWpyQZCMJz8YtKx1VCTJMMTQ757WhGD18FY" + 
+			"DKiFVDRT2ZZYEah9aLYPYa6AYgYIPCtvzd5QDddnMf6ioQJBAMfdEUJpWRzGTr//" + 
+			"mw6xCz4Hoev1VBj8ljnQ0nk82UY6SQYbZz6+TDS8m+R8ks9V+y/cqRyOD1NNpT2i" + 
+			"dUM1i6kCQQCINoec7IAfsd1Db7kTeCpd0MCK08PL3sLzlMJgZGm4idIusY5otJ8o" + 
+			"wXogAeiw8oOcgtblKZz9224j4j7MWMj7AkAG0/+l9DFuMTw5hQMIInZO3TXj+NKx" + 
+			"s9dyDDdUmwaVRqJ+CeuiEiBKYPM2gCcH3FkjjndcmWHep7VwgJ9e93JZAkBp8N9w" + 
+			"8ZCFFjVdadushN2OsfnO//1c5xkBkkXL6s0/NhI/NuHoFfNkI3b0xgdQ+I3cgPba" + 
+			"rY7o8m2rgyAMl1FZAkBTW7afGlSF5jeUmfW21eWxTl+dlDyYhJi6RuIRhy1/ZrLM" + 
+			"rx/aT0O8FQYTo1xiKgM2cNrVvoeY03WKbpgurODp";
 	private static PrivateKey privateKey;
-	private static final String publicKeyString = "-----BEGIN PUBLIC KEY-----\n" + 
-			"MIGeMA0GCSqGSIb3DQEBAQUAA4GMADCBiAKBgGpYA60Dbe1MGCYDZo3q9KccjX4X\n" + 
-			"9N1TGJjkE5uDGs8tBoK4ntZvrwfIerBZdx6eaARSOySxlaQTuukKgj/ZCNI3otwL\n" + 
-			"9KVKOqRceRRHgl/49YPdMonRzHippGaEx5HMMT1ITK3Bx1f5qY4ogsXk5qm6U490\n" + 
-			"YYvPgbaVsBtos/azAgMBAAE=\n" + 
-			"-----END PUBLIC KEY-----";
+	private static final String publicKeyString =  
+			"MIGeMA0GCSqGSIb3DQEBAQUAA4GMADCBiAKBgGpYA60Dbe1MGCYDZo3q9KccjX4X" + 
+			"9N1TGJjkE5uDGs8tBoK4ntZvrwfIerBZdx6eaARSOySxlaQTuukKgj/ZCNI3otwL" + 
+			"9KVKOqRceRRHgl/49YPdMonRzHippGaEx5HMMT1ITK3Bx1f5qY4ogsXk5qm6U490" + 
+			"YYvPgbaVsBtos/azAgMBAAE=";
 	private static PublicKey publicKey;
 	static {
-	    KeyFactory kf;
-	    try {
-	        kf = KeyFactory.getInstance("RSA");
-	        byte[] encodedPv = Base64.getDecoder().decode(privateKeyString);
-	        PKCS8EncodedKeySpec keySpecPv = new PKCS8EncodedKeySpec(encodedPv);
-	        privateKey = kf.generatePrivate(keySpecPv);
+	    try 
+	    {
+	    	java.security.Security.addProvider(
+	    	         new org.bouncycastle.jce.provider.BouncyCastleProvider()
+	    	);
+	    	
+	        KeyFactory kf = KeyFactory.getInstance("RSA");
 
-	        System.out.println(publicKeyString);
-	        byte[] encodedPb = Base64.getDecoder().decode(publicKeyString);
-	        System.out.println(encodedPb);
-	        X509EncodedKeySpec keySpecPb = new X509EncodedKeySpec(encodedPb);
-	        publicKey = kf.generatePublic(keySpecPb);
+	        PKCS8EncodedKeySpec keySpecPKCS8 = new PKCS8EncodedKeySpec(Base64.getDecoder().decode(privateKeyString));
+	        PrivateKey privKey = kf.generatePrivate(keySpecPKCS8);
+
+	        X509EncodedKeySpec keySpecX509 = new X509EncodedKeySpec(Base64.getDecoder().decode(publicKeyString));
+	        RSAPublicKey pubKey = (RSAPublicKey) kf.generatePublic(keySpecX509);
+
+	        publicKey = pubKey;
+	        privateKey = privKey;
+	        
+	        System.out.println(privKey);
+	        System.out.println(pubKey);
 
 	    } catch (Exception e) {
 	    	e.printStackTrace();
@@ -141,7 +147,8 @@ public class Blockchain {
 		byte[] encrypted = null;
 		try {
 			System.out.println(publicKey.getEncoded());
-			 encrypted = CryptoUtil.encrypt(publicKey, blockchainJson.getBytes());
+			//blockchainJson.getBytes()
+			encrypted = CryptoUtil.encrypt(publicKey, ("{}").getBytes());
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
