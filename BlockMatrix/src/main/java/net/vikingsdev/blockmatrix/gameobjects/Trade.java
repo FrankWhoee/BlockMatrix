@@ -17,11 +17,8 @@ public class Trade {
 		Item sendItem = sender.getInventory().get(sendIndex);
 		Item receiveItem = receiver.getInventory().get(receiveIndex);
 		
-		sender.getInventory().add(receiveItem);
-		receiver.getInventory().add(sendItem);
-		
-		sender.getInventory().remove(sendIndex);
-		receiver.getInventory().remove(receiveIndex);
+		sender.getInventory().set(sendIndex, receiveItem);
+		receiver.getInventory().set(receiveIndex, sendItem);
 	}
 	
 }
