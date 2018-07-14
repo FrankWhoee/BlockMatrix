@@ -1,5 +1,6 @@
 package blockchain.app.blockmatrix;
 
-public class Weapon {
+public class Weapon extends Item{
+	//every weapon has
 
 }
