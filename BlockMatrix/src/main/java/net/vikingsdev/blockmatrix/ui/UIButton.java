@@ -22,6 +22,10 @@ public class UIButton {
 		bounds = new Rectangle(x, y, width, height);
 	}
 	
+	public void tick() {
+		
+	}
+	
 	public void render(Graphics g) {
 		g.drawImage(texture[state], bounds.x, bounds.y, bounds.width, bounds.height, null);
 	}

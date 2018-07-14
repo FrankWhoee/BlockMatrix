@@ -28,7 +28,7 @@ public class GameState extends State {
 
 	@Override
 	public void tick() {
-		//probably not needed but I'm keeping it for now
+		uim.tick();
 	}
 
 	@Override
