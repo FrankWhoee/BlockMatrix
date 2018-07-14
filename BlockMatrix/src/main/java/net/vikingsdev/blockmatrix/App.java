@@ -11,7 +11,7 @@ public class App {
 	public static int difficulty = 5;
 
 	public static void main(String[] args) {	
-		//add our blocks to the playerchain ArrayList:
+		//add our blocks to the playerChain ArrayList:
 		
 		playerchain.add(new Block("Genesis Block", "0"));
 		System.out.println("Trying to Mine block 1... ");
@@ -19,10 +19,12 @@ public class App {
 		
 		System.out.println("Registering player...");
 		register("my name tripple gay");
-		System.out.println("Player's name: " + Player.toPlayer(playerchain.get(1).getData()).getName());
-		System.out.println("Player's id: " + Player.toPlayer(playerchain.get(1).getData()).getId());
+		Player p = Player.toPlayer(playerchain.get(1).getData());
+		
+		System.out.println("Player's name: " + p.getName());
+		System.out.println("Player's id: " + p.getId());
 
-		Game game = new Game(1280, 720, "Meme", playerchain.get(1).getPlayer());
+		Game game = new Game(1280, 720, "Meme", p);
 		game.start();
 		
 		String playerchainJson = new GsonBuilder().setPrettyPrinting().create().toJson(playerchain);
@@ -32,7 +34,7 @@ public class App {
 	
 	public static void register(String name) {
 		Player newPlayer = new Player(name);
-		playerchain.add(new Block(newPlayer.toJsonString(), playerchain.get(playerchain.size()-1).hash, newPlayer));
+		playerchain.add(new Block(newPlayer.toJsonString(), playerchain.get(playerchain.size()-1).hash));
 		playerchain.get(playerchain.size()-1).mineBlock(difficulty);
 		
 	}
