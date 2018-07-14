@@ -12,18 +12,14 @@ public class Event {
 	protected HashMap<String, Integer> modStats;
 	
 	//lol will find a more efficient way to do this later
-	public ArrayList<ClickTriggerable> availableClickTriggerable = new ArrayList<>();
-	public ArrayList<KillTriggerable> availableKillTriggerable = new ArrayList<>(Arrays.asList(new TenKills()));
-	
-	public Event() {	
-	}
-	
+
 	public Event(String modifier, byte region) {
 		this.modifier = modifier;
 		this.region = region;
 		
 		modStats = new HashMap<String, Integer>();
 	}
+	
 	
 	//Accessors
 	
@@ -40,12 +36,12 @@ public class Event {
 	}
 
 
-	
-	//comment below is outdated
-	/*every event has
-	 * modification to stats
-	 * function to stat hashmap (changes the modifications of the stats into a hashmap for easy addition into the weapon's previous stats)
-	 * 
-	 * a modification to the item name (
-	 */
 }
+
+//events
+
+
+
+//NEED TO ADD MORE EVENTS
+//a low priority task below
+//cuz we want the items to be unique, ideally some of it would also be random, like maybe instead of gaining a "sharp" quality you might instead get like "finely crafted," but mechanically will be the same, and maybe there would be a small chance instead of getting +! dmg, you get +2
