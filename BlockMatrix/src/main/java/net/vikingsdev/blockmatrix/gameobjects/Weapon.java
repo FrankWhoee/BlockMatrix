@@ -1,4 +1,4 @@
-package blockchain.app.blockmatrix;
+package net.vikingsdev.blockmatrix.gameobjects;
 
 import java.util.ArrayList;
 import java.util.HashMap;

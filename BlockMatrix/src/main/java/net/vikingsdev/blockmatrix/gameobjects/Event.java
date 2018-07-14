@@ -1,6 +1,8 @@
-package blockchain.app.blockmatrix;
+package net.vikingsdev.blockmatrix.gameobjects;
 
 import java.util.HashMap;
+
+import net.vikngsdev.blockmatrix.utils.ConditionReader;
 
 public abstract class Event {
 	public static final byte TITLE_PREFIX = 0, TITLE_PROPER = 1, TITLE_SUFFIX = 2;
