@@ -5,12 +5,15 @@ import java.awt.Graphics;
 
 import net.vikingsdev.blockmatrix.Game;
 import net.vikingsdev.blockmatrix.gfx.Assets;
-import net.vikingsdev.blockmatrix.ui.UIButton;
-import net.vikingsdev.blockmatrix.ui.UIListener;
+import net.vikingsdev.blockmatrix.ui.*;
 
 public class GameState extends State {
+	private UIOverlay inventory, settings, trading;
+	
 	public GameState(Game game) {
-
+		inventory = new InventoryOverlay(64, 64, 1152, 592);
+		settings = new SettingsOverlay(64, 64, 1152, 592);
+		trading = new TradingOverlay(64, 64, 1152, 592);
 	}
 
 	@Override

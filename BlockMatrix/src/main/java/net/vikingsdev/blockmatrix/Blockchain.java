@@ -1,9 +1,12 @@
 package net.vikingsdev.blockmatrix;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
+import java.io.PrintWriter;
 import java.io.StringWriter;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Base64;
 
@@ -16,11 +19,14 @@ import java.security.spec.ECGenParameterSpec;
 import java.security.spec.PKCS8EncodedKeySpec;
 import java.security.spec.X509EncodedKeySpec;
 
+import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.JsonElement;
 import com.google.gson.JsonIOException;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.google.gson.JsonSyntaxException;
+import com.google.gson.reflect.TypeToken;
 
 import org.bouncycastle.*;
 import org.bouncycastle.util.io.pem.PemObjectGenerator;
@@ -29,6 +35,7 @@ import org.bouncycastle.util.io.pem.PemWriter;
 import net.vikingsdev.blockmatrix.gameobjects.Player;
 import net.vikingsdev.blockmatrix.utils.CryptoUtil;
 import net.vikingsdev.blockmatrix.utils.OSUtil;
+import net.vikingsdev.blockmatrix.utils.StringUtil;
 
 public class Blockchain {
 	public static ArrayList<Block> playerchain = new ArrayList<Block>();
@@ -101,44 +108,47 @@ public class Blockchain {
 	}
 	
 	public static boolean parseLocalJson() {
-		return false;
-//		JsonParser parser = new JsonParser();
-//        //Read and parse JSON file
-//		try {
-//			if(OSUtil.isUnix()) {
-//				Object obj = parser.parse(new FileReader("../Save"));
-//			}
-//			
-//			
-//		} catch (Exception e) {
-//			return false;
-//		}
+		JsonParser parser = new JsonParser();
+        //Read and parse JSON file
+		try {
+			String encrypted = StringUtil.readFile("../Save/save.json", StandardCharsets.UTF_8);
+			byte[] decrypted = CryptoUtil.decrypt(privateKey, encrypted.getBytes());
+			String decoded = new String(decrypted,StandardCharsets.UTF_8);
+			JsonElement obj = parser.parse(decoded);
+			localSave = obj.getAsJsonObject();
+			
+			Gson gson = new Gson();
+			playerchain = gson.fromJson(decoded, new TypeToken<ArrayList<Block>>(){}.getType());
+			
+			return true;
+			
+			
+		} catch (Exception e) {
+			return false;
+		}
         
 	}
 
 	
 	public static void save() {
 		String blockchainJson = new GsonBuilder().setPrettyPrinting().create().toJson(playerchain);
-		byte[] encrypted;
+		byte[] encrypted = null;
 		try {
+			System.out.println(publicKey.getEncoded());
 			 encrypted = CryptoUtil.encrypt(publicKey, blockchainJson.getBytes());
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		
+		File Old = new File("../Save/save.json");
+		Old.delete();
+		File New = new File("../Save/save.json");
+		try {
+			PrintWriter out = new PrintWriter(New);
+			out.println(encrypted);
+			out.close();
+		} catch (FileNotFoundException e) {
+			System.err.println("Error occured while writing to " + New.getPath() + ". File not found.");
+		}
 	}
-	
-//	public static void save() {
-//    	Util.exec("rm " + "../" + Ref.foldername + "/" + Ref.filename);
-//		File file = new File("../" + Ref.foldername + "/" + Ref.filename);
-//		try {
-//			PrintWriter out = new PrintWriter(file);
-//			out.println(tamagotchis.toString());
-//			out.close();
-//		} catch (FileNotFoundException e) {
-//			System.err.println("Error occured while writing to " + file.getPath() + ". File not found.");
-//		}
-//    }
 }
