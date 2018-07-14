@@ -29,6 +29,6 @@ public class Weapon extends Item{
 
     public void addToHistory(Event event){
         history.add(event);
-        stats.put("Damage", (int) stats.get("Damage") + (int) event.getModStats().get("Damage"));
+        stats.put("Damage", (int) (stats.get("Damage")) + (int) (event.getModStats().get("Damage")));
     }
 }
