@@ -26,10 +26,7 @@ public class App {
 
 		Game game = new Game(1280, 720, "Meme", p);
 		game.start();
-		
-		String playerchainJson = new GsonBuilder().setPrettyPrinting().create().toJson(playerchain);
-		System.out.println("\nThe block chain: ");
-		System.out.println(playerchainJson);
+
 	}
 	
 	public static void register(String name) {
