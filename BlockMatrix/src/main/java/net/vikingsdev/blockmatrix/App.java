@@ -2,6 +2,8 @@ package net.vikingsdev.blockmatrix;
 
 import java.util.ArrayList;
 
+import javax.swing.JFrame;
+
 import com.google.gson.GsonBuilder;
 
 import net.vikingsdev.blockmatrix.gameobjects.Player;
@@ -23,6 +25,8 @@ public class App
 		System.out.println("Player's name: " + Player.toPlayer(playerchain.get(1).getData()).getName());
 		System.out.println("Player's id: " + Player.toPlayer(playerchain.get(1).getData()).getId());
 
+		Game game = new Game(1280, 720, "Meme", playerchain.get(1).getPlayer());
+		
 		String playerchainJson = new GsonBuilder().setPrettyPrinting().create().toJson(playerchain);
 		System.out.println("\nThe block chain: ");
 		System.out.println(playerchainJson);
