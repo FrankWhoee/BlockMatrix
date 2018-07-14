@@ -1,5 +1,7 @@
 package net.vikingsdev.blockmatrix.gameobjects;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 
 public class Event {
@@ -11,7 +13,10 @@ public class Event {
 	
 	//lol will find a more efficient way to do this later
 	public ArrayList<ClickTriggerable> availableClickTriggerable = new ArrayList<>();
-	public ArrayList<KillTriggerable> availableKillTriggerable = new ArrayList<KillTriggerable>(Arrays.asList(new TenKills()));
+	public ArrayList<KillTriggerable> availableKillTriggerable = new ArrayList<>(Arrays.asList(new TenKills()));
+	
+	public Event() {	
+	}
 	
 	public Event(String modifier, byte region) {
 		this.modifier = modifier;
@@ -33,6 +38,8 @@ public class Event {
 	public HashMap<String, Integer> getModStats() {
 		return modStats;
 	}
+
+
 	
 	//comment below is outdated
 	/*every event has
@@ -44,21 +51,6 @@ public class Event {
 }
 
 //events
-
-class TenKills extends Event implements KillTriggerable {		//will implement one of the interfaces for conditionMet function to work		//lets make another one for TenClicks to try out the ClickTriggerable interface
-	int killsReq = 10;
-	public TenKills() {
-		super("Sharp", Event.TITLE_PREFIX);
-		modStats.put("Damage", 1);
-	}
-	
-	public Boolean conditionsMet(int kills) {
-		if(kills >= killsReq)
-			return true;
-		else
-			return false;
-	}
-}
 
 
 //NEED TO ADD MORE EVENTS

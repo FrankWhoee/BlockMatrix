@@ -3,7 +3,6 @@ package net.vikingsdev.blockmatrix.gameobjects;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.ArrayList;
 
 public class Weapon extends Item{
 	ArrayList<Event> history;
@@ -15,13 +14,15 @@ public class Weapon extends Item{
 	String proper;
 	String suffix;
 	
+	Event event = new Event();
+	
 	private ArrayList<ClickTriggerable> availableClickTriggerable;
 	private ArrayList<KillTriggerable> availableKillTriggerable;
 	
     public Weapon(String name) {
     	super(name);
-    	availableClickTriggerable = super.availableClickTriggerable;
-    	availableKillTriggerable = super.availableKillTriggerable;
+    	this.availableClickTriggerable = event.availableClickTriggerable;
+    	this.availableKillTriggerable = event.availableKillTriggerable;
     	kills = 0;
         this.name = name;
 		history = new ArrayList<Event>();
@@ -45,7 +46,7 @@ public class Weapon extends Item{
     private void addToHistory(Event event){		//this will run every time the event's trigger condition is met, and should include deleting that completed event off the array list of possible events, and updating the name
         history.add(event);
         if(event.getModStats().containsKey("Damage"))
-        	stats.put("Damage", (int) (stats.get("Damage")) + (int) (event.getModStats().get("Damage")))
+        	stats.put("Damage", (int) (stats.get("Damage")) + (int) (event.getModStats().get("Damage")));
     }
     
     private void updateName(Event event) {
@@ -80,7 +81,7 @@ public class Weapon extends Item{
     	this.kills = kills;
     	
     	for(ClickTriggerable event : availableClickTriggerable) {
-    		if((Event)(event).conditionMet(clicks)) {
+    		if(event.conditionMet(clicks)) {
     			updateName((Event)event);
     			addToHistory((Event)event);
     			availableClickTriggerable.remove(0);
@@ -90,7 +91,7 @@ public class Weapon extends Item{
     	}
     	
     	for(KillTriggerable event : availableKillTriggerable) {
-    		if((Event)(event).conditionMet(kills)) {
+    		if(event.conditionMet(kills)) {
     			updateName((Event)event);
     			addToHistory((Event)event);
     			availableKillTriggerable.remove(0);

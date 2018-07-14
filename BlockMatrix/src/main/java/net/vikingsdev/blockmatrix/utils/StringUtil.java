@@ -1,4 +1,8 @@
 package net.vikingsdev.blockmatrix.utils;
+import java.io.IOException;
+import java.nio.charset.Charset;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.security.MessageDigest;
 
 public class StringUtil {
@@ -19,5 +23,14 @@ public class StringUtil {
 		catch(Exception e) {
 			throw new RuntimeException(e);
 		}
-	}	
+	}
+	
+	public static String readFile(String path, Charset encoding) 
+			  throws IOException 
+			{
+			  byte[] encoded = Files.readAllBytes(Paths.get(path));
+			  return new String(encoded, encoding);
+			}
+	
+	
 }
