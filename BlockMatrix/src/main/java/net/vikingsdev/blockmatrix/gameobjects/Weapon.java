@@ -10,7 +10,7 @@ public class Weapon extends Item{
     public Weapon(String name) {
     	super(name);
         this.name = name;
-        stats.put("Damage", 0);		//i think weapon dmg needs to start at 1 lol, cuz for this mvp the point is all ur stats r tied up in ur weapon
+        stats.put("Damage", 1);		//i think weapon dmg needs to start at 1 lol, cuz for this mvp the point is all ur stats r tied up in ur weapon
     }
 
     public String getName() {
@@ -25,7 +25,7 @@ public class Weapon extends Item{
         return history;
     }
 
-    public void addToHistory(Event event){		//this will run everytime the event's trigger condition is met, and should include deleting that completed event off the array list of possible events, and updating the name
+    public void addToHistory(Event event){		//this will run every time the event's trigger condition is met, and should include deleting that completed event off the array list of possible events, and updating the name
         history.add(event);
         stats.put("Damage", (int) (stats.get("Damage")) + (int) (event.getModStats().get("Damage")));
     }
