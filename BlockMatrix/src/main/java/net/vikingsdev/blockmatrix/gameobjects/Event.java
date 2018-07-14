@@ -27,7 +27,7 @@ public class Event {
 	}
 	
 	public int getRegion() {		//region is a byte not a long
-		return region;
+		return (int)region;
 	}
 	
 	public HashMap<String, Integer> getModStats() {
