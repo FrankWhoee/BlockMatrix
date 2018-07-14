@@ -4,6 +4,9 @@ import net.vikingsdev.blockmatrix.gameobjects.Player;
 
 public class App {
 	public static void main(String[] args) {	
+
+		System.out.println(System.getProperty("user.dir"));
+		
 		//add our blocks to the playerChain ArrayList:
 		
 		Blockchain.playerchain.add(new Block("Genesis Block", "0"));
