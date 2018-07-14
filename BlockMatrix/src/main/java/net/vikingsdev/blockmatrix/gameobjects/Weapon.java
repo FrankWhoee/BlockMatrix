@@ -81,7 +81,7 @@ public class Weapon extends Item{
     	this.kills = kills;
     	
     	for(ClickTriggerable event : availableClickTriggerable) {
-    		if((Event)event.conditionMet(clicks)) {
+    		if((Event)(event).conditionMet(clicks)) {
     			updateName((Event)event);
     			addToHistory((Event)event);
     			availableClickTriggerable.remove(0);
@@ -91,7 +91,7 @@ public class Weapon extends Item{
     	}
     	
     	for(KillTriggerable event : availableKillTriggerable) {
-    		if((Event)event.conditionMet(kills)) {
+    		if((Event)(event).conditionMet(kills)) {
     			updateName((Event)event);
     			addToHistory((Event)event);
     			availableKillTriggerable.remove(0);
