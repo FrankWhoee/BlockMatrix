@@ -11,7 +11,7 @@ public class Player {
     private String name;
     private Long id;
 	private ArrayList<Item> inventory = new ArrayList<Item>();
-	
+	private int ActiveSlot = -1;
 	
     public Player(String name) {
         this.name = name;

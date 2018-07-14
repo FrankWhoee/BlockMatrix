@@ -13,8 +13,26 @@ public class InventoryOverlay extends UIOverlay {
 	 
 	@Override 
 	public void init() {
-		uim.addObject(new UIButton(1024, 128, 256, 128, Assets.button[0], new UIListener() {
+		uim.addObject(new UIButton(644, 12, 64, 64, Assets.button[7], new UIListener() {
 			//Back
+			@Override
+			public void onClick() {
+				setActive(false);
+				game.getMouse().setUIM(game.getGameState().getUIM());
+			}
+		}));
+		
+		uim.addObject(new UIButton(720 - 128, 592 - 128, 256, 128, Assets.button[3], new UIListener() {
+			// equip button
+			@Override
+			public void onClick() {
+				setActive(false);
+				game.getMouse().setUIM(game.getGameState().getUIM());
+			}
+		}));  
+		
+		uim.addObject(new UIButton(720 - 128, 592, 256, 128, Assets.button[4], new UIListener() {
+			// equip button
 			@Override
 			public void onClick() {
 				setActive(false);

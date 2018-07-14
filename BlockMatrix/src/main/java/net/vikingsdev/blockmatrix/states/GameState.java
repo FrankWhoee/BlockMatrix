@@ -13,9 +13,9 @@ public class GameState extends State {
 	public GameState(Game game) {
 		super(game);
 		
-		inventory = new InventoryOverlay(64, 64, 1152, 592, game);
-		settings = new SettingsOverlay(64, 64, 1152, 592, game);
-		trading = new TradingOverlay(64, 64, 1152, 592, game);
+		inventory = new InventoryOverlay(720, 0, 560, 720, game);
+		settings = new SettingsOverlay(720, 0, 560, 720, game);
+		trading = new TradingOverlay(720, 0, 560, 720, game);
 	}
 
 	@Override
