@@ -1,5 +1,6 @@
-package net.vikingsdev.blockmatrix;
+package net.vikingsdev.blockmatrix.gfx;
 
+import java.awt.Canvas;
 import java.awt.Dimension;
 
 import javax.swing.JFrame;
@@ -7,6 +8,8 @@ import javax.swing.JFrame;
 public class Display {
 
 	private JFrame frame;
+	private Canvas canvas;
+	
 	private String title;
 	private int width, height;
 	private Dimension size;
@@ -22,9 +25,18 @@ public class Display {
 	public void init() {
 		frame = new JFrame(title);
 		frame.setSize(size);
-		frame.setVisible(true);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setVisible(true);
 		frame.setLocationRelativeTo(null);
+		frame.setResizable(false);
+		
+		canvas = new Canvas();
+		canvas.setPreferredSize(size);
+		canvas.setMaximumSize(size);
+		canvas.setMinimumSize(size);
+		
+		frame.add(canvas);
+		frame.pack();
 	}
 	
 }
