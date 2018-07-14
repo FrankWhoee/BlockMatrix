@@ -1,4 +1,4 @@
-package net.vikngsdev.blockmatrix.utils;
+package net.vikingsdev.blockmatrix.utils;
 
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
