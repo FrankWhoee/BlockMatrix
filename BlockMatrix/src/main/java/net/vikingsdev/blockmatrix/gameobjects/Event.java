@@ -2,8 +2,6 @@ package net.vikingsdev.blockmatrix.gameobjects;
 
 import java.util.HashMap;
 
-import net.vikngsdev.blockmatrix.utils.ConditionReader;
-
 public abstract class Event {
 	public static final byte TITLE_PREFIX = 0, TITLE_PROPER = 1, TITLE_SUFFIX = 2;
 	protected byte region; //where the title change occurs (prefix, proper, suffix		//better practice to make variables private and use set functions but whatever)
@@ -11,7 +9,7 @@ public abstract class Event {
 	protected String modifier; //weapon stat changes
 	protected HashMap<String, Integer> modStats;
 	
-	public Event(String modifier, byte region, ConditionReader cr) {
+	public Event(String modifier, byte region) {
 		this.modifier = modifier;
 		this.region = region;
 		
@@ -43,13 +41,18 @@ public abstract class Event {
 
 class TenKills extends Event {		//will implement one of the interfaces for conditionMet function to work		//lets make another one for TenClicks to try out the ClickTriggerable interface
 	public TenKills() {
-		super("Sharp", Event.TITLE_PREFIX, new ConditionReader() {
-			public void conditionMet(/* what we put here depends on which interface it implements */) {		//should be boolean not void		//and maybe use protected instead of public
+		super("Sharp", Event.TITLE_PREFIX);
+		
+		new ClickTriggerable() {
+			public Boolean conditionMet(int clicks) {
+				return null;
+			}
+		};
+			/*public void conditionMet( what we put here depends on which interface it implements ) {		//should be boolean not void		//and maybe use protected instead of public
 				//what arguments it asks for will depend on which interface TenKills implements (eg. clicks, playTime, kills, dmgDealt (can be anything that is tracked by the weapon(by this i mean stored as a variable in weapon)))
 				
 				//work on this later
-			}
-		});
+			}*/
 		modStats.put("Damage", 1);
 	}
 }
