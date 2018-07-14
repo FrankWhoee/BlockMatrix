@@ -7,7 +7,10 @@ public class Weapon extends Item{
 	//every weapon has
 
     private String name;
-    private HashMap stats;
-    private ArrayList<Event> history;
+    private HashMap stats = new HashMap();
+    private ArrayList<Event> history = new ArrayList<Event>();
 
+    public Weapon(String name) {
+        this.name = name;
+    }
 }
