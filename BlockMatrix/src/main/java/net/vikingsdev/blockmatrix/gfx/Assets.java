@@ -4,18 +4,26 @@ import java.awt.image.BufferedImage;
 
 public class Assets {
 
-	private static final int UICellWidth = 64, UICellHeight = 64;
+	private static final int UICellSize = 64;
 	
-	public static BufferedImage invButtonRest, invButtonHover, tradeButtonRest, tradeButtonHover;
+	public static BufferedImage[][] button;
+	
+	/*
+	 * [0][i] - inventory button
+	 * [1][i] - trade button
+	 * 
+	 * [i][0] - button rested
+	 * [i][1] - button active
+	 */
 	
 	public static void init() {
 		SpriteSheet UISheet = new SpriteSheet(ImageLoader.loadImage("/uisheet.png"));
 		
 		// UI sprites
-		invButtonRest = UISheet.crop(UICellWidth * 4, UICellHeight * 4, UICellWidth * 4, UICellHeight * 2);
-		invButtonHover = UISheet.crop(UICellWidth * 4, 0, UICellWidth * 4, UICellHeight * 2);
-		tradeButtonRest = UISheet.crop(UICellWidth * 4, UICellHeight * 6, UICellWidth * 4, UICellHeight * 2);
-		tradeButtonHover = UISheet.crop(UICellWidth * 4, UICellHeight * 2, UICellWidth * 4, UICellHeight * 2);
+		
+		button[0][0] = UISheet.crop(UICellSize * 4, UICellSize * 4, UICellSize * 4, UICellSize * 2);
+		button[0][1] = UISheet.crop(UICellSize * 4, 0, UICellSize * 4, UICellSize * 2);
+		button[1][0] = UISheet.crop(UICellSize * 4, UICellSize * 6, UICellSize * 4, UICellSize * 2);
+		button[1][1] = UISheet.crop(UICellSize * 4, UICellSize * 2, UICellSize * 4, UICellSize * 2);
 	}
-	
 }
