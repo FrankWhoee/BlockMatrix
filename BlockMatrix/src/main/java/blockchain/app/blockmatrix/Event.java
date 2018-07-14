@@ -1,16 +1,31 @@
 package blockchain.app.blockmatrix;
 
 public class Event {
-	private String description;
-	private long date;
+	public static final int TITLE_PREFIX = 0, TITLE_PROPER = 1, TITLE_SUFFIX = 2;
 	
-	public Event(String desc, long date) {
-		this.description = desc;
+	private String modifier; //weapon stat changes
+	private byte region; //where the title change occurs (prefix, proper, suffix)
+	private long date; //a date for when the event occured
+	private Item item; //accessor for the item that is being changed
+	
+	public Event(String modifier, byte region, long date, Item item) {
+		this.modifier = modifier;
 		this.date = date;
+		this.item = item;
 	}
 	
-	public String getDescription() {
-		return description;
+	public void checkForEvent() {
+		//Unused
+	}
+	
+	public void modifyStats() {
+		//Unused
+	}
+	
+	//Accessors
+	
+	public String getModifier() {
+		return modifier;
 	}
 	public long getDate() {
 		return date;
