@@ -10,7 +10,7 @@ public class Player {
     }
 
     private String name;
-	private ArrayList<Item> Inventory = new ArrayList<Item>;
+	private ArrayList<Item> Inventory = new ArrayList<Item>();
 
     public String getName() {
         return name;
