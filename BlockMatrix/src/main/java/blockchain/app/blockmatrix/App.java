@@ -12,7 +12,7 @@ public class App
 	public static void main(String[] args) {	
 		//add our blocks to the blockchain ArrayList:
 		
-		blockchain.add(new Block("Hi im the first block", "0"));
+		blockchain.add(new Block("Hi im gay lol", "0"));
 		System.out.println("Trying to Mine block 1... ");
 		blockchain.get(0).mineBlock(difficulty);
 		
