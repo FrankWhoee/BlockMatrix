@@ -27,8 +27,7 @@ import org.bouncycastle.util.io.pem.PemObjectGenerator;
 import org.bouncycastle.util.io.pem.PemWriter;
 
 import net.vikingsdev.blockmatrix.gameobjects.Player;
-import net.vikngsdev.blockmatrix.utils.CryptoUtil;
-import net.vikngsdev.blockmatrix.utils.OSUtil;
+import net.vikingsdev.blockmatrix.utils.OSUtil;
 
 public class Blockchain {
 	public static ArrayList<Block> playerchain = new ArrayList<Block>();

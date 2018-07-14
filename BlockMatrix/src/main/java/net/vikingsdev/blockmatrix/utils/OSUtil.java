@@ -1,4 +1,4 @@
-package net.vikngsdev.blockmatrix.utils;
+package net.vikingsdev.blockmatrix.utils;
 
 public class OSUtil {
 	
