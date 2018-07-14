@@ -9,11 +9,13 @@ public abstract class Event {
 	protected byte region; //where the title change occurs (prefix, proper, suffix)
 	
 	protected String modifier; //weapon stat changes
-	protected HashMap modStats;
+	protected HashMap<String, Integer> modStats;
 	
 	public Event(String modifier, byte region, ConditionReader cr) {
 		this.modifier = modifier;
 		this.region = region;
+		
+		modStats = new HashMap<String, Integer>();
 	}
 	
 	//Accessors
@@ -26,7 +28,7 @@ public abstract class Event {
 		return region;
 	}
 	
-	public HashMap getModStats() {
+	public HashMap<String, Integer> getModStats() {
 		return modStats;
 	}
 	
