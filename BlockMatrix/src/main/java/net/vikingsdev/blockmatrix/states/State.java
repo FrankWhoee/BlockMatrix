@@ -2,14 +2,30 @@ package net.vikingsdev.blockmatrix.states;
 
 import java.awt.Graphics;
 
-public abstract class State {
+import net.vikingsdev.blockmatrix.ui.UIManager;
 
-	private static State currentState = null;
-	public static void setState(State state) {
-		currentState = state;
+public abstract class State {
+	protected UIManager uim;
+	
+	private static State activeState = null;
+	
+	public State() {
+		uim = new UIManager();
 	}
 	
-	public abstract void update();
+	public abstract void init();
+	public abstract void tick();
 	public abstract void render(Graphics g);
 	
+	public static State getState() {
+		return activeState;
+	}
+	
+	public static void setState(State state) {
+		activeState = state;
+	}
+	
+	public UIManager getUIM() {
+		return uim;
+	}
 }

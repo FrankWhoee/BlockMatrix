@@ -6,6 +6,7 @@ import java.awt.image.BufferStrategy;
 import net.vikingsdev.blockmatrix.gameobjects.Player;
 import net.vikingsdev.blockmatrix.gfx.Assets;
 import net.vikingsdev.blockmatrix.gfx.Display;
+import net.vikingsdev.blockmatrix.states.*;
 
 public class Game implements Runnable{
 
@@ -28,6 +29,10 @@ public class Game implements Runnable{
 	
 	public static final int MAX_FPS = 60;
 	
+	//states
+	
+	private State gameState;
+	
 	public Game(int width, int height, String title, Player player) {
 		this.width = width;
 		this.height = height;
@@ -38,11 +43,18 @@ public class Game implements Runnable{
 	private void init() {
 		display = new Display(width, height, title);
 		
+		gameState = new GameState();
+		
 		Assets.init();
+		
+		gameState.init();
 	}
 	
 	private void update() {
 		//game updates code
+		
+		if(State.getState() == null) State.setState(gameState);
+		else State.getState().tick();
 	}
 	
 	private void render() {
@@ -57,10 +69,8 @@ public class Game implements Runnable{
 		g = buffer.getDrawGraphics();
 		
 		// render zone
-		g.drawImage(Assets.button[0][0], 0, 0, null);
-		g.drawImage(Assets.button[0][1], 0, 128, null);
-		g.drawImage(Assets.button[1][0], 0, 256, null);
-		g.drawImage(Assets.button[1][1], 0, 472, null);
+		
+		if(State.getState() != null) State.getState().render(g);
 		
 		// clean up
 		buffer.show();
