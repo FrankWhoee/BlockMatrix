@@ -55,7 +55,10 @@ public class Game implements Runnable{
 		g = buffer.getDrawGraphics();
 		
 		// render zone
-		g.drawRect(0, 0, 50, 50);
+		g.drawImage(Assets.invButtonRest, 0, 0, null);
+		g.drawImage(Assets.invButtonHover, 0, 128, null);
+		g.drawImage(Assets.tradeButtonRest, 0, 256, null);
+		g.drawImage(Assets.tradeButtonHover, 0, 472, null);
 		
 		// clean up
 		buffer.show();
