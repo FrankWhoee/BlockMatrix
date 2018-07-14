@@ -70,7 +70,10 @@ public class Game implements Runnable{
 		
 		// render zone
 		
-		if(State.getState() != null) State.getState().render(g);
+		//if(State.getState() != null) State.getState().render(g);
+		g.drawImage(Assets.eventBackground,768,0,null);
+		g.drawImage(Assets.enemyBackground,0,32,null);
+		g.drawImage(Assets.statsBackground, 832, 384, null);
 		
 		// clean up
 		buffer.show();
