@@ -21,10 +21,9 @@ public class GUI {
     //You're mother gay and homosexual
 
     public GUI(Player player) {
-        
         this.player = player;
         
-        playerName.setText(player.getName());
+/*        playerName.setText(player.getName());
         playerName.setEditable(false);
         
         hitButton.addActionListener(new ActionListener() {
@@ -44,6 +43,6 @@ public class GUI {
             public void actionPerformed(ActionEvent actionEvent) {
 
             }
-        });
+        });*/
     }
 }
