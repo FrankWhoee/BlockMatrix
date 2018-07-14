@@ -1,5 +1,7 @@
 package net.vikingsdev.blockmatrix.gameobjects;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 
 public class Event {
@@ -52,7 +54,7 @@ class TenKills extends Event implements KillTriggerable {		//will implement one 
 		modStats.put("Damage", 1);
 	}
 	
-	public Boolean conditionsMet(int kills) {
+	public Boolean conditionMet(int kills) {
 		if(kills >= killsReq)
 			return true;
 		else
