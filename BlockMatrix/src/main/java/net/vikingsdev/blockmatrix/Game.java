@@ -5,6 +5,7 @@ import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 
 import net.vikingsdev.blockmatrix.gameobjects.Player;
+import net.vikingsdev.blockmatrix.gfx.Assets;
 import net.vikingsdev.blockmatrix.gfx.Display;
 
 public class Game implements Runnable{
@@ -36,6 +37,7 @@ public class Game implements Runnable{
 	
 	private void init() {
 		display = new Display(width, height, title);
+		Assets.init();
 	}
 	
 	private void update() {
@@ -44,14 +46,17 @@ public class Game implements Runnable{
 	
 	private void render() {
 		buffer = display.getCanvas().getBufferStrategy();
+		
 		if(buffer == null) {
 			display.getCanvas().createBufferStrategy(3);
 			return;
 		}
+		
 		g = buffer.getDrawGraphics();
 		
 		// render zone
 		g.drawRect(0, 0, 50, 50);
+		
 		// clean up
 		buffer.show();
 		g.dispose();
@@ -60,9 +65,26 @@ public class Game implements Runnable{
 	public void run() {
 		init();
 		
+		int MAX_FPS = 60;
+		double timePerFrame = 1000000000 / MAX_FPS;
+		double delta = 0;
+		long now;
+		long lastTick = System.nanoTime();
+		long timer = 0;
+		int ticks = 0;
+		
 		while(running) {
-			update();
-			render();
+			now = System.nanoTime();
+			delta += (now - lastTick) / timePerFrame;
+			timer += now - lastTick;
+			lastTick = now;
+			
+			if(delta >= 1) {
+				update();
+				render();
+				ticks++;
+				delta--;
+			}
 		}
 		
 		stop();

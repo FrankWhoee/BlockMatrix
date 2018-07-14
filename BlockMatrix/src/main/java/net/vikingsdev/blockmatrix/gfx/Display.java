@@ -6,7 +6,6 @@ import java.awt.Dimension;
 import javax.swing.JFrame;
 
 public class Display {
-
 	private JFrame frame;
 	private Canvas canvas;
 	
@@ -20,6 +19,7 @@ public class Display {
 		this.title = title;
 		this.size = new Dimension(width, height);
 		
+		init();
 	}
 	
 	public void init() {
