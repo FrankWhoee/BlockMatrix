@@ -12,6 +12,7 @@ public class Weapon extends Item{
 
     public Weapon(String name) {
         this.name = name;
+        stats.put("Damage", 0);
     }
 
     public String getName() {
