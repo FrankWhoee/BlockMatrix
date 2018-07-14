@@ -51,7 +51,7 @@ public class Game implements Runnable{
 	 
 		display = new Display(width, height, title);
 		
-		gameState = new GameState();
+		gameState = new GameState(this);
 	 
 	    display.getFrame().addKeyListener(keyboard);
 	    display.getFrame().addMouseListener(mouse);
@@ -73,7 +73,10 @@ public class Game implements Runnable{
 	private void update() {
 		//game updates code
 		
-		if(State.getState() == null) State.setState(gameState);
+		if(State.getState() == null) {
+			State.setState(gameState);
+			mouse.setUIM(gameState.getUIM());
+		}
 		else State.getState().tick();
 	}
 	
@@ -152,5 +155,9 @@ public class Game implements Runnable{
 	
 	public Player getPlayer() {
 		return player;
+	}
+	
+	public MouseManager getMouse() {
+		return mouse;
 	}
 }

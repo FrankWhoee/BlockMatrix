@@ -9,12 +9,10 @@ import net.vikingsdev.blockmatrix.ui.UIButton;
 import net.vikingsdev.blockmatrix.ui.UIListener;
 
 public class GameState extends State {
-/*	private Game game;
-	
 	public GameState(Game game) {
-		this.game = game;
+
 	}
-*/
+
 	@Override
 	public void init() {
 		uim.addObject(new UIButton(100, 100, 256, 128, Assets.button[0], new UIListener() {
