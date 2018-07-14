@@ -6,6 +6,11 @@ import java.io.FileWriter;
 import java.io.StringWriter;
 import java.util.ArrayList;
 import java.util.Base64;
+
+import javax.crypto.BadPaddingException;
+import javax.crypto.IllegalBlockSizeException;
+import javax.crypto.NoSuchPaddingException;
+
 import java.security.*;
 import java.security.spec.ECGenParameterSpec;
 import java.security.spec.PKCS8EncodedKeySpec;
@@ -22,6 +27,7 @@ import org.bouncycastle.util.io.pem.PemObjectGenerator;
 import org.bouncycastle.util.io.pem.PemWriter;
 
 import net.vikingsdev.blockmatrix.gameobjects.Player;
+import net.vikngsdev.blockmatrix.utils.CryptoUtil;
 import net.vikngsdev.blockmatrix.utils.OSUtil;
 
 public class Blockchain {
@@ -109,29 +115,30 @@ public class Blockchain {
 //		}
         
 	}
-	
-//	public static void generateKeyPair() {
-//		Security.addProvider(new org.bouncycastle.jce.provider.BouncyCastleProvider());
-//		try {
-//			KeyPairGenerator keyGen = KeyPairGenerator.getInstance("ECDSA","BC");
-//			SecureRandom random = SecureRandom.getInstance("SHA1PRNG");
-//			ECGenParameterSpec ecSpec = new ECGenParameterSpec("prime192v1");
-//			// Initialize the key generator and generate a KeyPair
-//			keyGen.initialize(ecSpec, random);   //256 bytes provides an acceptable security level
-//	        	KeyPair keyPair = keyGen.generateKeyPair();
-//	        	// Set the public and private keys from the keyPair
-//	        	privateKey = keyPair.getPrivate();
-//	        	publicKey = keyPair.getPublic();
-//	        	System.out.println(Base64.getDecoder().decode(privateKey));
-////	        	PemWriter privatepemWriter = new PemWriter(new FileWriter("private_key"));
-////	        	privatepemWriter.writeObject(privateKey);
-////	        	privatepemWriter.close();
-//		}catch(Exception e) {
-//			throw new RuntimeException(e);
-//		}
-//	}
+
 	
 	public static void save() {
 		String blockchainJson = new GsonBuilder().setPrettyPrinting().create().toJson(playerchain);
+		byte[] encrypted;
+		try {
+			 encrypted = CryptoUtil.encrypt(publicKey, blockchainJson.getBytes());
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
 	}
+	
+//	public static void save() {
+//    	Util.exec("rm " + "../" + Ref.foldername + "/" + Ref.filename);
+//		File file = new File("../" + Ref.foldername + "/" + Ref.filename);
+//		try {
+//			PrintWriter out = new PrintWriter(file);
+//			out.println(tamagotchis.toString());
+//			out.close();
+//		} catch (FileNotFoundException e) {
+//			System.err.println("Error occured while writing to " + file.getPath() + ". File not found.");
+//		}
+//    }
 }
