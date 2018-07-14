@@ -50,7 +50,7 @@ public class Weapon extends Item{
     }
     
     private void updateName(Event event) {
-    	if(event.getRegion == 0) {
+    	if(event.getRegion() == 0) {
     		if(prefix == null) {
     			prefix = event.getModifier();
     		}
@@ -58,7 +58,7 @@ public class Weapon extends Item{
     			prefix = prefix + "-" + event.getModifier();
     	}
     	
-    	else if(event.getRegion == 1) {
+    	else if(event.getRegion() == 1) {
     		if(proper == null) {
     			proper = event.getModifier();
     		}
@@ -89,6 +89,7 @@ public class Weapon extends Item{
     		else
     			break;
     	}
+    	
     	for(KillTriggerable event : availableKillTriggerable) {
     		if((Event)event.conditionMet(kills)) {
     			updateName((Event)event);
