@@ -2,15 +2,13 @@ package net.vikingsdev.blockmatrix.gameobjects;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
 public class Weapon extends Item{
-	//every weapon has		// <---- should delete this comment
 
-    private String name;
-    private HashMap stats = new HashMap();
-    private ArrayList<Event> history = new ArrayList<Event>();
 
     public Weapon(String name) {
+    	super(name);
         this.name = name;
         stats.put("Damage", 0);		//i think weapon dmg needs to start at 1 lol, cuz for this mvp the point is all ur stats r tied up in ur weapon
     }
@@ -19,7 +17,7 @@ public class Weapon extends Item{
         return name;
     }
 
-    public HashMap<String, Integer> getStats() {p
+    public HashMap<String, Integer> getStats() {
         return stats;
     }
 
