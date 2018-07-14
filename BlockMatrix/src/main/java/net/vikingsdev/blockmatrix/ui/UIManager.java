@@ -23,6 +23,10 @@ public class UIManager {
 		for(UIButton o : objects) o.onMouseRelease(e);
 	}
 	
+	public void tick() {
+		for(UIButton o : objects) o.tick();
+	}
+	
 	public void render(Graphics g) {
 		for(UIButton o : objects) o.render(g);
 	}

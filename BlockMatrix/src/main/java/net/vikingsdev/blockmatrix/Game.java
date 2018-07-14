@@ -6,6 +6,8 @@ import java.awt.image.BufferStrategy;
 import net.vikingsdev.blockmatrix.gameobjects.Player;
 import net.vikingsdev.blockmatrix.gfx.Assets;
 import net.vikingsdev.blockmatrix.gfx.Display;
+import net.vikingsdev.blockmatrix.input.KeyManager;
+import net.vikingsdev.blockmatrix.input.MouseManager;
 import net.vikingsdev.blockmatrix.states.*;
 
 public class Game implements Runnable{
@@ -33,18 +35,36 @@ public class Game implements Runnable{
 	
 	private State gameState;
 	
+	//input
+	
+	private KeyManager keyboard;
+	private MouseManager mouse;
+	
 	public Game(int width, int height, String title, Player player) {
 		this.width = width;
 		this.height = height;
 		this.title = title;
 		this.player = player;
+		
+	    keyboard = new KeyManager();
+	    mouse = new MouseManager();
+	 
+		display = new Display(width, height, title);
+		
+		gameState = new GameState(this);
+	 
+	    display.getFrame().addKeyListener(keyboard);
+	    display.getFrame().addMouseListener(mouse);
+	    display.getFrame().addMouseMotionListener(mouse);
+	    display.getFrame().addMouseWheelListener(mouse);
+	 
+	    display.getCanvas().addKeyListener(keyboard);
+	    display.getCanvas().addMouseListener(mouse);
+	    display.getCanvas().addMouseMotionListener(mouse);
+	    display.getCanvas().addMouseWheelListener(mouse);
 	}
 	
 	private void init() {
-		display = new Display(width, height, title);
-		
-		gameState = new GameState();
-		
 		Assets.init();
 		
 		gameState.init();
@@ -53,7 +73,10 @@ public class Game implements Runnable{
 	private void update() {
 		//game updates code
 		
-		if(State.getState() == null) State.setState(gameState);
+		if(State.getState() == null) {
+			State.setState(gameState);
+			mouse.setUIM(gameState.getUIM());
+		}
 		else State.getState().tick();
 	}
 	
@@ -68,9 +91,15 @@ public class Game implements Runnable{
 		
 		g = buffer.getDrawGraphics();
 		
+		g.clearRect(0, 0, width, height);
+		
 		// render zone
 		
-		if(State.getState() != null) State.getState().render(g);
+		//if(State.getState() != null) State.getState().render(g);
+		g.drawImage(Assets.eventBackground,768,0,null);
+		g.drawImage(Assets.forestBG,0,32,null);
+		g.drawImage(Assets.orc,128,0,null);
+		g.drawImage(Assets.statsBackground, 832, 384, null);
 		
 		// clean up
 		buffer.show();
@@ -126,5 +155,9 @@ public class Game implements Runnable{
 	
 	public Player getPlayer() {
 		return player;
+	}
+	
+	public MouseManager getMouse() {
+		return mouse;
 	}
 }

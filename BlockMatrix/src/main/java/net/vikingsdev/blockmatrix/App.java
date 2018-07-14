@@ -1,6 +1,8 @@
 package net.vikingsdev.blockmatrix;
 
 import net.vikingsdev.blockmatrix.gameobjects.Player;
+import net.vikingsdev.blockmatrix.gameobjects.Trade;
+import net.vikingsdev.blockmatrix.gameobjects.Weapon;
 
 public class App {
 	public static void main(String[] args) {	
@@ -22,6 +24,25 @@ public class App {
 
 		Game game = new Game(1280, 720, "Meme", p);
 		game.start();
-
+		
+		// tester code
+		Player sender = new Player("Sender");
+		Player receiver = new Player("Receiver");
+		
+		Weapon sendItem = new Weapon("The glory hole of the sender");
+		Weapon receiveItem = new Weapon("The magnum dong of the receiver");
+		
+		sender.getInventory().add(sendItem);
+		receiver.getInventory().add(receiveItem);
+		
+		System.out.println("Sender item: " + sender.getInventory().get(0));
+		System.out.println("Receiver item: " + receiver.getInventory().get(0));
+		
+		Trade trade = new Trade(sender, receiver, 0, 0);
+		trade.completeTrade();
+		
+		System.out.println("Sender item: " + sender.getInventory().get(0));
+		System.out.println("Receiver item: " + receiver.getInventory().get(0));
+		
 	}
 }
