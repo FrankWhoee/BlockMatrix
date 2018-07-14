@@ -27,7 +27,7 @@ public class Event {
 	}
 	
 	public int getRegion() {		//region is a byte not a long
-		return region;
+		return (int)region;
 	}
 	
 	public HashMap<String, Integer> getModStats() {
@@ -42,6 +42,8 @@ public class Event {
 	 * a modification to the item name (
 	 */
 }
+
+//events
 
 class TenKills extends Event implements KillTriggerable {		//will implement one of the interfaces for conditionMet function to work		//lets make another one for TenClicks to try out the ClickTriggerable interface
 	int killsReq = 10;
@@ -58,5 +60,7 @@ class TenKills extends Event implements KillTriggerable {		//will implement one 
 	}
 }
 
+
+//NEED TO ADD MORE EVENTS
 //a low priority task below
 //cuz we want the items to be unique, ideally some of it would also be random, like maybe instead of gaining a "sharp" quality you might instead get like "finely crafted," but mechanically will be the same, and maybe there would be a small chance instead of getting +! dmg, you get +2

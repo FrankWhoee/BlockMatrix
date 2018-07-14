@@ -3,6 +3,7 @@ package net.vikingsdev.blockmatrix.gameobjects;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.ArrayList;
 
 public class Weapon extends Item{
 	ArrayList<Event> history;
@@ -41,8 +42,6 @@ public class Weapon extends Item{
         return history;
     }
     
-    public
-
     private void addToHistory(Event event){		//this will run every time the event's trigger condition is met, and should include deleting that completed event off the array list of possible events, and updating the name
         history.add(event);
         if(event.getModStats().containsKey("Damage"))
@@ -50,7 +49,7 @@ public class Weapon extends Item{
     }
     
     private void updateName(Event event) {
-    	if(event.getRegion == 0) {
+    	if(event.getRegion() == 0) {
     		if(prefix == null) {
     			prefix = event.getModifier();
     		}
@@ -58,7 +57,7 @@ public class Weapon extends Item{
     			prefix = prefix + "-" + event.getModifier();
     	}
     	
-    	else if(event.getRegion == 1) {
+    	else if(event.getRegion() == 1) {
     		if(proper == null) {
     			proper = event.getModifier();
     		}
@@ -81,7 +80,7 @@ public class Weapon extends Item{
     	this.kills = kills;
     	
     	for(ClickTriggerable event : availableClickTriggerable) {
-    		if((Event)event.conditionMet(clicks)) {
+    		if((Event)(event).conditionMet(clicks)) {
     			updateName((Event)event);
     			addToHistory((Event)event);
     			availableClickTriggerable.remove(0);
@@ -89,8 +88,9 @@ public class Weapon extends Item{
     		else
     			break;
     	}
+    	
     	for(KillTriggerable event : availableKillTriggerable) {
-    		if((Event)event.conditionMet(kills)) {
+    		if((Event)(event).conditionMet(kills)) {
     			updateName((Event)event);
     			addToHistory((Event)event);
     			availableKillTriggerable.remove(0);
