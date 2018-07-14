@@ -28,9 +28,11 @@ public class Assets {
 		
 		button[0][0] = UISheet.crop(UICellSize * 12, UICellSize * 2, UICellSize * 4, UICellSize * 2);
 		button[0][1] = UISheet.crop(UICellSize * 16, UICellSize * 2, UICellSize * 4, UICellSize * 2);
+		button[0][2] = UISheet.crop(UICellSize * 16, UICellSize * 2, UICellSize * 4, UICellSize * 2);
 		
 		button[1][0] = UISheet.crop(UICellSize * 12, UICellSize * 4, UICellSize * 4, UICellSize * 2);
 		button[1][1] = UISheet.crop(UICellSize * 16, UICellSize * 4, UICellSize * 4, UICellSize * 2);
+		button[1][2] = UISheet.crop(UICellSize * 16, UICellSize * 4, UICellSize * 4, UICellSize * 2);
 		
 		button[2][0] = UISheet.crop(0, UICellSize * 9, UICellSize * 4, UICellSize * 2);
 		button[2][1] = UISheet.crop(UICellSize * 4, UICellSize * 9, UICellSize * 4, UICellSize * 2);

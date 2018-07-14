@@ -41,7 +41,10 @@ public class UIButton {
 	}
 	
 	public void onMouseRelease(MouseEvent e) {
-		if(state == HOVERING) onClick();
+		if(state == CLICKING) {
+			onClick();
+			state = HOVERING;
+		}
 	}
 	
 	public void onClick() {

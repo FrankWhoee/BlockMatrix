@@ -76,8 +76,7 @@ public class Game implements Runnable{
 		if(State.getState() == null) {
 			State.setState(gameState);
 			mouse.setUIM(gameState.getUIM());
-		}
-		else State.getState().tick();
+		}else State.getState().tick();
 	}
 	
 	private void render() {
@@ -95,11 +94,7 @@ public class Game implements Runnable{
 		
 		// render zone
 		
-		//if(State.getState() != null) State.getState().render(g);
-		g.drawImage(Assets.eventBackground,768,0,null);
-		g.drawImage(Assets.forestBG,0,32,null);
-		g.drawImage(Assets.orc,128,32,null);
-		g.drawImage(Assets.statsBackground, 832, 384, null);
+		if(State.getState() != null) State.getState().render(g);
 		
 		// clean up
 		buffer.show();
