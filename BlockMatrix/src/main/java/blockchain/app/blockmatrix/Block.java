@@ -10,6 +10,7 @@ public class Block {
 	private String data; //our data will be a simple message.
 	private long timeStamp; //as number of milliseconds since 1/1/1970.
 	private int nonce;
+	private Player player;
 	
 	//Block Constructor.  
 	public Block(String data,String previousHash ) {
@@ -20,8 +21,21 @@ public class Block {
 		this.hash = calculateHash(); //Making sure we do this after we set the other values.
 	}
 	
+	public Block(String data, String previousHash, Player player) {
+		this.data = data;
+		this.previousHash = previousHash;
+		this.timeStamp = new Date().getTime();
+		this.player = player;
+		
+		this.hash = calculateHash(); 
+	}
+	
 	public String getData() {
 		return data;
+	}
+	
+	public Player getPlayer() {
+		return player;
 	}
 	
 	//Calculate new hash based on blocks contents

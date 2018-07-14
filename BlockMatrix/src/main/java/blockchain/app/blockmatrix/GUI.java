@@ -3,6 +3,7 @@ package blockchain.app.blockmatrix;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 public class GUI {
     private JPanel panel1;
@@ -13,9 +14,13 @@ public class GUI {
     private JTextField playerName;
     private JButton takeWeaponButton;
     private JTextField eventField;
+    private Player player;
+
     //You're mother gay and homosexual
 
-    public GUI() {
+    public GUI(Player player) {
+        // temporary player
+        App.register("temporary");
         hitButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
@@ -31,7 +36,7 @@ public class GUI {
         takeWeaponButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                
+
             }
         });
     }

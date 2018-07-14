@@ -2,7 +2,7 @@ package blockchain.app.blockmatrix;
 
 import java.util.ArrayList;
 
-import com.google.gson.GsonBuilder;
+//import com.google.gson.GsonBuilder;
 
 public class App 
 {
@@ -21,7 +21,8 @@ public class App
 		System.out.println("Player's name: " + Player.toPlayer(playerchain.get(1).getData()).getName());
 		System.out.println("Player's id: " + Player.toPlayer(playerchain.get(1).getData()).getId());
 		
-		
+		GUI gui = new GUI(playerchain.get(1).getPlayer());
+
 		//String playerchainJson = new GsonBuilder().setPrettyPrinting().create().toJson(playerchain);
 		//System.out.println("\nThe block chain: ");
 		//System.out.println(playerchainJson);
@@ -29,7 +30,7 @@ public class App
 	
 	public static void register(String name) {
 		Player newPlayer = new Player(name);
-		playerchain.add(new Block(newPlayer.toJsonString(),playerchain.get(playerchain.size()-1).hash));
+		playerchain.add(new Block(newPlayer.toJsonString(), playerchain.get(playerchain.size()-1).hash, newPlayer));
 		playerchain.get(playerchain.size()-1).mineBlock(difficulty);
 		
 	}
