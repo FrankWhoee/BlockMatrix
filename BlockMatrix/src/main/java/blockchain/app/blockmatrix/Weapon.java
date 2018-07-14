@@ -25,4 +25,8 @@ public class Weapon extends Item{
     public ArrayList<Event> getHistory() {
         return history;
     }
+
+    public void addToHistory(Event event){
+        history.add(event);
+    }
 }
