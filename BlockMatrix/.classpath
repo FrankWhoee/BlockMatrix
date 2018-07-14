@@ -22,7 +22,7 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/thech/Documents/blockmatrix/BlockMatrix/BlockMatrix/res/bcprov-jdk15on-160.jar"/>
 	<classpathentry kind="lib" path="res"/>
+	<classpathentry kind="lib" path="res/bcprov-jdk15on-160.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
