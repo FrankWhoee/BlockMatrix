@@ -104,7 +104,7 @@ public class Blockchain {
 	//Gets the most recent state of the player.
 	public static ArrayList<Player> getAllPlayers(){
 		ArrayList<Player> output = new ArrayList<>();
-		for(int i = playerchain.size() - 1; i >= 0; i--) {
+		for(int i = playerchain.size() - 1; i >= 1; i--) {
 			Player p = Player.toPlayer(playerchain.get(i).getData());
 			if(!arrayContainsId(p.getId(),output)){
 				output.add(p);
