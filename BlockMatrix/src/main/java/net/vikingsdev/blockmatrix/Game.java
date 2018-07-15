@@ -2,6 +2,7 @@ package net.vikingsdev.blockmatrix;
 
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
+import java.util.ArrayList;
 
 import net.vikingsdev.blockmatrix.gameobjects.Player;
 import net.vikingsdev.blockmatrix.gameobjects.Weapon;
@@ -163,9 +164,29 @@ public class Game implements Runnable{
 			
 			if(frames > timeMax) {
 				Blockchain.mineLastBlock();
+<<<<<<< HEAD
 				if(player.checkTradeStatus()) {
 					
 				}
+=======
+				/// check for trades
+				
+				/*INSERT FUNCTION TO UPDATE CHAIN*/
+				
+				Player tradingPlayer = null;
+				for(Block b : Blockchain.playerchain) {
+					Player p = Player.toPlayer(b.getData());
+					if(p.trade) {
+						tradingPlayer = p;
+						break;
+					}
+				}
+				if(tradingPlayer != null) {
+					//Found trading player. Do smt
+				}
+				
+				Blockchain.read();
+>>>>>>> master
 				/// add trades to blockchain
 				frames = 0;
 			}
