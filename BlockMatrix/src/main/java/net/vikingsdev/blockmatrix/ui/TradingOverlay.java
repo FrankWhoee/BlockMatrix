@@ -7,8 +7,12 @@ import net.vikingsdev.blockmatrix.Game;
 import net.vikingsdev.blockmatrix.gfx.Assets; 
  
 public class TradingOverlay extends UIOverlay { 
+	private UIList tradeList;
+	
 	public TradingOverlay(int x, int y, int width, int height, Game game) { 
 		super(x, y, width, height, game);
+		
+		tradeList = new UIList(848, 0, 384, 64, game);
 	} 
  
 	@Override 
@@ -46,5 +50,6 @@ public class TradingOverlay extends UIOverlay {
 		g.fillRect(bounds.x, bounds.y, bounds.width, bounds.height);
 		
 		uim.render(g);
+		tradeList.render(g);
 	} 
 } 

@@ -100,6 +100,8 @@ public class Game implements Runnable{
 		
 		// render zone
 		
+		g.drawImage(Assets.gameBG, 0, 0, null);
+		
 		if(State.getState() != null) State.getState().render(g);
 		
 		// clean up
