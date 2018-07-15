@@ -25,14 +25,15 @@ public class Client {
 		this.server = server;
 		this.port = port;
 		this.username = username;
-		System.out.print("Client created at port " + port + " and address " + server + ". Client username is " + username);
+		System.out.println("Client created at port " + port + " and address " + server + ". Client username is " + username);
 	}
 	
 	public boolean start() {
 		//Attempt establishing a connection to the server
-		
+		System.out.println("Starting connection...");
 		try{
 			socket = new Socket(server, port);
+			System.out.println("Connection succesful!");
 		}catch(Exception e) {
 			e.printStackTrace();
 			return false;
@@ -95,12 +96,17 @@ public class Client {
 	}
 
 	public void send(byte index, Object object) throws IOException {
-		sInput  = new ObjectInputStream(socket.getInputStream());
-		sOutput = new ObjectOutputStream(socket.getOutputStream());
-		
+		System.out.println("CHECKPOINT 1");
+		//sInput  = new ObjectInputStream(socket.getInputStream());
+		System.out.println("CHECKPOINT 2");
+		//sOutput = new ObjectOutputStream(socket.getOutputStream());
+		System.out.println("CHECKPOINT 3");
 		sOutput.writeByte(0);
+		System.out.println("CHECKPOINT 4");
 		sOutput.writeObject(object);
+		System.out.println("CHECKPOINT 5");
 		sOutput.flush();
+		System.out.println("CHECKPOINT 6...COMPLETE");
 	}
 	
 	//Close the I/O streams and disconnect from the server
@@ -239,7 +245,7 @@ public class Client {
 						System.out.println(file);
 				}catch(IOException e) {
 					e.printStackTrace();
-					display("Server has close the connection: " + e);
+					display("Server has closed the connection: " + e);
 					
 					break;
 				}catch(ClassNotFoundException e) {

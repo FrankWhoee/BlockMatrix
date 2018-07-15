@@ -35,7 +35,7 @@ public class Server {
 	
 	public void start() {
 		keepGoing = true;
-		
+		//System.out.println("gay started");
 		try{
 			ServerSocket serverSocket = new ServerSocket(port);
 
@@ -49,6 +49,45 @@ public class Server {
 				ClientThread ct = new ClientThread(socket);
 				clients.add(ct);
 				ct.start();
+				
+				// receive input
+				byte objType = -1;
+				try {
+					objType = ct.sInput.readByte();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+				/*
+				 * byte Object Type: The type of data being put through and how it should be handled
+				 * 0 - Block
+				 * 1 - Weapon
+				 */
+				switch(objType) {
+				case 0:
+					// block
+					System.out.println("Block received mf0");
+					
+					try {
+						broadcast(objType, ct.sInput.readObject());
+					} catch (ClassNotFoundException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					break;
+				case 1:
+					// weapon
+					System.out.println("Block received mf0");
+					break;
+				case -1:
+					System.out.println("Block received mf-1");
+					break;
+				}
+				
 			}
 			
 			//Stop
@@ -161,6 +200,7 @@ public class Server {
 		public void run() {
 			boolean keepGoing = true;
 			while(keepGoing) {
+				System.out.println("yah yeet");
 				try{
 					String str = (String) sInput.readObject();
 				}catch (IOException e) {
@@ -188,6 +228,7 @@ public class Server {
 				switch(objType) {
 				case 0:
 					// block
+					System.out.println("Block received mf");
 					try {
 						broadcast(objType, sInput.readObject());
 					} catch (ClassNotFoundException e) {
@@ -200,15 +241,20 @@ public class Server {
 					break;
 				case 1:
 					// weapon
+					System.out.println("Block received mf");
 					break;
 				case -1:
+					System.out.println("Block received mf");
+					break;
+				default:
+					System.out.println("gay af");
 					break;
 				}
 				
 			}
 			
 			remove(id);
-			close();
+			//close();
 		}
 		
 		

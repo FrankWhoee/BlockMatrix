@@ -14,17 +14,19 @@ public class App {
 		// tester
 		Client client1 = new Client("localhost", 1500, "BeefyBoi");
 		Client client2 = new Client("localhost", 1500, "BlockchainBuster");
-
+		
+		client1.start();
 		Block bl = new Block("Yeet", "Yeet");
-		System.out.println("Sent yeet block, " + bl.hash);
+		
 		try {
 			byte index = 0;
-			client1.send(index, bl);
+			System.out.println("Attemping to send a file...");
+			client1.send(index, bl.getData());
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+		System.out.println("Sent yeet block, " + bl.hash);
 		/*try {
 			Blockchain.sendFile();
 		} catch (Exception e) {
@@ -56,7 +58,7 @@ public class App {
 		System.out.println("Sender item: " + sender.getInventory().get(0));
 		System.out.println("Receiver item: " + receiver.getInventory().get(0));
 		
-		System.out.println(Blockchain.toJson());
+		//System.out.println(Blockchain.toJson());
 		
 	}
 }
