@@ -183,7 +183,7 @@ public class TradeSequence {
     	}
     }
     
-    private String readToString(){
+    public String readToString(){
     	try {
             //Whatever the file path is:
             File fileToRead = new File(DIR + "/Recieved/Message.txt");

@@ -54,8 +54,6 @@ public class Player {
     }
     
     public int getActiveSlot() {
-    	if(activeSlot >= inventory.size()) activeSlot = 0;
-    	
         return activeSlot;
     }
 
@@ -64,9 +62,10 @@ public class Player {
     }
     
     public Weapon getWeapon() {
-    	return (Weapon) inventory.get(activeSlot);
+    	return (Weapon)inventory.get(activeSlot);
     }
     
+
     //FOR THE STATS DISPLAY
     public int getDamage() {
     	return getWeapon().getStats().get("Damage");
@@ -120,7 +119,41 @@ public class Player {
 	public void setTradeSlot(int tradeSlot) {
 		this.tradeSlot = tradeSlot;
 	}
+	
+	//trade stuff
+	public boolean validTrade(ArrayList<Player> tradePlayers) {
+		if(this.trade) {
+			int myIndex = myPlayerIndex(tradePlayers);
+
+			if((myIndex == tradePlayers.size()-1)&&(tradePlayers.size()%2 == 1)) {
+				return false;
+			}
+			else
+				return true;
+		}
+		return false;
+		
+	}
+	
+	public Player playerToTradeWith(ArrayList<Player> tradePlayers) {
+		int myIndex = myPlayerIndex(tradePlayers);
+		
+		if(myIndex%2 == 1) {
+			return tradePlayers.get(myIndex-1);
+		}
+		else {
+			return tradePlayers.get(myIndex+1);
+		}
+	}
     
+	private int myPlayerIndex(ArrayList<Player> tradePlayers) {
+		for(Player p : tradePlayers) {
+			if(p.getId() == this.id) {
+				return tradePlayers.indexOf(p);
+			}
+		}
+		return -1;
+	}
     //get name		//accessor implemented
 	//get inventory		//accessor implemented
     
