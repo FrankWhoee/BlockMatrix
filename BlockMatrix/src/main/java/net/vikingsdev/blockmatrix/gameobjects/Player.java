@@ -7,7 +7,7 @@ import com.google.gson.reflect.TypeToken;
 
 //only gui (front end) is public	//@frank ok fine lets just make everything public and easy to get to so anyone can change stuff from a command prompt	//lol ok this is a lot more simple tho
 public class Player {
-
+	public boolean trade;
     private String name;
     private Long id;
 	private ArrayList<Item> inventory = new ArrayList<Item>();
