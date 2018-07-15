@@ -3,21 +3,19 @@ package net.vikingsdev.blockmatrix.ui;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.Rectangle;
 import java.util.ArrayList;
 
 import net.vikingsdev.blockmatrix.gameobjects.Item;
 
 public class UIList {
-
 	private ArrayList<Item> list;
-	private int x, y, width, height;
+	private Rectangle bounds;
 	
 	public UIList(int x, int y, int width, int height, ArrayList<Item> list) {
 		this.list = list;
-		this.x = x;
-		this.y = y;
-		this.width = width;
-		this.height = height;
+		
+		bounds = new Rectangle(x, y, width, height);
 	}
 	
 	public void init() {
@@ -31,9 +29,11 @@ public class UIList {
 		
 		// loop through list and draw the text
 		for(int i = 0; i < list.size(); i++) {
-			g.drawString(list.get(i).toString(),x,y + (height/2));
-			y += 64;
+			g.drawRect(bounds.x - (bounds.width / 2) , bounds.y + i * 64, bounds.width, bounds.height);
+			g.drawString(list + "", bounds.x , bounds.y + i * 64 + (bounds.height/2));
 		}
+		
+		g.drawRect(bounds.x - (bounds.width / 2) , bounds.y, bounds.width, bounds.height);
+		g.drawString(list + "", bounds.x , bounds.y + (bounds.height/2));
 	}
-	
 }
