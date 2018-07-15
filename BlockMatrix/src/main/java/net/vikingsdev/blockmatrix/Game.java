@@ -104,14 +104,15 @@ public class Game implements Runnable{
 		gameState.init();
 	}
 	
-	private void update() {
+	public void update() {
 		//game updates code
 		
 		if(State.getState() == null) {
 			State.setState(gameState);
 			mouse.setUIM(gameState.getUIM());
 		}else State.getState().tick();
-		client.update();
+		
+		//client.update();
 	}
 	
 	private void render() {

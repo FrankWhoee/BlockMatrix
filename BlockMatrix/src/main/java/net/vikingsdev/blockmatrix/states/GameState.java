@@ -101,11 +101,6 @@ public class GameState extends State {
 		// stats rendering
 		
 		g.setFont(new Font("Courier New", Font.PLAIN, 18));
-		g.setColor(Color.DARK_GRAY);
-		g.fillRect(32, 70, 535, 20);
-		
-		g.setColor(Color.RED);
-		g.fillRect(34, 72, 531, 16);
 		
 		if(settings.isActive()) settings.render(g);
 		else if(inventory.isActive()) inventory.render(g);
