@@ -101,6 +101,7 @@ public class Blockchain {
 	    }
 	}
 	
+	//// unnecessary, network code is in network package
 	public static void sendFile() throws Exception{
 	    int port = 21;
 	    String host = "localhost";

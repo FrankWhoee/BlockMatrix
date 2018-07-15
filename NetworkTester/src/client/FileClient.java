@@ -32,7 +32,7 @@ public class FileClient {
 	}
 	
 	public static void main(String[] args) {
-		FileClient fc = new FileClient("localhost", 1988, "cat.jpg");
+		FileClient fc = new FileClient("localhost", 1988, "/test.txt");
 	}
 
 }

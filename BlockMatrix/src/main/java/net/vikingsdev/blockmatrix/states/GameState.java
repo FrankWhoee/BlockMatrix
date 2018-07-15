@@ -39,9 +39,7 @@ public class GameState extends State {
 			//Trading
 			@Override
 			public void onClick() {
-				game.getMouse().setUIM(trading.getUIM());
-				trading.getUIM().reset();
-				trading.setActive(true);
+				activateTradingMenu();
 			}
 		}));
 		
@@ -55,6 +53,12 @@ public class GameState extends State {
 		
 		/* game.getMouse().setUIM(settings.getUIM());
 				settings.setActive(true); */
+	}
+	
+	public void activateTradingMenu() {
+		game.getMouse().setUIM(trading.getUIM());
+		trading.getUIM().reset();
+		trading.setActive(true);
 	}
 	
 	//stuff for the attack button
@@ -85,7 +89,7 @@ public class GameState extends State {
 	public void render(Graphics g) {
 		g.drawImage(Assets.eventBackground,768,0,null);
 		g.drawImage(Assets.forestBG,0,32,null);
-		g.drawImage(Assets.orc,128,32,null);
+		g.drawImage(Assets.orc,116,32,null);
 		g.drawImage(Assets.statsBackground, 832, 384, null);
 		
 		// stats rendering

@@ -16,59 +16,47 @@ import java.util.Date;
 public class Server {
 	// a unique ID for each connection
 	private static int uniqueID;
-	// an ArrayList to keep the list of the Clients
 	private ArrayList<ClientThread> clients;
-	// if I am in a GUI
-	private ServerGUI serverGUI;
-	// to display time
-	private SimpleDateFormat sdf;
-	// the port number to listen for connection
-	private int port;
-	// the boolean that will be turned of to stop the server
-	private boolean keepGoing;
-	
 
-	/*
-	 *  server constructor that receives the port to listen to for connections as a parameter
-	 *  in the console
-	 */
+	private ServerGUI serverGUI;
+	
+	private SimpleDateFormat sdf;
+	private int port;
+	
+	private boolean keepGoing; //Keeps the thread running
 	
 	public Server(int port) {
 		this(port, null);
 	}
 	
 	public Server(int port, ServerGUI serverGUI) {
-		// GUI or not
 		this.serverGUI = serverGUI;
-		// the port
 		this.port = port;
-		// to display hh:mm:ss
+		
 		sdf = new SimpleDateFormat("HH:mm:ss");
-		// ArrayList for the Client list
 		clients = new ArrayList<ClientThread>();
 	}
 	
 	public void start() {
 		keepGoing = true;
-		/* create socket server and wait for connection requests */
+		/* create a socket server and wait for connection requests */
 		try{
-			// the socket used by the server
 			ServerSocket serverSocket = new ServerSocket(port);
 
-			// infinite loop to wait for connections
 			while(keepGoing) {
-				// format message saying we are waiting
 				display("Server waiting for Clients on port " + port + ".");
 				
-				Socket socket = serverSocket.accept();  	// accept connection
-				// if I was asked to stop
-				if(!keepGoing)
-					break;
-				ClientThread t = new ClientThread(socket);  // make a thread of it
-				clients.add(t);									// save it in the ArrayList
-				t.start();
+				Socket socket = serverSocket.accept();
+				
+				if(!keepGoing) break;
+				
+				ClientThread ct = new ClientThread(socket);
+				clients.add(ct);
+				ct.start();
 			}
-			// I was asked to stop
+			
+			//Stop
+			
 			try{
 				serverSocket.close();
 				for(ClientThread ct : clients) {
@@ -87,10 +75,10 @@ public class Server {
 				display("Exception closing the server and clients: " + e);
 			}
 		}
-		// something went bad
+		
 		catch (IOException e) {
 			e.printStackTrace();
-            String msg = sdf.format(new Date()) + " Exception on new ServerSocket: " + e + "\n";
+            String msg = sdf.format(new Date()) + " Exception on Server Socket: " + e + "\n";
 			display(msg);
 		}
 	}
@@ -107,7 +95,7 @@ public class Server {
 		// Socket socket = serverSocket.accept();
 		
 		try {
-			socket = new Socket("localhost", port);
+			socket = new Socket("216.71.221.211", port);
 			
 			/*try {
 				socket.close();
