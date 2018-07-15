@@ -117,8 +117,6 @@ public class Game implements Runnable{
 			State.setState(gameState);
 			mouse.setUIM(gameState.getUIM());
 		}else State.getState().tick();
-		
-		//client.update();
 	}
 	
 	private void render() {
