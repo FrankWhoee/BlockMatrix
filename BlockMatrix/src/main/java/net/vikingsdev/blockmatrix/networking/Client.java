@@ -6,6 +6,8 @@ import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.util.Scanner;
 
+import net.vikingsdev.blockmatrix.gameobjects.Player;
+
 public class Client {
 	//I/O stuff
 	
@@ -79,6 +81,14 @@ public class Client {
 		try {
 			sOutput.writeObject(file);
 		}catch(IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void sendTradeRequest(Player player) {
+		try {
+			sOutput.writeObject(player);
+		} catch(IOException e) {
 			e.printStackTrace();
 		}
 	}
