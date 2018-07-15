@@ -97,10 +97,10 @@ public class Server {
 		else serverGUI.appendEvent(time + "\n");
 	}
 	
-	private synchronized void broadcast(String file) {
+	private synchronized void broadcast(Object object) {
 		for(int i = clients.size(); --i >= 0;) {
 			ClientThread ct = clients.get(i);
-			if(!ct.sendFile(file)) {
+			if(!ct.send(object)) {
 				clients.remove(i);
 			}
 		}
@@ -171,6 +171,40 @@ public class Server {
 					break;
 				}
 				
+				// receive input
+				byte objType = -1;
+				try {
+					objType = sInput.readByte();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+				/*
+				 * byte Object Type: The type of data being put through and how it should be handled
+				 * 0 - Block
+				 * 1 - Weapon
+				 */
+				switch(objType) {
+				case 0:
+					// block
+					try {
+						broadcast(sInput.readObject());
+					} catch (ClassNotFoundException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					break;
+				case 1:
+					// weapon
+					break;
+				case -1:
+					break;
+				}
+				
 			}
 			
 			remove(id);
@@ -193,7 +227,7 @@ public class Server {
 			catch(Exception e) {}
 		}
 		
-		private boolean sendFile(String file) {
+		private boolean send(Object object) {
 			// if Client is still connected send the message to it
 			if(!socket.isConnected()) {
 				close();
@@ -201,7 +235,7 @@ public class Server {
 			}
 			// write the message to the stream
 			try {
-				sOutput.writeObject(file);
+				sOutput.writeObject(object);
 			}
 			// if an error occurs, do not abort just inform the user
 			catch(IOException e) {

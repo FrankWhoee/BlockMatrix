@@ -93,6 +93,12 @@ public class Client {
 		}
 	}
 
+	public void send(byte index, Object object) throws IOException {
+		sOutput.writeByte(index);
+		sOutput.writeObject(object);
+		sOutput.flush();
+	}
+	
 	//Close the I/O streams and disconnect from the server
 	
 	private void disconnect() {
