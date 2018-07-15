@@ -96,7 +96,13 @@ public class Player {
     
     public static Player toPlayer(String json) {		//are we sure the static wont cause problems later when we call this method in a method connected to the front-end stuff
     	JsonParser parser = new JsonParser();
-    	JsonObject playerInfo = parser.parse(json).getAsJsonObject();
+    	JsonObject playerInfo = null;
+    	try {
+    		 playerInfo = parser.parse(json).getAsJsonObject();
+    	}catch(Exception e) {
+    		System.err.print("[ERROR] PARSING ERROR: " + json);
+    	}
+    	
 
     	Type listType = new TypeToken<ArrayList<Item>>() {}.getType();
     	ArrayList<Item> inventory = new Gson().fromJson(playerInfo.get("inventory"), listType);

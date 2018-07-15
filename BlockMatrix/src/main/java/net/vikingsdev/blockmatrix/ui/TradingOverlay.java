@@ -33,7 +33,7 @@ public class TradingOverlay extends UIOverlay {
 			// accept button
 			@Override
 			public void onClick() {
-				game.getPlayer().setActiveSlot(-1);
+				game.getPlayer().setActiveSlot(0);
 			}
 		}));  
 		

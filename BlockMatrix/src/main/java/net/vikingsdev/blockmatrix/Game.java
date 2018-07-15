@@ -47,8 +47,6 @@ public class Game implements Runnable{
 	private KeyManager keyboard;
 	private MouseManager mouse;
 	
-	private Client client;
-	
 	public ArrayList<Player> tradePlayers = new ArrayList<Player>();
 	
 	public Game(int width, int height, String title) {
@@ -96,8 +94,6 @@ public class Game implements Runnable{
 		int portNumber = Server.DEFAULT_PORT;
 		String serverAddress = "216.71.221.214";
 		String userName = player.getName();
-		client = new Client(serverAddress, portNumber, userName);
-		if(!client.start()) return;
 		// end init Client
 		
 		Assets.init();
