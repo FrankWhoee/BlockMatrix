@@ -164,11 +164,9 @@ public class Game implements Runnable{
 			
 			if(frames > timeMax) {
 				Blockchain.mineLastBlock();
-<<<<<<< HEAD
 				if(player.checkTradeStatus()) {
 					
 				}
-=======
 				/// check for trades
 				
 				/*INSERT FUNCTION TO UPDATE CHAIN*/
