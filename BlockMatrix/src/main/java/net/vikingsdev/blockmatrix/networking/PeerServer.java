@@ -4,19 +4,17 @@ import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 
-public class Peer {
+public class PeerServer {
+
+	private final int port = 4164;
 	
-	public Peer() {
-		int port = 4164;
-		try (
-				ServerSocket serverSocket = new ServerSocket(port);
-				Socket clientSocket = serverSocket.accept();
-			){
-			
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+	public PeerServer() throws Exception {
+		run();
+	}
+	
+	public void run() throws Exception{
+		ServerSocket serverSocket = new ServerSocket(port);
+		Socket clientSocket = serverSocket.accept();
 	}
 	
 }
