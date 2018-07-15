@@ -12,7 +12,18 @@ public class App {
 
 		
 		// tester
-		
+		Client client1 = new Client("localhost", 1500, "BeefyBoi");
+		Client client2 = new Client("localhost", 1500, "BlockchainBuster");
+
+		Block bl = new Block("Yeet", "Yeet");
+		System.out.println("Sent yeet block, " + bl.hash);
+		try {
+			byte index = 0;
+			client1.send(index, bl);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		/*try {
 			Blockchain.sendFile();

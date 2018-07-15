@@ -95,7 +95,10 @@ public class Client {
 	}
 
 	public void send(byte index, Object object) throws IOException {
-		sOutput.writeByte(index);
+		sInput  = new ObjectInputStream(socket.getInputStream());
+		sOutput = new ObjectOutputStream(socket.getOutputStream());
+		
+		sOutput.writeByte(0);
 		sOutput.writeObject(object);
 		sOutput.flush();
 	}
