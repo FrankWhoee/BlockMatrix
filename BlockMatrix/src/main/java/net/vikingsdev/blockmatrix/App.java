@@ -19,7 +19,7 @@ public class App {
 		
 		//add our blocks to the playerChain ArrayList:
 		
-		Game game = new Game(1280, 720, "Meme");
+		Game game = new Game(1280, 720, "BeefyBoi's BlockchainBasher");
 		game.start();
 		
 		// tester code
