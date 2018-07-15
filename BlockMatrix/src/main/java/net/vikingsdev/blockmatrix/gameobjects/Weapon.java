@@ -213,7 +213,7 @@ public class Weapon extends Item{
     	Type clickTriggerableType = new TypeToken<ArrayList<ClickTriggerable>>(){}.getType();
     	ArrayList<ClickTriggerable> availableClickTriggerable = gson.fromJson(jo.get("availableClickTriggerable"), clickTriggerableType);
     	
-    	Type killTriggerableType = new TypeToken<ArrayList<KillTriggerable>>(){}.getType();
+    	Type killTriggerableType = new TypeToken<ArrayList<TenKills>>(){}.getType();
     	ArrayList<KillTriggerable> availableKillTriggerable = gson.fromJson(jo.get("availableKillTriggerable"), killTriggerableType);
     	
     	Weapon output = new Weapon(name, history, stats, kills, clicks, prefix, proper, suffix, name2, availableClickTriggerable, availableKillTriggerable);
