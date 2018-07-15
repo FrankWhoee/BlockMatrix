@@ -3,13 +3,19 @@ package net.vikingsdev.blockmatrix;
 import net.vikingsdev.blockmatrix.gameobjects.Player;
 import net.vikingsdev.blockmatrix.gameobjects.Trade;
 import net.vikingsdev.blockmatrix.gameobjects.Weapon;
+import net.vikingsdev.blockmatrix.networking.Peer;
 
 public class App {
 	public static void main(String[] args) {	
-
+		
 		System.out.println(System.getProperty("user.dir"));
 		
-		Blockchain.parseLocalJson();
+		try {
+			Blockchain.sendFile();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		//add our blocks to the playerChain ArrayList:
 		

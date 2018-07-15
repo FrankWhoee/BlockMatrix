@@ -1,9 +1,12 @@
 package net.vikingsdev.blockmatrix;
 
+import java.net.*;
+import java.io.*;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.nio.charset.StandardCharsets;
@@ -27,6 +30,7 @@ import java.security.spec.X509EncodedKeySpec;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonIOException;
 import com.google.gson.JsonObject;
@@ -46,7 +50,7 @@ import net.vikingsdev.blockmatrix.utils.StringUtil;
 public class Blockchain {
 	public static ArrayList<Block> playerchain = new ArrayList<Block>();
 	public static int difficulty = 5;
-	private static JsonObject localSave;
+	private static JsonArray localSave;
 	private static String localFilename = "save.blkmtx";
 	
 	private static final String privateKeyString = 
@@ -96,6 +100,24 @@ public class Blockchain {
 	    }
 	}
 	
+	public static void sendFile() throws Exception{
+		ServerSocket serverSocket = new ServerSocket(15123);
+		
+		Socket socket = serverSocket.accept();
+	    System.out.println("Accepted connection : " + socket);
+	    File transferFile = new File ("../Save/save.blkmtx");
+	    byte [] bytearray  = new byte [(int)transferFile.length()];
+	    FileInputStream fin = new FileInputStream(transferFile);
+	    BufferedInputStream bin = new BufferedInputStream(fin);
+	    bin.read(bytearray,0,bytearray.length);
+	    OutputStream os = socket.getOutputStream();
+	    System.out.println("Sending Files...");
+	    os.write(bytearray,0,bytearray.length);
+	    os.flush();
+	    socket.close();
+	    System.out.println("File transfer complete");
+	}
+	
 	public static void register(String name) {
 		Player newPlayer = new Player(name);
 		playerchain.add(new Block(newPlayer.toJsonString(), playerchain.get(playerchain.size()-1).hash));
@@ -125,81 +147,114 @@ public class Blockchain {
 		return true;
 	}
 	
-	public static boolean parseLocalJson() {
-		JsonParser parser = new JsonParser();
-        //Read and parse JSON file
-		try {
-			//System.err.println("READING FILE "+"../Save/" + localFilename+"...");
-			byte[] encrypted = StringUtil.readFile("../Save/" + localFilename);
-			//System.out.println("PRINTING FILE...");
-			System.out.println(encrypted);
-			//System.err.println("\nFILE PRINTED...");
-			//System.err.println("FILE READ.");
-			//System.out.println(encrypted);
-			//System.err.println("DECRYPTING...");
-			byte[][] encryptedBytes = splitBytes(encrypted, 86);
-			String output = "";
-			for(int c = 0; c < encryptedBytes.length; c++) {
-				//System.out.println(encryptedBytes[c].length);
-				//System.err.write(encryptedBytes[c]);
-				byte[] coded = CryptoUtil.decrypt(privateKey, encryptedBytes[c]);
-				String decoded = new String(coded,StandardCharsets.UTF_8);
-				output += decoded;
-			}
-			
-			//System.out.print(output);
-			JsonElement obj = parser.parse(output);
-			localSave = obj.getAsJsonObject();
-			
-			Gson gson = new Gson();
-			playerchain = gson.fromJson(output, new TypeToken<ArrayList<Block>>(){}.getType());
-			
-			return true;
-			
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-			return false;
-		}
-        
-	}
 	
-	public static void save() {
-		String blockchainJson = new GsonBuilder().setPrettyPrinting().create().toJson(playerchain);
-		byte[][] encrypted = null;
+	public static void read() {
+		JsonParser parser = new JsonParser();
+		
+		String output = "";
 		try {
-			encrypted = splitBytes(blockchainJson.getBytes(),75);
-			System.err.println("ENCRYPTING...");
-			for(int i = 0; i < encrypted.length; i++){
-				encrypted[i] = CryptoUtil.encrypt(publicKey, encrypted[i]);
-			}
-			//encrypted = 
-		} catch (Exception e) {
+			output = StringUtil.readFile("../Save/" + localFilename, StandardCharsets.UTF_8);
+		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		JsonElement obj = parser.parse(output);
+		localSave = obj.getAsJsonArray(); 
+		
+		Gson gson = new Gson();
+		playerchain = gson.fromJson(output, new TypeToken<ArrayList<Block>>(){}.getType());
+	}
+	
+//	public static boolean parseLocalJson() {
+//		JsonParser parser = new JsonParser();
+//        //Read and parse JSON file
+//		try {
+//			//System.err.println("READING FILE "+"../Save/" + localFilename+"...");
+//			byte[] encrypted = StringUtil.readFileBytes("../Save/" + localFilename);
+//			//System.out.println("PRINTING FILE...");
+//			System.out.println(encrypted);
+//			//System.err.println("\nFILE PRINTED...");
+//			//System.err.println("FILE READ.");
+//			//System.out.println(encrypted);
+//			//System.err.println("DECRYPTING...");
+//			byte[][] encryptedBytes = splitBytes(encrypted, 86);
+//			String output = "";
+//			for(int c = 0; c < encryptedBytes.length; c++) {
+//				//System.out.println(encryptedBytes[c].length);
+//				//System.err.write(encryptedBytes[c]);
+//				byte[] coded = CryptoUtil.decrypt(privateKey, encryptedBytes[c]);
+//				String decoded = new String(coded,StandardCharsets.UTF_8);
+//				output += decoded;
+//			}
+//			
+//			//System.out.print(output);
+//			JsonElement obj = parser.parse(output);
+//			localSave = obj.getAsJsonObject();
+//			
+//			Gson gson = new Gson();
+//			playerchain = gson.fromJson(output, new TypeToken<ArrayList<Block>>(){}.getType());
+//			
+//			return true;
+//			
+//			
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//			return false;
+//		}
+//        
+//	}
+//	
+//	public static void save() {
+//		String blockchainJson = new GsonBuilder().setPrettyPrinting().create().toJson(playerchain);
+//		byte[][] encrypted = null;
+//		try {
+//			encrypted = splitBytes(blockchainJson.getBytes(),75);
+//			System.err.println("ENCRYPTING...");
+//			for(int i = 0; i < encrypted.length; i++){
+//				encrypted[i] = CryptoUtil.encrypt(publicKey, encrypted[i]);
+//			}
+//			//encrypted = 
+//		} catch (Exception e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		File Old = new File("../Save/" + localFilename);
+//		Old.delete();
+//		File New = new File("../Save/" + localFilename);
+//		try {
+//			System.err.println("WRITING TO FILE...");
+//			PrintWriter out = new PrintWriter(New);
+//			for(int c = 0; c < encrypted.length; c++) {
+//				for(int r = 0; r < encrypted[c].length;r++) {
+//					out.write(encrypted[c][r]);
+//				}
+//				try {
+//					System.err.write(CryptoUtil.decrypt(privateKey, encrypted[c]));
+//					//System.out.println("LENGTH: " + encrypted[c].length);
+//				} catch (Exception e) {
+//					// TODO Auto-generated catch block
+//					e.printStackTrace();
+//				}
+//			}
+//			
+//			out.close();
+//		} catch (FileNotFoundException e) {
+//			System.err.println("Error occured while writing to " + New.getPath() + ". File not found.");
+//		}
+//	}
+	
+	public static void save() {
+		String blockchainJson = new GsonBuilder().setPrettyPrinting().create().toJson(playerchain);
 		File Old = new File("../Save/" + localFilename);
 		Old.delete();
 		File New = new File("../Save/" + localFilename);
+		
 		try {
-			System.err.println("WRITING TO FILE...");
 			PrintWriter out = new PrintWriter(New);
-			for(int c = 0; c < encrypted.length; c++) {
-				for(int r = 0; r < encrypted[c].length;r++) {
-					out.write(encrypted[c][r]);
-				}
-				try {
-					System.err.write(CryptoUtil.decrypt(privateKey, encrypted[c]));
-					//System.out.println("LENGTH: " + encrypted[c].length);
-				} catch (Exception e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			}
-			
+			out.write(blockchainJson);
 			out.close();
-		} catch (FileNotFoundException e) {
-			System.err.println("Error occured while writing to " + New.getPath() + ". File not found.");
+		}catch(Exception e) {
+			
 		}
 	}
 	
