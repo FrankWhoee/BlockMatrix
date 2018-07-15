@@ -109,9 +109,16 @@ public class GameState extends State {
 		if(settings.isActive()) settings.render(g);
 		else if(inventory.isActive()) inventory.render(g);
 		else if(trading.isActive()) trading.render(g);
-		else uim.render(g);
-		
-		
+		else{
+			uim.render(g);
+			
+			g.setColor(Color.WHITE);
+			g.drawString(game.getPlayer().getWeaponName(), 880, 470);
+			
+			g.setColor(new Color(255, 70, 70));
+			g.drawString("Damage: " + game.getPlayer().getDamage(), 880, 495);
+			g.drawString("Kills: " + game.getPlayer().getWeapon().getKills(), 880, 520);
+		}
 		
 		g.setFont(new Font("Verdana", Font.PLAIN, 24));
 		g.setColor(Color.LIGHT_GRAY);
