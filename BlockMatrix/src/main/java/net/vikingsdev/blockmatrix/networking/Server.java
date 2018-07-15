@@ -97,10 +97,10 @@ public class Server {
 		else serverGUI.appendEvent(time + "\n");
 	}
 	
-	private synchronized void broadcast(Object object) {
+	private synchronized void broadcast(byte index, Object object) {
 		for(int i = clients.size(); --i >= 0;) {
 			ClientThread ct = clients.get(i);
-			if(!ct.send(object)) {
+			if(!ct.send(index, object)) {
 				clients.remove(i);
 			}
 		}
@@ -189,7 +189,7 @@ public class Server {
 				case 0:
 					// block
 					try {
-						broadcast(sInput.readObject());
+						broadcast(objType, sInput.readObject());
 					} catch (ClassNotFoundException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
@@ -227,7 +227,7 @@ public class Server {
 			catch(Exception e) {}
 		}
 		
-		private boolean send(Object object) {
+		private boolean send(byte index, Object object) {
 			// if Client is still connected send the message to it
 			if(!socket.isConnected()) {
 				close();

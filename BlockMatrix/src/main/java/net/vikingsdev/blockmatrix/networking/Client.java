@@ -6,6 +6,7 @@ import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.util.Scanner;
 
+import net.vikingsdev.blockmatrix.Block;
 import net.vikingsdev.blockmatrix.gameobjects.Player;
 
 public class Client {
@@ -190,7 +191,38 @@ public class Client {
 	}
 
 	public void update() {
+		byte objType = -1;
+		try {
+			objType = sInput.readByte();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
+		/*
+		 * byte Object Type: The type of data being put through and how it should be handled
+		 * 0 - Block
+		 * 1 - Weapon
+		 */
+		switch(objType) {
+		case 0:
+			// block
+			try {
+				System.out.println("Block received, " + (Block) sInput.readObject());
+			} catch (ClassNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			break;
+		case 1:
+			// weapon
+			break;
+		case -1:
+			break;
+		}
 	}
 	
 	//A built in class that monitors server input

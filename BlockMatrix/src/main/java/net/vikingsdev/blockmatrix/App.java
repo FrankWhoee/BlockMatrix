@@ -1,13 +1,18 @@
 package net.vikingsdev.blockmatrix;
 
+import java.io.IOException;
+
 import net.vikingsdev.blockmatrix.gameobjects.Player;
 import net.vikingsdev.blockmatrix.gameobjects.Trade;
 import net.vikingsdev.blockmatrix.gameobjects.Weapon;
-import net.vikingsdev.blockmatrix.networking.Peer;
+import net.vikingsdev.blockmatrix.networking.Client;
 
 public class App {
 	public static void main(String[] args) {	
 
+		
+		// tester
+		
 		
 		/*try {
 			Blockchain.sendFile();
