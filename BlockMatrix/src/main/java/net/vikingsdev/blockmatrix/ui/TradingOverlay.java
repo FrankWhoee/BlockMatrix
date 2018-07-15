@@ -13,7 +13,7 @@ public class TradingOverlay extends UIOverlay {
  
 	@Override 
 	public void init() {
-		uim.addObject(new UIButton(644, 12, 64, 64, Assets.button[7], new UIListener() {
+		uim.addObject(new UIButton(732, 12, 64, 64, Assets.button[7], new UIListener() {
 			//Back
 			@Override
 			public void onClick() {
