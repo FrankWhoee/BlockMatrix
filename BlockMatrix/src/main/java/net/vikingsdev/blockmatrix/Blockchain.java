@@ -127,8 +127,12 @@ public class Blockchain {
 	public static void register(String name) {
 		Player newPlayer = new Player(name);
 		playerchain.add(new Block(newPlayer.toJsonString(), playerchain.get(playerchain.size()-1).hash));
-		playerchain.get(playerchain.size()-1).mineBlock(difficulty);
+		mineLastBlock();
 
+	}
+	
+	public static void mineLastBlock() {
+		playerchain.get(playerchain.size()-1).mineBlock(difficulty);
 	}
 	
 	public static Boolean isChainValid() {
@@ -169,6 +173,8 @@ public class Blockchain {
 		
 		Gson gson = new Gson();
 		playerchain = gson.fromJson(output, new TypeToken<ArrayList<Block>>(){}.getType());
+		
+		System.out.println("Save read!");
 	}
 	
 //	public static boolean parseLocalJson() {
