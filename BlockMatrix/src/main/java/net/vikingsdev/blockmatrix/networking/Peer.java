@@ -2,7 +2,8 @@ package net.vikingsdev.blockmatrix.networking;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
-import java.net.DatagramSocket;
+import java.io.IOException;
+import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.Scanner;
@@ -28,5 +29,50 @@ public class Peer {
 	
 	public Peer() throws Exception {
 		
+	}
+	
+	public void run() {
+		while(true) {
+			if(!host && !accepted) {
+				listenForServerRequest();
+			}
+		}
+	}
+	
+	private void listenForServerRequest() {
+		Socket socket = null;
+		try {
+			socket = serverSocket.accept();
+			dos = new DataOutputStream(socket.getOutputStream());
+			dis = new DataInputStream(socket.getInputStream());
+			accepted = true;
+			System.out.println("Accepted");
+		} catch(IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	private boolean connect() {
+		try {
+			socket = new Socket(ip, port);
+			dos = new DataOutputStream(socket.getOutputStream());
+			dos.flush();
+			dis = new DataInputStream(socket.getInputStream());
+			accepted = true;
+		} catch(IOException e) {
+			System.out.println("Unable to connect to server. Starting server");
+			return false;
+		}
+		System.out.println("Connected");
+		return true;
+	}
+	
+	private void initializeServer() {
+		try {
+			serverSocket = new ServerSocket(port, 8, InetAddress.getByName(ip));
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		host = false;
 	}
 }
