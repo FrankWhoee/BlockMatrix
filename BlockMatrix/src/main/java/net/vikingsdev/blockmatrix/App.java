@@ -43,29 +43,29 @@ public class App  extends ListenerAdapter {
 		jda = new JDABuilder(AccountType.BOT).setToken("NDY4MTY2MTE5MDU2ODY3MzM4.Di1NhA.BBKmxdaTTi9qeZLShI2CGRihU-o").buildBlocking();
 		objMsgCh = jda.getTextChannelById(468166361068077058L);
 		
-//		game = new Game(1280, 720, "BeefyBoi's BlockchainBasher");
-//		game.start();
-//		
-//		// tester code
-//		Player sender = new Player("Sender");
-//		Player receiver = new Player("Receiver");
-//		
-//		Weapon sendItem = new Weapon("Brutal waraxe of Supreme Jeremius");
-//		Weapon receiveItem = new Weapon("Master Devito's mighty magnum dong");
-//		
-//		sender.getInventory().add(sendItem);
-//		receiver.getInventory().add(receiveItem);
-//		
-//		System.out.println("Sender item: " + sender.getInventory().get(0));
-//		System.out.println("Receiver item: " + receiver.getInventory().get(0));
-//		
-//		Trade trade = new Trade(sender, receiver, 0, 0);
-//		trade.completeTrade();
-//		
-//		System.out.println("Sender item: " + sender.getInventory().get(0));
-//		System.out.println("Receiver item: " + receiver.getInventory().get(0));
-//		
-//		System.out.print("Exiting main...");
+		game = new Game(1280, 720, "BeefyBoi's BlockchainBasher");
+		game.start();
+		
+		// tester code
+		Player sender = new Player("Sender");
+		Player receiver = new Player("Receiver");
+		
+		Weapon sendItem = new Weapon("Brutal waraxe of Supreme Jeremius");
+		Weapon receiveItem = new Weapon("Master Devito's mighty magnum dong");
+		
+		sender.getInventory().add(sendItem);
+		receiver.getInventory().add(receiveItem);
+		
+		System.out.println("Sender item: " + sender.getInventory().get(0));
+		System.out.println("Receiver item: " + receiver.getInventory().get(0));
+		
+		Trade trade = new Trade(sender, receiver, 0, 0);
+		trade.completeTrade();
+		
+		System.out.println("Sender item: " + sender.getInventory().get(0));
+		System.out.println("Receiver item: " + receiver.getInventory().get(0));
+		
+		System.out.print("Exiting main...");
 		
 	}
 	
