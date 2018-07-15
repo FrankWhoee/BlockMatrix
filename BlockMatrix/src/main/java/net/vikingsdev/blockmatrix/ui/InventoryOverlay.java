@@ -34,13 +34,8 @@ public class InventoryOverlay extends UIOverlay {
 			}
 		}));  
 		
-<<<<<<< Updated upstream
-		uim.addObject(new UIButton(720 - 128, 592, 256, 128, Assets.button[4], new UIListener() {
-			// trade button
-=======
 		uim.addObject(new UIButton(592, 592, 256, 128, Assets.button[4], new UIListener() {
 			// equip button
->>>>>>> Stashed changes
 			@Override
 			public void onClick() {
 				setActive(false);
