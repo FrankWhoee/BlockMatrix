@@ -1,7 +1,6 @@
 package net.vikingsdev.blockmatrix.ui;
 
 import java.awt.Color;
-import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.util.ArrayList;
@@ -28,7 +27,6 @@ public class UIList {
 	public void render(Graphics g) {
 		// set formatting
 		g.setColor(Color.WHITE);
-		g.setFont(new Font("Verdana", Font.BOLD, 16));
 		
 		// loop through list and draw the text
 		for(int i = 0; i < list.size(); i++) {

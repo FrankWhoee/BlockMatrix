@@ -80,7 +80,6 @@ public class Game implements Runnable{
 
 		Blockchain.save();
 		
-		this.player = player;
 		this.player.getInventory().add(new Weapon("Dagger"));
 	}
 	
@@ -89,7 +88,7 @@ public class Game implements Runnable{
 		
 		// start init Client
 		int portNumber = Server.DEFAULT_PORT;
-		String serverAddress = "216.71.221.211";
+		String serverAddress = "localhost";
 		String userName = player.getName();
 		client = new Client(serverAddress, portNumber, userName);
 		if(!client.start()) return;

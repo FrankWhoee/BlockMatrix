@@ -1,11 +1,13 @@
 package net.vikingsdev.blockmatrix.states;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 
 import net.vikingsdev.blockmatrix.Game;
 import net.vikingsdev.blockmatrix.gfx.Assets;
 import net.vikingsdev.blockmatrix.ui.*;
+import net.vikingsdev.blockmatrix.utils.StringUtil;
 
 public class GameState extends State {
 	private UIOverlay inventory, settings, trading;
@@ -90,22 +92,27 @@ public class GameState extends State {
 
 	@Override
 	public void render(Graphics g) {
-		g.drawImage(Assets.eventBackground,768,0,null);
-		g.drawImage(Assets.forestBG,0,32,null);
-		g.drawImage(Assets.orc,116,32,null);
+		g.drawImage(Assets.eventBackground, 768, 0,null);
+		g.drawImage(Assets.forestBG, 0, 32,null);
+		g.drawImage(Assets.orc, 100, 32,null);
 		g.drawImage(Assets.statsBackground, 832, 384, null);
 		
 		// stats rendering
 		
+		g.setFont(new Font("Verdana", Font.BOLD, 16));
 		g.setColor(Color.DARK_GRAY);
-		g.fillRect(32, 70, 540, 20);
+		g.fillRect(32, 70, 535, 20);
 		
 		g.setColor(Color.RED);
-		g.fillRect(34, 72, 536, 16);
+		g.fillRect(34, 72, 531, 16);
 		
 		if(settings.isActive()) settings.render(g);
 		else if(inventory.isActive()) inventory.render(g);
 		else if(trading.isActive()) trading.render(g);
 		else uim.render(g);
+		
+		g.setFont(new Font("Verdana", Font.PLAIN, 24));
+		g.setColor(Color.LIGHT_GRAY);
+		StringUtil.centre(game.getPlayer().getName(), 300, 30, g);
 	}
 }
