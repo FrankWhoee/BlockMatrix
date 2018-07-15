@@ -100,7 +100,7 @@ public class GameState extends State {
 		
 		// stats rendering
 		
-		g.setFont(new Font("Verdana", Font.BOLD, 16));
+		g.setFont(new Font("Courier New", Font.PLAIN, 18));
 		g.setColor(Color.DARK_GRAY);
 		g.fillRect(32, 70, 535, 20);
 		
@@ -115,18 +115,21 @@ public class GameState extends State {
 			
 			g.setColor(Color.WHITE);
 			g.drawString(game.getPlayer().getWeaponName(), 880, 470);
+			g.drawString("Event History:", 1020, 500);
 			
-			g.setColor(new Color(255, 70, 70));
+			g.setColor(new Color(255, 50, 50));
 			g.drawString("Damage: " + game.getPlayer().getDamage(), 880, 500);
 			g.drawString("Kills: " + game.getPlayer().getWeapon().getKills(), 880, 525);
 			
+			g.setColor(new Color(50, 255, 50));
+			
 			for(int i = 0; i < game.getPlayer().getWeapon().getHistory().size(); i++) {
 				Event e = game.getPlayer().getWeapon().getHistory().get(i);
-				g.drawString(e.getName(), 880 + i * 30, 555);
+				g.drawString(e.getName(), 1020, 525 + i * 25);
 			}
 		}
 		
-		g.setFont(new Font("Verdana", Font.PLAIN, 24));
+		g.setFont(new Font("Courier New", Font.PLAIN, 24));
 		g.setColor(Color.LIGHT_GRAY);
 		StringUtil.centre(game.getPlayer().getName(), 300, 30, g);
 	}
