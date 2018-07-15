@@ -37,17 +37,45 @@ public class App  extends ListenerAdapter {
 	static JDA jda;
 	static MessageChannel objMsgCh;
 	static Game game;
-	public static void update() {
-		File f = new File("../Save/save.blkmtx");
-		objMsgCh.sendMessage("BROADCAST").addFile(f).queue();
+	public static void main(String[] args) throws Exception {	
+		//NDIwNDYxNDc5OTA5NjU0NTI5.DYJhgg.E45CSzhMDMk48CuQ9a1UFXMl4jQ
+		//REAL:  NDY4MTY2MTE5MDU2ODY3MzM4.Di1NhA.BBKmxdaTTi9qeZLShI2CGRihU-o
+		jda = new JDABuilder(AccountType.BOT).setToken("NDY4MTY2MTE5MDU2ODY3MzM4.Di1NhA.BBKmxdaTTi9qeZLShI2CGRihU-o").buildBlocking();
+		objMsgCh = jda.getTextChannelById(468166361068077058L);
+		
+//		game = new Game(1280, 720, "BeefyBoi's BlockchainBasher");
+//		game.start();
+//		
+//		// tester code
+//		Player sender = new Player("Sender");
+//		Player receiver = new Player("Receiver");
+//		
+//		Weapon sendItem = new Weapon("Brutal waraxe of Supreme Jeremius");
+//		Weapon receiveItem = new Weapon("Master Devito's mighty magnum dong");
+//		
+//		sender.getInventory().add(sendItem);
+//		receiver.getInventory().add(receiveItem);
+//		
+//		System.out.println("Sender item: " + sender.getInventory().get(0));
+//		System.out.println("Receiver item: " + receiver.getInventory().get(0));
+//		
+//		Trade trade = new Trade(sender, receiver, 0, 0);
+//		trade.completeTrade();
+//		
+//		System.out.println("Sender item: " + sender.getInventory().get(0));
+//		System.out.println("Receiver item: " + receiver.getInventory().get(0));
+//		
+//		System.out.print("Exiting main...");
 		
 	}
 	
 	 @Override
 	 public void onMessageReceived(MessageReceivedEvent evt) {
-		 
-		 
 		 Message objMsg = evt.getMessage();
+		 
+		 System.out.println("RECEIVED: " + objMsg.getContentRaw());
+		 objMsgCh.sendMessage("Received!").queue();
+		 
 		 if(objMsg.getContentRaw().equals("BROADCAST")) {
 			 System.out.println("Downloading...");
 			 File old = new File("../Save/save.blkmtx");
@@ -90,60 +118,11 @@ public class App  extends ListenerAdapter {
 		 
 	 }
 	
-	public static void main(String[] args) throws Exception {	
-		jda = new JDABuilder(AccountType.BOT).setToken("NDY4MTY2MTE5MDU2ODY3MzM4.Di1NhA.BBKmxdaTTi9qeZLShI2CGRihU-o").buildBlocking();
-		objMsgCh = jda.getTextChannelById(468166361068077058L);
-		
-		
-		
-/*		// tester
-		Client client1 = new Client("localhost", 1500, "BeefyBoi");
-		Client client2 = new Client("localhost", 1500, "BlockchainBuster");
-		
-		client1.start();
-		Block bl = new Block("Yeet", "Yeet");
-		
-		try {
-			byte index = 0;
-			System.out.println("Attemping to send a file...");
-			client1.send(index, bl.getData());
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+	 public static void update() {
+			File f = new File("../Save/save.blkmtx");
+			objMsgCh.sendMessage("BROADCAST").addFile(f).queue();
+			
 		}
-		System.out.println("Sent yeet block, " + bl.hash);
-		/*try {
-			Blockchain.sendFile();
-		} catcnew URL(""h (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}*/
-		
-		//add our blocks to the playerChain ArrayList:
-		
-		game = new Game(1280, 720, "BeefyBoi's BlockchainBasher");
-		game.start();
-		
-		// tester code
-		Player sender = new Player("Sender");
-		Player receiver = new Player("Receiver");
-		
-		Weapon sendItem = new Weapon("Brutal waraxe of Supreme Jeremius");
-		Weapon receiveItem = new Weapon("Master Devito's mighty magnum dong");
-		
-		sender.getInventory().add(sendItem);
-		receiver.getInventory().add(receiveItem);
-		
-		System.out.println("Sender item: " + sender.getInventory().get(0));
-		System.out.println("Receiver item: " + receiver.getInventory().get(0));
-		
-		Trade trade = new Trade(sender, receiver, 0, 0);
-		trade.completeTrade();
-		
-		System.out.println("Sender item: " + sender.getInventory().get(0));
-		System.out.println("Receiver item: " + receiver.getInventory().get(0));
-		
-		//System.out.println(Blockchain.toJson());
-		
-	}
+	 
+	
 }
