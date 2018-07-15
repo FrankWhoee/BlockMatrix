@@ -108,6 +108,11 @@ public class Blockchain {
 
 	}
 	
+	public static void addBlock(Player p) {
+		playerchain.add(new Block(p.toJsonString(), playerchain.get(playerchain.size()-1).hash));
+		mineLastBlock();
+	}
+	
 	public static void mineLastBlock() {
 		playerchain.get(playerchain.size()-1).mineBlock(difficulty);
 	}
