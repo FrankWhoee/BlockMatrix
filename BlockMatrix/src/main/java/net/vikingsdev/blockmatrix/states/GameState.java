@@ -81,6 +81,8 @@ public class GameState extends State {
 		g.drawImage(Assets.orc,128,32,null);
 		g.drawImage(Assets.statsBackground, 832, 384, null);
 		
+		// stats rendering
+		
 		g.setColor(Color.GRAY);
 		g.fillRect(42, 69, 550, 12);
 		
