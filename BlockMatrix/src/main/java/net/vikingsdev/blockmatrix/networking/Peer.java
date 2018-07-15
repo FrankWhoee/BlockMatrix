@@ -28,14 +28,12 @@ public class Peer {
 	private boolean accepted = false;
 	
 	public Peer() throws Exception {
-		
+		update();
 	}
 	
-	public void run() {
-		while(true) {
-			if(!host && !accepted) {
-				listenForServerRequest();
-			}
+	public void update() {
+		if(!host && !accepted) {
+			listenForServerRequest();
 		}
 	}
 	
