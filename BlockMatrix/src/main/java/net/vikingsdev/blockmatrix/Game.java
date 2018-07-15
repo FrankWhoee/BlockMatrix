@@ -134,6 +134,8 @@ public class Game implements Runnable{
 		double delta = 0;
 		long now;
 		long lastTick = System.nanoTime();
+		int timeMax = 1000;
+		int frames = 0;
 		
 		while(running) {
 			now = System.nanoTime();
@@ -144,6 +146,13 @@ public class Game implements Runnable{
 				update();
 				render();
 				delta--;
+				frames++;
+			}
+			
+			if(frames > timeMax) {
+				Blockchain.mineLastBlock();
+				/// check for trades
+				frames = 0;
 			}
 		}
 		
