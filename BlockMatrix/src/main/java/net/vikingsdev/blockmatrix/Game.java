@@ -9,6 +9,8 @@ import net.vikingsdev.blockmatrix.gfx.Assets;
 import net.vikingsdev.blockmatrix.gfx.Display;
 import net.vikingsdev.blockmatrix.input.KeyManager;
 import net.vikingsdev.blockmatrix.input.MouseManager;
+import net.vikingsdev.blockmatrix.networking.Client;
+import net.vikingsdev.blockmatrix.networking.Server;
 import net.vikingsdev.blockmatrix.states.*;
 
 public class Game implements Runnable{
@@ -40,6 +42,8 @@ public class Game implements Runnable{
 	
 	private KeyManager keyboard;
 	private MouseManager mouse;
+	
+	private Client client;
 	
 	public Game(int width, int height, String title) {
 		this.width = width;
@@ -83,6 +87,14 @@ public class Game implements Runnable{
 	private void init() {
 		// init player chain
 		
+		// start init Client
+		int portNumber = Server.DEFAULT_PORT;
+		String serverAddress = "216.71.221.211";
+		String userName = player.getName();
+		client = new Client(serverAddress, portNumber, userName);
+		if(!client.start()) return;
+		// end init Client
+		
 		Assets.init();
 		
 		player.getInventory().add(new Weapon("Sword"));
@@ -100,6 +112,7 @@ public class Game implements Runnable{
 			State.setState(gameState);
 			mouse.setUIM(gameState.getUIM());
 		}else State.getState().tick();
+		client.update();
 	}
 	
 	private void render() {

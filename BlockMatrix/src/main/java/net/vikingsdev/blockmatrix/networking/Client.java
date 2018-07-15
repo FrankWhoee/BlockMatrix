@@ -21,10 +21,11 @@ public class Client {
 	private String server, username;
 	private int port;
 
-	Client(String server, int port, String username) {
+	public Client(String server, int port, String username) {
 		this.server = server;
 		this.port = port;
 		this.username = username;
+		System.out.print("Client created at port " + port + " and address " + server + ". Client username is " + username);
 	}
 	
 	public boolean start() {
@@ -109,7 +110,7 @@ public class Client {
 
 	public static void main(String[] args) {
 		int portNumber = Server.DEFAULT_PORT;
-		String serverAddress = "localhost";
+		String serverAddress = "216.71.221.211";
 		String userName = "Anonymous";
 
 		//Switch depending on the number of input arguments
@@ -175,6 +176,10 @@ public class Client {
 		client.disconnect();	
 	}
 
+	public void update() {
+		
+	}
+	
 	//A built in class that monitors server input
 	
 	class ListenFromServer extends Thread {
