@@ -41,7 +41,21 @@ public class TradingOverlay extends UIOverlay {
 				setActive(false);
 				game.getMouse().setUIM(game.getGameState().getUIM());
 			}
-		}));  
+		}));
+		
+		//fix the code below asap
+		
+		for(int i = 0; i < 12; i++) {
+			int index = i;
+			uim.addObject(new UIButton(848, i * 64, 384, 64, null, new UIListener() {
+				//select weapon
+				
+				@Override
+				public void onClick() {
+					game.getPlayer().setActiveSlot(index);
+				}
+			}));
+		}
 	} 
  
 	@Override 

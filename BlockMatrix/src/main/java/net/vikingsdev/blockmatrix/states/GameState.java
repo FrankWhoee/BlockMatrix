@@ -88,8 +88,11 @@ public class GameState extends State {
 		
 		// stats rendering
 		
-		g.setColor(Color.GRAY);
-		g.fillRect(42, 69, 550, 12);
+		g.setColor(Color.DARK_GRAY);
+		g.fillRect(32, 70, 540, 20);
+		
+		g.setColor(Color.RED);
+		g.fillRect(34, 72, 536, 16);
 		
 		if(settings.isActive()) settings.render(g);
 		else if(inventory.isActive()) inventory.render(g);
