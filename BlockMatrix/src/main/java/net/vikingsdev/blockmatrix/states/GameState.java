@@ -47,6 +47,9 @@ public class GameState extends State {
 			//Wage jihad on the infidels inshallah
 			@Override
 			public void onClick() {		//attack
+				System.out.println(System.getProperty("user.dir"));
+				System.out.println(System.getProperty("user.dir"));
+				System.out.println();
 				dealDamage();
 			}
 		}));

@@ -12,7 +12,7 @@ public class Player {
     private Long id;
 	private ArrayList<Item> inventory = new ArrayList<Item>();
 
-	private int activeSlot = -1, tradeSlot = -1;
+	private int activeSlot = 0, tradeSlot = -1;		//active slot should start at 0 so we dont get out of bounds stuff
 	
     public Player(String name) {
         this.name = name;
@@ -35,6 +35,14 @@ public class Player {
         this.id = id;
         this.inventory = inventory;
         this.activeSlot = activeSlot;
+    }
+    
+    public Player(String name, Long id, ArrayList<Item> inventory, int activeSlot, boolean trade) {
+        this.name = name;
+        this.id = id;
+        this.inventory = inventory;
+        this.activeSlot = activeSlot;
+        this.trade = trade;
     }
     
     public String getName() {
@@ -75,6 +83,7 @@ public class Player {
     	json.addProperty("name", name);
     	json.addProperty("id", id);
     	json.addProperty("activeSlot", activeSlot);
+    	json.addProperty("trade", trade);
     	
     	Gson gson = new Gson();
     	JsonElement element = gson.toJsonTree(inventory, new TypeToken<ArrayList<Item>>() {}.getType());
@@ -93,14 +102,15 @@ public class Player {
         
     	
     	
-    	Player p = new Player(playerInfo.get("name").getAsString(),playerInfo.get("id").getAsLong(),inventory,playerInfo.get("activeSlot").getAsInt());
+    	Player p = new Player(playerInfo.get("name").getAsString(),playerInfo.get("id").getAsLong(),inventory,playerInfo.get("activeSlot").getAsInt(),playerInfo.get("trade").getAsBoolean());
     	return p;
     }
 
 	public void setActiveSlot(int activeSlot) {
 		this.activeSlot = activeSlot;
 	}
-
+	
+	//we gonna use txt files instead of this
 	public int getTradeSlot() {
 		return tradeSlot;
 	}
