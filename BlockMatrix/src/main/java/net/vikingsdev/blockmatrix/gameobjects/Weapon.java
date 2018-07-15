@@ -5,16 +5,16 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Weapon extends Item{
-	ArrayList<Event> history;
-	HashMap<String, Integer> stats;
+	private ArrayList<Event> history;
+	private HashMap<String, Integer> stats;
 	
-	int kills;
-	int clicks;
+	private int kills;
+	private int clicks;
 
-	String prefix;
-	String proper;
-	String suffix;
-	String name;
+	private String prefix;
+	private String proper;
+	private String suffix;
+	private String name;
 
 	AvailableEvents availableEvents = new AvailableEvents();
 	
@@ -33,8 +33,30 @@ public class Weapon extends Item{
         stats.put("Speed",1);
     }
     
+    public Weapon(String name, ArrayList<Event> history, HashMap<String,Integer> stats, int kills, int clicks, String prefix, String proper, String suffix, String thisName, ArrayList<ClickTriggerable> availableClickTriggerable, ArrayList<KillTriggerable> availableKillTriggerable) {
+    	super(name);
+    	this.history = history;
+    	this.stats = stats;
+    	this.kills = kills;
+    	this.clicks = clicks;
+    	this.prefix = prefix;
+    	this.proper = proper;
+    	this.suffix = suffix;
+    	this.name = thisName;
+    	this.availableClickTriggerable = availableClickTriggerable;
+    	this.availableKillTriggerable =availableKillTriggerable;
+    }
+    
     public void addKills(int addKill) {
     	this.kills += addKill;
+    }
+    
+    public ArrayList<ClickTriggerable> getAvailableClickTriggerable(){
+    	return availableClickTriggerable;
+    }
+    
+    public ArrayList<KillTriggerable> getAvailableKillTriggerable(){
+    	return availableKillTriggerable;
     }
     
     public void addClick() {
@@ -44,7 +66,27 @@ public class Weapon extends Item{
     public String getName() {
         return name;
     }
-
+    
+	public int getKills() {
+		return kills;
+	}
+	
+	public int getClicks() {
+		return clicks;
+	}
+	
+	public String getPrefix() {
+		return prefix;
+	}
+	
+	public String getProper() {
+		return proper;
+	}
+	
+	public String getSuffix() {
+		return suffix;
+	}
+	
     public HashMap<String, Integer> getStats() {
         return stats;
     }

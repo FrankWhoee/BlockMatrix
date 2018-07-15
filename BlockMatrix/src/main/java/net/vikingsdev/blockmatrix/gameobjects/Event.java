@@ -10,7 +10,7 @@ public class Event {
 	
 	protected String modifier; //weapon stat changes
 	protected HashMap<String, Integer> modStats;
-	
+	protected String name;
 	//lol will find a more efficient way to do this later
 
 	public Event(String modifier, byte region) {
@@ -22,6 +22,9 @@ public class Event {
 	
 	
 	//Accessors
+	public String getName() {
+		return name;
+	}
 	
 	public String getModifier() {
 		return modifier;
