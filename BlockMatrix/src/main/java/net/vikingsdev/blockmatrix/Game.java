@@ -71,7 +71,7 @@ public class Game implements Runnable{
 	    display.getCanvas().addMouseMotionListener(mouse);
 	    display.getCanvas().addMouseWheelListener(mouse);
 	    
-	    Blockchain.playerchain.add(new Block("Genesis Block", "0"));
+	    Blockchain.playerchain.add(new Block("{name:\"Genesis Block\"}", "0"));
 		System.out.println("Trying to Mine block 1... ");
 		Blockchain.playerchain.get(0).mineBlock(Blockchain.difficulty);
 		
