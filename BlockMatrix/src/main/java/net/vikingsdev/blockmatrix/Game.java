@@ -186,7 +186,7 @@ public class Game implements Runnable{
 					tradePartner = player.playerToTradeWith(tradePlayers);
 					int mySelected;
 					boolean go = getYesOrNoBool("Do you want to initiate a trade?");
-					String sendThisTxt = System.getProperty("user.dir") + "/Communication" + "/ToSend/Message.txt";
+					String sendThisTxt = System.getProperty("user.dir") + "/Communication/ToSend/Message.txt";
 					//set up client-client connection
 					
 					while(go) {		//there'll be an exit button all the time if they just want to bail on the trade except for after they confirm the trade
@@ -195,7 +195,10 @@ public class Game implements Runnable{
 						Weapon selectedWeapon = (Weapon)(player.getInventory().get(mySelected)); //whatever weapon you choose
 						sequence.writing(selectedWeapon.toJson());
 						
+						
 						//send ur file, recieve the other person's
+						App.objMsgCh.sendMessage(tradePartner.getId() + "").addFile(sequence.writeAndGetFile(selectedWeapon.toJson()));
+						
 						
 						if (getYesOrNoBool("Do you want accept the trade?")){
 							player.getInventory().add(Weapon.fromJson(sequence.readToString()));

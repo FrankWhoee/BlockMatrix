@@ -36,7 +36,7 @@ import net.vikingsdev.blockmatrix.networking.Client;
 public class App  extends ListenerAdapter {
 	static JDA jda;
 	static MessageChannel objMsgCh;
-	
+	static Game game;
 	public static void update() {
 		File f = new File("../Save/save.blkmtx");
 		objMsgCh.sendFile(f).queue();
@@ -45,23 +45,48 @@ public class App  extends ListenerAdapter {
 	
 	 @Override
 	 public void onMessageReceived(MessageReceivedEvent evt) {
+		 
+		 
 		 Message objMsg = evt.getMessage();
-		 File old = new File("../Save/save.blkmtx");
-		 old.delete();
-		 File New = new File("../Save/save.blkmtx");
-		 URL url = null;
-		try {
-			url = new URL(objMsg.getAttachments().get(0).getUrl());
-		} catch (MalformedURLException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-		 try {
-			FileUtils.copyURLToFile(url, New);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		 if(objMsg.getContentRaw().equals("")) {
+			 File old = new File("../Save/save.blkmtx");
+			 old.delete();
+			 File New = new File("../Save/save.blkmtx");
+			 URL url = null;
+			try {
+				url = new URL(objMsg.getAttachments().get(0).getUrl());
+			} catch (MalformedURLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			 try {
+				FileUtils.copyURLToFile(url, New);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		 }else {
+			 Long id = Long.parseLong(objMsg.getContentRaw());
+			 if(id == game.getPlayer().getId()) {
+				 File f = new File(System.getProperty("user.dir") + "/Communication/Recieved/Message.txt");
+				 URL url = null;
+					try {
+						url = new URL(objMsg.getAttachments().get(0).getUrl());
+					} catch (MalformedURLException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					 try {
+						FileUtils.copyURLToFile(url, f);
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+			 }
+			 
+		 }
+		 
+		 
 	 }
 	
 	public static void main(String[] args) throws Exception {	
@@ -95,7 +120,7 @@ public class App  extends ListenerAdapter {
 		
 		//add our blocks to the playerChain ArrayList:
 		
-		Game game = new Game(1280, 720, "BeefyBoi's BlockchainBasher");
+		game = new Game(1280, 720, "BeefyBoi's BlockchainBasher");
 		game.start();
 		
 		// tester code
