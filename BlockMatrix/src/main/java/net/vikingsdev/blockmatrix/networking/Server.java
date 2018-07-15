@@ -66,7 +66,7 @@ public class Server {
 		Socket socket;
 		
 		try {
-			socket = new Socket("localhost", port);
+			socket = new Socket("216.71.221.211", port);
 			return;
 		} catch (Exception e) {
 			e.printStackTrace();
