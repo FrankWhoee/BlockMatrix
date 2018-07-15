@@ -94,7 +94,7 @@ public class Game implements Runnable{
 		
 		// start init Client
 		int portNumber = Server.DEFAULT_PORT;
-		String serverAddress = "localhost";
+		String serverAddress = "216.71.221.214";
 		String userName = player.getName();
 		client = new Client(serverAddress, portNumber, userName);
 		if(!client.start()) return;
