@@ -10,29 +10,16 @@ public class App {
 		
 		System.out.println(System.getProperty("user.dir"));
 		
-		try {
+		/*try {
 			Blockchain.sendFile();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		}*/
 		
 		//add our blocks to the playerChain ArrayList:
 		
-		Blockchain.playerchain.add(new Block("Genesis Block", "0"));
-		System.out.println("Trying to Mine block 1... ");
-		Blockchain.playerchain.get(0).mineBlock(Blockchain.difficulty);
-		
-		System.out.println("Registering player...");
-		Blockchain.register("my name tripple gay");
-		Player p = Player.toPlayer(Blockchain.playerchain.get(1).getData());
-		
-		System.out.println("Player's name: " + p.getName());
-		System.out.println("Player's id: " + p.getId());
-
-		Blockchain.save();
-		
-		Game game = new Game(1280, 720, "Meme", p);
+		Game game = new Game(1280, 720, "Meme");
 		game.start();
 		
 		// tester code

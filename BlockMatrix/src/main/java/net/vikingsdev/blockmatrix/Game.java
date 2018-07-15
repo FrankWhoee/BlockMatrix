@@ -41,11 +41,10 @@ public class Game implements Runnable{
 	private KeyManager keyboard;
 	private MouseManager mouse;
 	
-	public Game(int width, int height, String title, Player player) {
+	public Game(int width, int height, String title) {
 		this.width = width;
 		this.height = height;
 		this.title = title;
-		this.player = player;
 		
 	    keyboard = new KeyManager();
 	    mouse = new MouseManager();
@@ -63,17 +62,35 @@ public class Game implements Runnable{
 	    display.getCanvas().addMouseListener(mouse);
 	    display.getCanvas().addMouseMotionListener(mouse);
 	    display.getCanvas().addMouseWheelListener(mouse);
+	    
+	    Blockchain.playerchain.add(new Block("Genesis Block", "0"));
+		System.out.println("Trying to Mine block 1... ");
+		Blockchain.playerchain.get(0).mineBlock(Blockchain.difficulty);
+		
+		System.out.println("Registering player...");
+		Blockchain.register("my name tripple gay");
+		player = Player.toPlayer(Blockchain.playerchain.get(1).getData());
+		
+		System.out.println("Player's name: " + player.getName());
+		System.out.println("Player's id: " + player.getId());
+
+		Blockchain.save();
+		
+		this.player = player;
+		this.player.getInventory().add(new Weapon("Dagger"));
 	}
 	
 	private void init() {
+		// init player chain
+		
 		Assets.init();
 		
-		gameState.init();
 		player.getInventory().add(new Weapon("Sword"));
 		player.getInventory().add(new Weapon("Spear"));
 		player.getInventory().add(new Weapon("Shiv"));
 		player.getInventory().add(new Weapon("Scimitar"));
 		player.setActiveSlot(0);
+		gameState.init();
 	}
 	
 	private void update() {
