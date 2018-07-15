@@ -8,11 +8,16 @@ import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Base64;
+import java.util.List;
 
 import javax.crypto.BadPaddingException;
+import javax.crypto.Cipher;
 import javax.crypto.IllegalBlockSizeException;
+import javax.crypto.KeyGenerator;
 import javax.crypto.NoSuchPaddingException;
+import javax.crypto.SecretKey;
 
 import java.security.*;
 import java.security.interfaces.RSAPublicKey;
@@ -140,15 +145,33 @@ public class Blockchain {
 		}
         
 	}
+	
+	public static byte[][] splitBytes(final byte[] data, final int chunkSize)
+	{
+	  final int length = data.length;
+	  final byte[][] dest = new byte[(length + chunkSize - 1)/chunkSize][];
+	  int destIndex = 0;
+	  int stopIndex = 0;
 
+	  for (int startIndex = 0; startIndex + chunkSize <= length; startIndex += chunkSize)
+	  {
+	    stopIndex += chunkSize;
+	    dest[destIndex++] = Arrays.copyOfRange(data, startIndex, stopIndex);
+	  }
+
+	  if (stopIndex < length)
+	    dest[destIndex] = Arrays.copyOfRange(data, stopIndex, length);
+
+	  return dest;
+	}
 	
 	public static void save() {
 		String blockchainJson = new GsonBuilder().setPrettyPrinting().create().toJson(playerchain);
-		byte[] encrypted = null;
+		byte[][] encrypted = null;
 		try {
 			System.out.println(publicKey.getEncoded());
-			//blockchainJson.getBytes()
-			encrypted = CryptoUtil.encrypt(publicKey, ("{}").getBytes());
+			encrypted = splitBytes(blockchainJson.getBytes(),75);
+			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
