@@ -5,14 +5,20 @@ import java.util.HashMap;
 import java.util.Map;
 
 import com.google.gson.Gson;
+import com.google.gson.InstanceCreator;
 import com.google.gson.JsonArray;
+import com.google.gson.JsonDeserializer;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import com.google.gson.reflect.TypeToken;
+
+import flexjson.JSONDeserializer;
+import net.sf.json.JSONSerializer;
 
 public class Weapon extends Item{
 	private ArrayList<Event> history;
-	private HashMap<String, Integer> stats;
+	private Map<String, Integer> stats;
 	
 	private int kills;
 	private int clicks;
@@ -93,7 +99,7 @@ public class Weapon extends Item{
 		return suffix;
 	}
 	
-    public HashMap<String, Integer> getStats() {
+    public Map<String, Integer> getStats() {
         return stats;
     }
 
@@ -162,9 +168,33 @@ public class Weapon extends Item{
     	return gson.toJson(this);
     }
     
+    /*
+     * {
+     * "availableClickTriggerable":[],
+     * "availableKillTriggerable":[{"modStats":{"Damage":1},
+	     * "modifier":"Sharp",
+	     * "name":"TenKills",
+	     * "region":0}
+	 * ],
+     * "clicks":0,
+     * "history":[],
+     * "kills":0,
+     * "name":"peanus cake",
+     * "prefix":"",
+     * "proper":"",
+     * "stats":{"Speed":1,"Damage":1},
+     * "suffix":""
+     * }
+
+     */
+    //public Weapon(String name, ArrayList<Event> history, HashMap<String,Integer> stats, int kills, int clicks, String prefix, String proper, String suffix, String thisName, ArrayList<ClickTriggerable> availableClickTriggerable, ArrayList<KillTriggerable> availableKillTriggerable) {
+    
+    
     public static Weapon fromJson(String json) {
-    	Gson gson = new Gson();
-    	return gson.fromJson(json, Weapon.class);
+    	JsonParser jp = new JsonParser();
+    	JsonObject jo = jp.parse(json).getAsJsonObject();
+    	
+    	
     }
     
     /*List of stuff to add (roughly in high to low priority)

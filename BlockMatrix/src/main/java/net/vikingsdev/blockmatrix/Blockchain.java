@@ -101,30 +101,6 @@ public class Blockchain {
 	    }
 	}
 	
-	//// unnecessary, network code is in network package
-	public static void sendFile() throws Exception{
-	    int port = 21;
-	    String host = "localhost";
-	    
-	    try {
-            Socket socket = new Socket(host, port);
-            OutputStream os = socket.getOutputStream();
-
-            int cnt_files = 1;
-
-            // How many files?
-            ByteStream.toStream(os, cnt_files);
-
-            for (int cur_file = 0; cur_file < cnt_files; cur_file++) {
-                ByteStream.toStream(os, "../Save/save.blkmtx");
-                ByteStream.toStream(os, new File("../Save/save.blkmtx"));
-            }
-            socket.shutdownOutput();
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
-	}
-	
 	public static void register(String name) {
 		Player newPlayer = new Player(name);
 		playerchain.add(new Block(newPlayer.toJsonString(), playerchain.get(playerchain.size()-1).hash));
