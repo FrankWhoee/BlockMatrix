@@ -17,13 +17,12 @@ public class UIList {
 	
 	public UIList(int x, int y, int width, int height, Game game) {
 		this.game = game;
-		this.list = game.getPlayer().getInventory();
 		
 		bounds = new Rectangle(x, y, width, height);
 	}
 	
 	public void init() {
-		
+		this.list = game.getPlayer().getInventory();
 	}
 	
 	public void render(Graphics g) {
