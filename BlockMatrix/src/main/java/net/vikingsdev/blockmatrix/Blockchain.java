@@ -101,6 +101,8 @@ public class Blockchain {
 	    }
 	}
 	
+	
+	
 	public static void register(String name) {
 		Player newPlayer = new Player(name);
 		playerchain.add(new Block(newPlayer.toJsonString(), playerchain.get(playerchain.size()-1).hash));
