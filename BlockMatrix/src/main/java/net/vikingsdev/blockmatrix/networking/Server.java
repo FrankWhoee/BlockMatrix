@@ -137,9 +137,11 @@ public class Server {
 	}
 	
 	private synchronized void broadcast(byte index, Object object) {
-		for(int i = clients.size(); --i >= 0;) {
+		for(int i = clients.size(); i > 0;i--) {
 			ClientThread ct = clients.get(i);
-			if(!ct.send(index, object)) {
+			boolean ndab = ct.send(index, object);
+			if(ndab) {
+				System.out.println("GAYYYYYYY: " + ndab);
 				clients.remove(i);
 			}
 		}
