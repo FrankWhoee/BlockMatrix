@@ -69,6 +69,14 @@ public class Player {
     	Player p = new Player(playerInfo.get("name").getAsString(),playerInfo.get("id").getAsLong(),inventory);
     	return p;
     }
+
+	public int getActiveSlot() {
+		return ActiveSlot;
+	}
+
+	public void setActiveSlot(int activeSlot) {
+		ActiveSlot = activeSlot;
+	}
     
     //get name		//accessor implemented
 	//get inventory		//accessor implemented

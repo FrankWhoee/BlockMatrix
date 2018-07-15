@@ -26,13 +26,12 @@ public class InventoryOverlay extends UIOverlay {
 			// equip button
 			@Override
 			public void onClick() {
-				setActive(false);
-				game.getMouse().setUIM(game.getGameState().getUIM());
+				game.getPlayer().setActiveSlot(-1);
 			}
 		}));  
 		
 		uim.addObject(new UIButton(720 - 128, 592, 256, 128, Assets.button[4], new UIListener() {
-			// equip button
+			// trade button
 			@Override
 			public void onClick() {
 				setActive(false);
