@@ -53,7 +53,7 @@ public class Player {
     }
     
     public Weapon getWeapon() {
-    	return inventory.get(activeSlot);
+    	return (Weapon)inventory.get(activeSlot);
     }
     
     public String toJsonString() {
