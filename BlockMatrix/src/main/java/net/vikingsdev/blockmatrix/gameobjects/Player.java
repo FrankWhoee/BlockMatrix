@@ -56,6 +56,14 @@ public class Player {
     	return (Weapon)inventory.get(activeSlot);
     }
     
+    //FOR THE STATS DISPLAY
+    public int getDamage() {
+    	return getWeapon().getStats().get("Damage");
+    }
+    public String getWeaponName() {
+    	return getWeapon().getName();
+    }
+    
     public String toJsonString() {
     	return toJson().toString();
     }
