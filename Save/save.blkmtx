@@ -1,5 +1,6 @@
 [
   {
+<<<<<<< Updated upstream
     "hash": "00000c1bf27f049b3c0c66d6af7e9a31ff90117f2b0a4735da741ebf2056caa0",
     "previousHash": "0",
     "data": "Genesis Block",
@@ -12,5 +13,19 @@
     "data": "{\"name\":\"TrippleNipple\",\"id\":1897028568811361280,\"activeSlot\":0,\"trade\":false,\"inventory\":[]}",
     "timeStamp": 1531695241530,
     "nonce": 353043
+=======
+    "hash": "000004ba5b403d5b5f37faceb43458659daede98aa37814c4ac5bb2b8b7e373e",
+    "previousHash": "0",
+    "data": "Genesis Block",
+    "timeStamp": 1531695194181,
+    "nonce": 1433766
+  },
+  {
+    "hash": "00000e4c726b7933f706e463ab63ff01cc6cd2691f54101754ef4fe440959f3d",
+    "previousHash": "000004ba5b403d5b5f37faceb43458659daede98aa37814c4ac5bb2b8b7e373e",
+    "data": "{\"name\":\"TrippleNipple\",\"id\":2482385669918602240,\"activeSlot\":0,\"trade\":false,\"inventory\":[]}",
+    "timeStamp": 1531695197048,
+    "nonce": 272244
+>>>>>>> Stashed changes
   }
 ]
