@@ -2,6 +2,7 @@ package net.vikingsdev.blockmatrix;
 
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
+import java.util.ArrayList;
 
 import net.vikingsdev.blockmatrix.gameobjects.Player;
 import net.vikingsdev.blockmatrix.gameobjects.Weapon;
@@ -164,6 +165,16 @@ public class Game implements Runnable{
 			if(frames > timeMax) {
 				Blockchain.mineLastBlock();
 				/// check for trades
+				ArrayList<Block> temp = new ArrayList<>();
+				//IMPORT
+				for(Block b : Blockchain.playerchain) {
+					temp.add(b);
+				}
+				/*INSERT SERVER STRING READ AND DELETE FILE, THEN WRITE TO FILE*/
+				//FOR THIS TO WORK: WHEN YOU READ THE STRING YOU MUST DELETE THE OLD FILE AND 
+				//REPLACE IT WITH THE NEW ONE SENT BY THE SERVER, BEFORE THE CODE RUNS Blockchain.read(); BUT
+				//AFTER THE IMPORT!
+				Blockchain.read();
 				/// add trades to blockchain
 				frames = 0;
 			}
