@@ -54,6 +54,8 @@ public class Player {
     }
     
     public int getActiveSlot() {
+    	if(activeSlot >= inventory.size()) activeSlot = 0;
+    	
         return activeSlot;
     }
 
@@ -62,7 +64,7 @@ public class Player {
     }
     
     public Weapon getWeapon() {
-    	return (Weapon)inventory.get(activeSlot);
+    	return (Weapon) inventory.get(activeSlot);
     }
     
     //FOR THE STATS DISPLAY

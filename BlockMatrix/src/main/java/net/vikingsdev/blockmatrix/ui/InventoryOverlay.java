@@ -33,7 +33,9 @@ public class InventoryOverlay extends UIOverlay {
 			//Equip button
 			@Override
 			public void onClick() {
-				game.getPlayer().setActiveSlot(0);
+				setActive(false);
+				game.getMouse().setUIM(game.getGameState().getUIM());
+				game.getGameState().getUIM().reset();
 			}
 		}));  
 		
@@ -41,8 +43,8 @@ public class InventoryOverlay extends UIOverlay {
 			//Trade button
 			@Override
 			public void onClick() {
-				setActive(false);
-				game.getGameState().activateTradingMenu();
+				if(game.getPlayer().trade) game.getPlayer().trade = false;
+				else game.getPlayer().trade = true;
 			}
 		}));
 		
@@ -68,5 +70,12 @@ public class InventoryOverlay extends UIOverlay {
 		
 		uim.render(g);
 		invenDisp.render(g);
+		
+		g.setColor(Color.GRAY);
+		g.fillRect(758, 646, 16, 16);
+		
+		if(game.getPlayer().trade) g.setColor(Color.GREEN);
+		else g.setColor(Color.RED);
+		g.fillRect(760, 648, 12, 12);
 	} 
 } 

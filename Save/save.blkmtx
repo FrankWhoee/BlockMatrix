@@ -1,5 +1,6 @@
 [
   {
+<<<<<<< Updated upstream
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -23,12 +24,16 @@
 =======
     "hash": "00000fa52df69a66f245869e957d307c2c67673d0e79716f96a8e6450e1bc17b",
 >>>>>>> master
+=======
+    "hash": "000007eb7d357ac5ee5642f1e138ca1a943469ce25da534b5276a586d7d3adbd",
+>>>>>>> Stashed changes
     "previousHash": "0",
     "data": "Genesis Block",
-    "timeStamp": 1531683099064,
-    "nonce": 681251
+    "timeStamp": 1531685125547,
+    "nonce": 787826
   },
   {
+<<<<<<< Updated upstream
 <<<<<<< HEAD
 <<<<<<< HEAD
     "hash": "000005df4594edcd436c5c87bf1a8b06d3aaa4fb970a28d87e4df118ec5c8850",
@@ -51,5 +56,12 @@
     "timeStamp": 1531683101256,
     "nonce": 161612
 >>>>>>> master
+=======
+    "hash": "000004a3b4d5446def3e8ba98de2f9e91544b08289243004dafb8859bd2fff44",
+    "previousHash": "000007eb7d357ac5ee5642f1e138ca1a943469ce25da534b5276a586d7d3adbd",
+    "data": "{\"name\":\"TrippleNipple\",\"id\":4184663756696593408,\"activeSlot\":0,\"trade\":false,\"inventory\":[]}",
+    "timeStamp": 1531685128169,
+    "nonce": 1267060
+>>>>>>> Stashed changes
   }
 ]
