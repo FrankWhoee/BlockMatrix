@@ -34,7 +34,7 @@ public class UIList {
 			StringUtil.centre(list.get(i).getName(), bounds.x + (bounds.height / 2), bounds.y + (i * 64) + (bounds.width / 2), g);
 		}
 		
-		g.drawRect(bounds.x - (bounds.width / 2), bounds.y, bounds.width, bounds.height);
-		StringUtil.centre("Allah be praised", bounds.x + (bounds.height / 2), bounds.y + (bounds.width / 2), g);
+		g.drawRect(bounds.x, bounds.y, bounds.width, bounds.height);
+		StringUtil.centre("Allah be praised", bounds.x + (bounds.width / 2), bounds.y + (bounds.height / 2), g);
 	}
 }
