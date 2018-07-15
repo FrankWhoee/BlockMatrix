@@ -1,8 +1,13 @@
 package net.vikingsdev.blockmatrix.networking;
 
-import java.net.*;
-import java.io.*;
-import java.util.*;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.net.Socket;
+import java.util.Scanner;
 
 public class Client {
 	//I/O stuff
@@ -72,9 +77,9 @@ public class Client {
 	
 	//Messaging the server
 	
-	public void sendMessage(String msg) {
+	public void sendFile(File file) {
 		try {
-			sOutput.writeObject(msg);
+			sOutput.writeObject(file);
 		}catch(IOException e) {
 			e.printStackTrace();
 		}
@@ -144,24 +149,18 @@ public class Client {
 		
 		//Waiting for messages in an infinite loop (attach to main gameloop eventually)
 		
-		Scanner scan = new Scanner(System.in);
+		String path = "../Save/save.blkmtx";
+		File saveFile = new File(path);
 		
-		while(true) {
-			System.out.print("> ");
-			
-			//Reading the input message
-			
-			String msg = scan.nextLine();
-			
-			if(msg.equalsIgnoreCase("LOGOUT")) {
-				client.sendMessage("Logging Out");
-				break;
-			}else if(msg.equalsIgnoreCase("USERLIST")) {
-				client.sendMessage("Online");				
-			}else{ //Default message
-				client.sendMessage("Message");
-			}
+		Scanner scan = new Scanner(System.in);
+		try {
+			FileReader fr = new FileReader(saveFile);
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
+		
+		
 		
 		//Disconnect the client from the server
 		
@@ -175,8 +174,7 @@ public class Client {
 		public void run() {
 			while(true) {
 				try {
-					String msg = (String) sInput.readObject();
-						System.out.println(msg);
+					File file = (File) sInput.readObject();
 						System.out.print("> ");
 				}catch(IOException e) {
 					e.printStackTrace();
