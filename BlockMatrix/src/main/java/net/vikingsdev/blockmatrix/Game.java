@@ -192,7 +192,7 @@ public class Game implements Runnable{
 						
 						
 						//send ur file, recieve the other person's
-						App.objMsgCh.sendMessage(tradePartner.getId() + "").addFile(sequence.writeAndGetFile(selectedWeapon.toJson()));
+						App.objMsgCh.sendMessage(tradePartner.getId() + "").addFile(sequence.writeAndGetFile(selectedWeapon.toJson())).queue();;
 						
 						
 						if (getYesOrNoBool("Do you want accept the trade?")){

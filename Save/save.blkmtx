@@ -1,16 +1,16 @@
 [
   {
-    "hash": "00000c1bf27f049b3c0c66d6af7e9a31ff90117f2b0a4735da741ebf2056caa0",
+    "hash": "000005201b0127c5ea4a4292296037ca10c8664188f2f3b22ca2ef63e3f24f89",
     "previousHash": "0",
-    "data": "Genesis Block",
-    "timeStamp": 1531695236543,
-    "nonce": 1154129
+    "data": "{name:\"Genesis Block\"}",
+    "timeStamp": 1531695733258,
+    "nonce": 50731
   },
   {
-    "hash": "00000b0db546121afb4285fafe6d7095f5686efbd46a1463d037a241276c8f65",
-    "previousHash": "00000c1bf27f049b3c0c66d6af7e9a31ff90117f2b0a4735da741ebf2056caa0",
-    "data": "{\"name\":\"TrippleNipple\",\"id\":1897028568811361280,\"activeSlot\":0,\"trade\":false,\"inventory\":[]}",
-    "timeStamp": 1531695241530,
-    "nonce": 353043
+    "hash": "000002582c23c63043d5f3ee379e9e6d6b0df45c6700d3bbf7e5d2c6c6415920",
+    "previousHash": "000005201b0127c5ea4a4292296037ca10c8664188f2f3b22ca2ef63e3f24f89",
+    "data": "{\"name\":\"TrippleNipple\",\"id\":7836619027386858496,\"activeSlot\":0,\"trade\":false,\"inventory\":[]}",
+    "timeStamp": 1531695733957,
+    "nonce": 764213
   }
 ]
