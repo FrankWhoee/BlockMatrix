@@ -12,7 +12,7 @@ public class Player {
     private Long id;
 	private ArrayList<Item> inventory = new ArrayList<Item>();
 
-	private int activeSlot = -1, tradeSlot = -1;
+	private int activeSlot = 0, tradeSlot = -1;		//active slot should start at 0 so we dont get out of bounds stuff
 	
     public Player(String name) {
         this.name = name;

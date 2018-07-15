@@ -5,9 +5,10 @@ class TenKills extends Event implements KillTriggerable {		//will implement one 
 	int killsReq = 10;
 	public TenKills() {
 		super("Sharp", Event.TITLE_PREFIX);
+		super.name = "TenKills";
 		modStats.put("Damage", 1);
 	}
-	
+
 	public boolean conditionMet(int kills) {
 		if(kills >= killsReq)
 			return true;
