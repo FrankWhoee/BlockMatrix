@@ -17,7 +17,7 @@ public class UIList {
 	
 	public UIList(int x, int y, int width, int height, Game game) {
 		this.game = game;
-		list = game.getPlayer().getInventory();
+		this.list = game.getPlayer().getInventory();
 		
 		bounds = new Rectangle(x, y, width, height);
 	}

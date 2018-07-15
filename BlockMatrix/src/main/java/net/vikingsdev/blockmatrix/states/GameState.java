@@ -62,7 +62,7 @@ public class GameState extends State {
 		if(super.game.getPlayer().getInventory().size()<1) {
 			System.out.println("You don't have a weapon!");
 		}
-		
+		else{
 		int damage = super.game.getPlayer().getWeapon().getStats().get("Damage");
 		int addKills = damage/10;
 		if(damage - (addKills*10)>=currHealth){
@@ -74,6 +74,7 @@ public class GameState extends State {
 		super.game.getPlayer().getWeapon().addKills(addKills);
 		super.game.getPlayer().getWeapon().addClick();
 		super.game.getPlayer().getWeapon().update();
+		}
 	}
 	
 	@Override
