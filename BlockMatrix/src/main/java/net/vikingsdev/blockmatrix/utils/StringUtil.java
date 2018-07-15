@@ -1,4 +1,6 @@
 package net.vikingsdev.blockmatrix.utils;
+import java.awt.FontMetrics;
+import java.awt.Graphics;
 import java.io.IOException;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
@@ -25,12 +27,16 @@ public class StringUtil {
 		}
 	}
 	
-	public static String readFile(String path, Charset encoding) 
-			  throws IOException 
-			{
-			  byte[] encoded = Files.readAllBytes(Paths.get(path));
-			  return new String(encoded, encoding);
-			}
+	public static void centre(String s, int x, int y, Graphics g) {
+		FontMetrics fm = g.getFontMetrics(g.getFont());
+		int xOffset = fm.stringWidth(s) / 2;
+		int yOffset = fm.getHeight() / 2 - fm.getAscent();
+		
+		g.drawString(s, x - xOffset, y - yOffset);
+	}
 	
-	
+	public static String readFile(String path, Charset encoding) throws IOException {
+			byte[] encoded = Files.readAllBytes(Paths.get(path));
+			return new String(encoded, encoding);
+	}
 }
