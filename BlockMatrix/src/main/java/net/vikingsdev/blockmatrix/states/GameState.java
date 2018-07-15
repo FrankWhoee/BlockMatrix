@@ -30,6 +30,7 @@ public class GameState extends State {
 			@Override
 			public void onClick() {
 				game.getMouse().setUIM(inventory.getUIM());
+				inventory.getUIM().reset();
 				inventory.setActive(true);
 			}
 		}));
@@ -39,6 +40,7 @@ public class GameState extends State {
 			@Override
 			public void onClick() {
 				game.getMouse().setUIM(trading.getUIM());
+				trading.getUIM().reset();
 				trading.setActive(true);
 			}
 		}));

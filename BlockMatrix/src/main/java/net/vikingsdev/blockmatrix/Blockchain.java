@@ -1,9 +1,12 @@
 package net.vikingsdev.blockmatrix;
 
+import java.net.*;
+import java.io.*;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.nio.charset.StandardCharsets;
@@ -27,6 +30,7 @@ import java.security.spec.X509EncodedKeySpec;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonIOException;
 import com.google.gson.JsonObject;
@@ -46,28 +50,29 @@ import net.vikingsdev.blockmatrix.utils.StringUtil;
 public class Blockchain {
 	public static ArrayList<Block> playerchain = new ArrayList<Block>();
 	public static int difficulty = 5;
-	private static JsonObject localSave;
+	private static JsonArray localSave;
+	private static String localFilename = "save.blkmtx";
 	
 	private static final String privateKeyString = 
-			"MIICWgIBAAKBgGpYA60Dbe1MGCYDZo3q9KccjX4X9N1TGJjkE5uDGs8tBoK4ntZv" + 
-			"rwfIerBZdx6eaARSOySxlaQTuukKgj/ZCNI3otwL9KVKOqRceRRHgl/49YPdMonR" + 
-			"zHippGaEx5HMMT1ITK3Bx1f5qY4ogsXk5qm6U490YYvPgbaVsBtos/azAgMBAAEC" + 
-			"gYA/hTcc3xGITo2WFy3o01EziICTsueWVA47NPDpURRwb6qV5oUp/SgFdCCkuavH" + 
-			"ZEMpYZzmPBTwHsDkdlx6mr8DWW1faIWpyQZCMJz8YtKx1VCTJMMTQ757WhGD18FY" + 
-			"DKiFVDRT2ZZYEah9aLYPYa6AYgYIPCtvzd5QDddnMf6ioQJBAMfdEUJpWRzGTr//" + 
-			"mw6xCz4Hoev1VBj8ljnQ0nk82UY6SQYbZz6+TDS8m+R8ks9V+y/cqRyOD1NNpT2i" + 
-			"dUM1i6kCQQCINoec7IAfsd1Db7kTeCpd0MCK08PL3sLzlMJgZGm4idIusY5otJ8o" + 
-			"wXogAeiw8oOcgtblKZz9224j4j7MWMj7AkAG0/+l9DFuMTw5hQMIInZO3TXj+NKx" + 
-			"s9dyDDdUmwaVRqJ+CeuiEiBKYPM2gCcH3FkjjndcmWHep7VwgJ9e93JZAkBp8N9w" + 
-			"8ZCFFjVdadushN2OsfnO//1c5xkBkkXL6s0/NhI/NuHoFfNkI3b0xgdQ+I3cgPba" + 
-			"rY7o8m2rgyAMl1FZAkBTW7afGlSF5jeUmfW21eWxTl+dlDyYhJi6RuIRhy1/ZrLM" + 
-			"rx/aT0O8FQYTo1xiKgM2cNrVvoeY03WKbpgurODp";
+			"MIICWwIBAAKBgFyAgp6Cn4DYD9ujKUt6w/33y1OcS0CR7kVfYvmIZKHeby/1hqvO" + 
+			"ML7XTKdARGuVsmyAvAgBwQ3OEFcZupGvx6O4lza05FBtcBpOUmzukke7wrsx7Lb/" + 
+			"lcZmZ5+DKicDjbmAvS54Dtcj29IooD1DTZrUpG3tI4uWxFziKGRhxdUpAgMBAAEC" + 
+			"gYA5hai0TWJGyxVBbfsV9ue+HMOR4NVi99yFw0VXCxwZFKtr1XDDkdr6MgR21R43" + 
+			"EMX9dyh2ijC1FvlOUK+WPQsV4k9Qt8eUiGPCS3rHfcF2R7EsuZ2JurrSEkzSkTrJ" + 
+			"QpV0HQnaM+CSoClsGKkVvC6iy5g42mGBme4p8ykcMPalaQJBAKkA78yi3H0RO19I" + 
+			"FYcN+LTNFJkCkNJdK2rUBDER6yE0p8W3t1Oi2l91NMr94i/9mnZ8qAhh/hKdtDxS" + 
+			"Hae15WcCQQCMHkrISwYpeyI6GUKowF+AubJWxJBvMxKTwuoKkF9hDkOAt0B02LGF" + 
+			"jAOBATSPssEl/dWUygU/NKrgL7SA4cbvAkAU+xDKDs3gmOsOARzrD0j46RzNggwI" + 
+			"kZh6Qqfij57pGGhbm1se/vCtORe8u5gA7TLn0sHpiIDKPtnJQ0h7MZGxAkEAhn5F" + 
+			"FcA9p+9TSSUaANS2Vt7nubVvVe1V9ZLwBzfQ9V41mQVMz1t3+lIMwvUfOJdCIm9l" + 
+			"ZS4Mn0C0i//+aH9O7QJAHOH5kBTXO1Flbxb/DhcMba3+24QZC3maO48KNMdUeKpn" + 
+			"ymjNfV7BN+vlRLG2NY6B86DPIewmWXO35rgLcpclsA==";
 	private static PrivateKey privateKey;
 	private static final String publicKeyString =  
-			"MIGeMA0GCSqGSIb3DQEBAQUAA4GMADCBiAKBgGpYA60Dbe1MGCYDZo3q9KccjX4X" + 
-			"9N1TGJjkE5uDGs8tBoK4ntZvrwfIerBZdx6eaARSOySxlaQTuukKgj/ZCNI3otwL" + 
-			"9KVKOqRceRRHgl/49YPdMonRzHippGaEx5HMMT1ITK3Bx1f5qY4ogsXk5qm6U490" + 
-			"YYvPgbaVsBtos/azAgMBAAE=";
+			"MIGeMA0GCSqGSIb3DQEBAQUAA4GMADCBiAKBgFyAgp6Cn4DYD9ujKUt6w/33y1Oc" + 
+			"S0CR7kVfYvmIZKHeby/1hqvOML7XTKdARGuVsmyAvAgBwQ3OEFcZupGvx6O4lza0" + 
+			"5FBtcBpOUmzukke7wrsx7Lb/lcZmZ5+DKicDjbmAvS54Dtcj29IooD1DTZrUpG3t" + 
+			"I4uWxFziKGRhxdUpAgMBAAE=";
 	private static PublicKey publicKey;
 	static {
 	    try 
@@ -93,6 +98,24 @@ public class Blockchain {
 	    } catch (Exception e) {
 	    	e.printStackTrace();
 	    }
+	}
+	
+	public static void sendFile() throws Exception{
+		ServerSocket serverSocket = new ServerSocket(15123);
+		
+		Socket socket = serverSocket.accept();
+	    System.out.println("Accepted connection : " + socket);
+	    File transferFile = new File ("../Save/save.blkmtx");
+	    byte [] bytearray  = new byte [(int)transferFile.length()];
+	    FileInputStream fin = new FileInputStream(transferFile);
+	    BufferedInputStream bin = new BufferedInputStream(fin);
+	    bin.read(bytearray,0,bytearray.length);
+	    OutputStream os = socket.getOutputStream();
+	    System.out.println("Sending Files...");
+	    os.write(bytearray,0,bytearray.length);
+	    os.flush();
+	    socket.close();
+	    System.out.println("File transfer complete");
 	}
 	
 	public static void register(String name) {
@@ -124,26 +147,115 @@ public class Blockchain {
 		return true;
 	}
 	
-	public static boolean parseLocalJson() {
+	
+	public static void read() {
 		JsonParser parser = new JsonParser();
-        //Read and parse JSON file
+		
+		String output = "";
 		try {
-			String encrypted = StringUtil.readFile("../Save/save.json", StandardCharsets.UTF_8);
-			byte[] decrypted = CryptoUtil.decrypt(privateKey, encrypted.getBytes());
-			String decoded = new String(decrypted,StandardCharsets.UTF_8);
-			JsonElement obj = parser.parse(decoded);
-			localSave = obj.getAsJsonObject();
-			
-			Gson gson = new Gson();
-			playerchain = gson.fromJson(decoded, new TypeToken<ArrayList<Block>>(){}.getType());
-			
-			return true;
-			
-			
-		} catch (Exception e) {
-			return false;
+			output = StringUtil.readFile("../Save/" + localFilename, StandardCharsets.UTF_8);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-        
+		JsonElement obj = parser.parse(output);
+		localSave = obj.getAsJsonArray(); 
+		
+		Gson gson = new Gson();
+		playerchain = gson.fromJson(output, new TypeToken<ArrayList<Block>>(){}.getType());
+	}
+	
+//	public static boolean parseLocalJson() {
+//		JsonParser parser = new JsonParser();
+//        //Read and parse JSON file
+//		try {
+//			//System.err.println("READING FILE "+"../Save/" + localFilename+"...");
+//			byte[] encrypted = StringUtil.readFileBytes("../Save/" + localFilename);
+//			//System.out.println("PRINTING FILE...");
+//			System.out.println(encrypted);
+//			//System.err.println("\nFILE PRINTED...");
+//			//System.err.println("FILE READ.");
+//			//System.out.println(encrypted);
+//			//System.err.println("DECRYPTING...");
+//			byte[][] encryptedBytes = splitBytes(encrypted, 86);
+//			String output = "";
+//			for(int c = 0; c < encryptedBytes.length; c++) {
+//				//System.out.println(encryptedBytes[c].length);
+//				//System.err.write(encryptedBytes[c]);
+//				byte[] coded = CryptoUtil.decrypt(privateKey, encryptedBytes[c]);
+//				String decoded = new String(coded,StandardCharsets.UTF_8);
+//				output += decoded;
+//			}
+//			
+//			//System.out.print(output);
+//			JsonElement obj = parser.parse(output);
+//			localSave = obj.getAsJsonObject();
+//			
+//			Gson gson = new Gson();
+//			playerchain = gson.fromJson(output, new TypeToken<ArrayList<Block>>(){}.getType());
+//			
+//			return true;
+//			
+//			
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//			return false;
+//		}
+//        
+//	}
+//	
+//	public static void save() {
+//		String blockchainJson = new GsonBuilder().setPrettyPrinting().create().toJson(playerchain);
+//		byte[][] encrypted = null;
+//		try {
+//			encrypted = splitBytes(blockchainJson.getBytes(),75);
+//			System.err.println("ENCRYPTING...");
+//			for(int i = 0; i < encrypted.length; i++){
+//				encrypted[i] = CryptoUtil.encrypt(publicKey, encrypted[i]);
+//			}
+//			//encrypted = 
+//		} catch (Exception e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		File Old = new File("../Save/" + localFilename);
+//		Old.delete();
+//		File New = new File("../Save/" + localFilename);
+//		try {
+//			System.err.println("WRITING TO FILE...");
+//			PrintWriter out = new PrintWriter(New);
+//			for(int c = 0; c < encrypted.length; c++) {
+//				for(int r = 0; r < encrypted[c].length;r++) {
+//					out.write(encrypted[c][r]);
+//				}
+//				try {
+//					System.err.write(CryptoUtil.decrypt(privateKey, encrypted[c]));
+//					//System.out.println("LENGTH: " + encrypted[c].length);
+//				} catch (Exception e) {
+//					// TODO Auto-generated catch block
+//					e.printStackTrace();
+//				}
+//			}
+//			
+//			out.close();
+//		} catch (FileNotFoundException e) {
+//			System.err.println("Error occured while writing to " + New.getPath() + ". File not found.");
+//		}
+//	}
+	
+	public static void save() {
+		String blockchainJson = new GsonBuilder().setPrettyPrinting().create().toJson(playerchain);
+		File Old = new File("../Save/" + localFilename);
+		Old.delete();
+		File New = new File("../Save/" + localFilename);
+		
+		try {
+			PrintWriter out = new PrintWriter(New);
+			out.write(blockchainJson);
+			out.close();
+		}catch(Exception e) {
+			
+		}
 	}
 	
 	public static byte[][] splitBytes(final byte[] data, final int chunkSize)
@@ -163,46 +275,5 @@ public class Blockchain {
 	    dest[destIndex] = Arrays.copyOfRange(data, stopIndex, length);
 
 	  return dest;
-	}
-	
-	public static void save() {
-		String blockchainJson = new GsonBuilder().setPrettyPrinting().create().toJson(playerchain);
-		byte[][] encrypted = null;
-		try {
-			System.out.println(publicKey.getEncoded());
-			encrypted = splitBytes(blockchainJson.getBytes(),75);
-			System.err.println("ENCRYPTING...");
-			for(int i = 0; i < encrypted.length; i++){
-				//System.out.write(encrypted[i]);
-				encrypted[i] = CryptoUtil.encrypt(publicKey, encrypted[i]);
-				//System.err.write(encrypted[i]);
-			}
-			//encrypted = 
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		File Old = new File("../Save/save.json");
-		Old.delete();
-		File New = new File("../Save/save.json");
-		try {
-			System.err.println("WRITING TO FILE...");
-			PrintWriter out = new PrintWriter(New);
-			for(int c = 0; c < encrypted.length; c++) {
-				for(int r = 0; r < encrypted[c].length;r++) {
-					out.write(encrypted[c][r]);
-				}
-				try {
-					System.err.write(CryptoUtil.decrypt(privateKey, encrypted[c]));
-				} catch (Exception e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			}
-			
-			out.close();
-		} catch (FileNotFoundException e) {
-			System.err.println("Error occured while writing to " + New.getPath() + ". File not found.");
-		}
 	}
 }
