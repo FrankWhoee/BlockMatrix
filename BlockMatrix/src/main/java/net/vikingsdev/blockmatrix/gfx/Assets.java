@@ -7,7 +7,7 @@ public class Assets {
 	private static final int UICellSize = 64;
 	
 	public static BufferedImage[][] button;
-	public static BufferedImage eventBackground, statsBackground, enemyBackground, orc, forestBG;
+	public static BufferedImage eventBackground, statsBackground, enemyBackground, orc, forestBG, gameBG;
 	
 	/*
 	 * [0][i] - inventory button
@@ -31,6 +31,7 @@ public class Assets {
 		button = new BufferedImage[8][3];
 		
 		// UI sprites
+		gameBG = ImageLoader.loadImage("/gamewallpaper.png");
 		
 		button[0][0] = UISheet.crop(UICellSize * 12, UICellSize * 2, UICellSize * 4, UICellSize * 2);
 		button[0][1] = UISheet.crop(UICellSize * 16, UICellSize * 2, UICellSize * 4, UICellSize * 2);

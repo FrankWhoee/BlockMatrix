@@ -93,6 +93,7 @@ public class Game implements Runnable{
 		g.clearRect(0, 0, width, height);
 		
 		// render zone
+		g.drawImage(Assets.gameBG, 0, 0, null);
 		
 		if(State.getState() != null) State.getState().render(g);
 		
