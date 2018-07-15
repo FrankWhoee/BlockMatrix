@@ -73,7 +73,7 @@ public class Server {
 		}
 	}
 	
-	private synchronized void broadcast(File file) {
+	private synchronized void broadcast(String file) {
 		for(int i = clients.size(); --i >= 0;) {
 			ClientThread ct = clients.get(i);
 			if(!ct.sendFile(file)) {
@@ -168,7 +168,7 @@ public class Server {
 			}
 			catch(Exception e) {}
 		}
-		private boolean sendFile(File file) {
+		private boolean sendFile(String file) {
 			// if Client is still connected send the message to it
 			if(!socket.isConnected()) {
 				close();

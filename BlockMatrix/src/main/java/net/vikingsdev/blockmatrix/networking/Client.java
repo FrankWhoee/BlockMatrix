@@ -77,7 +77,7 @@ public class Client {
 	
 	//Messaging the server
 	
-	public void sendFile(File file) {
+	public void sendFile(String file) {
 		try {
 			sOutput.writeObject(file);
 		}catch(IOException e) {
@@ -149,19 +149,26 @@ public class Client {
 		
 		//Waiting for messages in an infinite loop (attach to main gameloop eventually)
 		
-		String path = "../Save/save.blkmtx";
-		File saveFile = new File(path);
-		
 		Scanner scan = new Scanner(System.in);
-		try {
-			FileReader fr = new FileReader(saveFile);
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 		
-		
-		
+		while(true) {
+			System.out.print("> ");
+			// read message from user
+			String file = scan.nextLine();
+			// logout if message is LOGOUT
+			if(file.equalsIgnoreCase("LOGOUT")) {
+				client.sendFile("LOGOUT");
+				// break to do the disconnect
+				break;
+			}
+			// message WhoIsIn
+			else if(file.equalsIgnoreCase("WHOISIN")) {
+				client.sendFile("USERLIST");				
+			}
+			else {				// default to ordinary message
+				client.sendFile("MESSAGE");
+			}
+		}		
 		//Disconnect the client from the server
 		
 		scan.close();
@@ -174,8 +181,9 @@ public class Client {
 		public void run() {
 			while(true) {
 				try {
-					File file = (File) sInput.readObject();
+					String file = (String) sInput.readObject();
 						System.out.print("> ");
+						System.out.println(file);
 				}catch(IOException e) {
 					e.printStackTrace();
 					display("Server has close the connection: " + e);
