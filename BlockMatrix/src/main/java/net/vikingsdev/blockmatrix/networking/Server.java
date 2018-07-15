@@ -6,17 +6,18 @@ import java.io.ObjectOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
+import java.util.Date;
 
 import net.vikingsdev.blockmatrix.gameobjects.Player;
 
 public class Server {
-
-	private static int uniqueID;
+	private static int uniqueID; //Server ID
 	private ArrayList<ClientThread> clients;
-	private int port;
-	private boolean keepGoing;
 	
-	private Player player;
+	public static final int DEFAULT_PORT = 1500;
+	private int port;
+	
+	private boolean keepGoing; //Server will run until the thread is stopped
 	
 	public Server(int port) {
 		this.port = port;
@@ -24,58 +25,51 @@ public class Server {
 	
 	public void start() {
 		keepGoing = true;
+		
 		try {
 			ServerSocket serverSocket = new ServerSocket(port);
+			
 			while(keepGoing) {
 				System.out.println("Server on port " + port);
 				Socket socket = serverSocket.accept();
 				
-				if(!keepGoing) {
-					break;
-				}
-				ClientThread t = new ClientThread(socket);
-				clients.add(t);
-				t.start();
+				if(!keepGoing) break;
+				
+				ClientThread ct = new ClientThread(socket);
+				clients.add(ct);
+				ct.start();
 			}
+			
 			try {
 				serverSocket.close();
+				
 				for(ClientThread ct : clients) {
-					try {
+					try{
 						ct.sInput.close();
 						ct.sOutput.close();
 						ct.socket.close();
-					} catch(IOException e) {
+					}catch(IOException e) {
 						e.printStackTrace();
 					}
 				}
-			} catch (Exception e) {
+			}catch(Exception e) {
 				e.printStackTrace();
 			}
-		} catch (IOException e) {
+		}catch(IOException e) {
 			e.printStackTrace();
 		}
 	}
 	
 	protected void stop() {
 		keepGoing = false;
-		Socket socket;
+		/*Socket socket;
 		
 		try {
-			socket = new Socket("216.71.221.211", port);
+			socket = new Socket("localhost", port);
+			return;
 		} catch (Exception e) {
 			e.printStackTrace();
-		}
-	}
-	
-	private synchronized void broadcast(String message) {
-		System.out.print(message);
-		
-		for(int i = clients.size(); --i >= 0;) {
-			ClientThread ct = clients.get(i);
-			if(!ct.writeMsg(message)) {
-				clients.remove(i);
-			}
-		}
+		}*/
 	}
 	
 	synchronized void remove(int id) {
@@ -89,7 +83,7 @@ public class Server {
 	}
 	
 	public static void main(String[] args) {
-		int portNumber = 1500;
+		int portNumber = DEFAULT_PORT;
 		switch(args.length) {
 		case 1:
 			try {
@@ -133,15 +127,18 @@ public class Server {
 		public void run() {
 			boolean keepGoing = true;
 			while(keepGoing) {
-				try {
-					String string = (String) sInput.readObject();
-				} catch (IOException e) {
+				try{
+					String str = (String) sInput.readObject();
+				}catch (IOException e) {
+					e.printStackTrace();
 					break;
-				} catch (ClassNotFoundException e2) {
+				}catch (ClassNotFoundException e) {
+					e.printStackTrace();
 					break;
 				}
 				
 			}
+			
 			remove(id);
 			close();
 		}
