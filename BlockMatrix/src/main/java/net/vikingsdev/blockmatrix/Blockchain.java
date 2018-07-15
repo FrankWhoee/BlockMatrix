@@ -43,6 +43,7 @@ import org.bouncycastle.util.io.pem.PemObjectGenerator;
 import org.bouncycastle.util.io.pem.PemWriter;
 
 import net.vikingsdev.blockmatrix.gameobjects.Player;
+import net.vikingsdev.blockmatrix.utils.ByteStream;
 import net.vikingsdev.blockmatrix.utils.CryptoUtil;
 import net.vikingsdev.blockmatrix.utils.OSUtil;
 import net.vikingsdev.blockmatrix.utils.StringUtil;
@@ -101,21 +102,26 @@ public class Blockchain {
 	}
 	
 	public static void sendFile() throws Exception{
-		ServerSocket serverSocket = new ServerSocket(15123);
-		
-		Socket socket = serverSocket.accept();
-	    System.out.println("Accepted connection : " + socket);
-	    File transferFile = new File ("../Save/save.blkmtx");
-	    byte [] bytearray  = new byte [(int)transferFile.length()];
-	    FileInputStream fin = new FileInputStream(transferFile);
-	    BufferedInputStream bin = new BufferedInputStream(fin);
-	    bin.read(bytearray,0,bytearray.length);
-	    OutputStream os = socket.getOutputStream();
-	    System.out.println("Sending Files...");
-	    os.write(bytearray,0,bytearray.length);
-	    os.flush();
-	    socket.close();
-	    System.out.println("File transfer complete");
+	    int port = 21;
+	    String host = "localhost";
+	    
+	    try {
+            Socket socket = new Socket(host, port);
+            OutputStream os = socket.getOutputStream();
+
+            int cnt_files = 1;
+
+            // How many files?
+            ByteStream.toStream(os, cnt_files);
+
+            for (int cur_file = 0; cur_file < cnt_files; cur_file++) {
+                ByteStream.toStream(os, "../Save/save.blkmtx");
+                ByteStream.toStream(os, new File("../Save/save.blkmtx"));
+            }
+            socket.shutdownOutput();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
 	}
 	
 	public static void register(String name) {
