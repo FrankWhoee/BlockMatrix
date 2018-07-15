@@ -110,7 +110,7 @@ public class Client {
 
 	public static void main(String[] args) {
 		int portNumber = Server.DEFAULT_PORT;
-		String serverAddress = "216.71.221.211";
+		String serverAddress = "localhost";
 		String userName = "Anonymous";
 
 		//Switch depending on the number of input arguments
