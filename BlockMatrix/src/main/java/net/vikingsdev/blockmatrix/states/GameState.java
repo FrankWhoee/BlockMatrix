@@ -39,9 +39,7 @@ public class GameState extends State {
 			//Trading
 			@Override
 			public void onClick() {
-				game.getMouse().setUIM(trading.getUIM());
-				trading.getUIM().reset();
-				trading.setActive(true);
+				activateTradingMenu();
 			}
 		}));
 		
@@ -55,6 +53,12 @@ public class GameState extends State {
 		
 		/* game.getMouse().setUIM(settings.getUIM());
 				settings.setActive(true); */
+	}
+	
+	public void activateTradingMenu() {
+		game.getMouse().setUIM(trading.getUIM());
+		trading.getUIM().reset();
+		trading.setActive(true);
 	}
 	
 	//stuff for the attack button

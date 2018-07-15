@@ -1,5 +1,6 @@
 [
   {
+<<<<<<< HEAD
     "hash": "00000bfd947e2ac527a781e8bc7d6ca10731c39e157705e2bc5113d17eee69a9",
     "previousHash": "0",
     "data": "Genesis Block",
@@ -12,5 +13,19 @@
     "data": "{\"name\":\"my name tripple gay\",\"id\":8371797525344653312,\"activeSlot\":-1,\"inventory\":[]}",
     "timeStamp": 1531642228470,
     "nonce": 3600604
+=======
+    "hash": "00000280a493142a7982bf5f727f3ff4418de520567ed03a989a972c5796daeb",
+    "previousHash": "0",
+    "data": "Genesis Block",
+    "timeStamp": 1531642806115,
+    "nonce": 467717
+  },
+  {
+    "hash": "00000103ec37918251417b087f5bfec3ef360d3ed18c48c0642b8a3a962dfe6c",
+    "previousHash": "00000280a493142a7982bf5f727f3ff4418de520567ed03a989a972c5796daeb",
+    "data": "{\"name\":\"my name tripple gay\",\"id\":7796336760903925760,\"activeSlot\":-1,\"inventory\":[]}",
+    "timeStamp": 1531642807644,
+    "nonce": 904179
+>>>>>>> master
   }
 ]

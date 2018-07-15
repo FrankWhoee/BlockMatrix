@@ -34,7 +34,7 @@ public class Game implements Runnable{
 	
 	//states
 	
-	private State gameState;
+	private GameState gameState;
 	
 	//input
 	
@@ -181,7 +181,7 @@ public class Game implements Runnable{
 		return mouse;
 	}
 	
-	public State getGameState() {
+	public GameState getGameState() {
 		return gameState;
 	}
 }
