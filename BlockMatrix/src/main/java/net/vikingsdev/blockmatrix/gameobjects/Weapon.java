@@ -7,6 +7,7 @@ import java.util.Map;
 public class Weapon extends Item{
 	ArrayList<Event> history;
 	HashMap<String, Integer> stats;
+	
 	int kills;
 	int clicks;
 
@@ -29,6 +30,18 @@ public class Weapon extends Item{
 		stats = new HashMap<String, Integer>();
         stats.put("Damage",1);		//i think weapon dmg needs to start at 1 lol, cuz for this mvp the point is all ur stats r tied up in ur weapon
         stats.put("Speed",1);
+    }
+    
+    public void addKills(int addKill) {
+    	this.kills += addKill;
+    }
+    
+    public void addClick() {
+    	this.clicks ++;
+    }
+
+    public String getName() {
+        return name;
     }
 
     public HashMap<String, Integer> getStats() {
@@ -72,10 +85,7 @@ public class Weapon extends Item{
     	super.name = prefix + " " + proper + " " + suffix;
     }
 	
-    public void update(int clicks, int kills){
-    	this.clicks = clicks;
-    	this.kills = kills;
-    	
+    public void update(){
     	for(ClickTriggerable event : availableClickTriggerable) {
     		if(event.conditionMet(clicks)) {
     			updateName((Event)event);

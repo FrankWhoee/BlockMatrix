@@ -11,7 +11,7 @@ public class Player {
     private String name;
     private Long id;
 	private ArrayList<Item> inventory = new ArrayList<Item>();
-	private int ActiveSlot = -1;
+	private int activeSlot = -1;
 	
     public Player(String name) {
         this.name = name;
@@ -29,11 +29,11 @@ public class Player {
         this.inventory = inventory;
     }
     
-    public Player(String name, Long id, ArrayList<Item> inventory, int ActiveSlot) {
+    public Player(String name, Long id, ArrayList<Item> inventory, int activeSlot) {
         this.name = name;
         this.id = id;
         this.inventory = inventory;
-        this.ActiveSlot = ActiveSlot;
+        this.activeSlot = activeSlot;
     }
     
     public String getName() {
@@ -45,11 +45,15 @@ public class Player {
     }
     
     public int getActiveSlot() {
-        return ActiveSlot;
+        return activeSlot;
     }
 
     public ArrayList<Item> getInventory() {
         return inventory;
+    }
+    
+    public Weapon getWeapon() {
+    	return inventory.get(activeSlot);
     }
     
     public String toJsonString() {
@@ -61,7 +65,7 @@ public class Player {
     	
     	json.addProperty("name", name);
     	json.addProperty("id", id);
-    	json.addProperty("ActiveSlot", ActiveSlot);
+    	json.addProperty("activeSlot", activeSlot);
     	
     	Gson gson = new Gson();
     	JsonElement element = gson.toJsonTree(inventory, new TypeToken<ArrayList<Item>>() {}.getType());
@@ -80,12 +84,12 @@ public class Player {
         
     	
     	
-    	Player p = new Player(playerInfo.get("name").getAsString(),playerInfo.get("id").getAsLong(),inventory,playerInfo.get("ActiveSlot").getAsInt());
+    	Player p = new Player(playerInfo.get("name").getAsString(),playerInfo.get("id").getAsLong(),inventory,playerInfo.get("activeSlot").getAsInt());
     	return p;
     }
 
 	public void setActiveSlot(int activeSlot) {
-		ActiveSlot = activeSlot;
+		this.activeSlot = activeSlot;
 	}
     
     //get name		//accessor implemented
