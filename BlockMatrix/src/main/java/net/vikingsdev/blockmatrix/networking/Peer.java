@@ -32,7 +32,9 @@ public class Peer {
 	}
 	
 	public void update() {
-		if(!host && !accepted) {
+		if(host) {
+			initializeServer();
+		} else if(!host && !accepted) {
 			listenForServerRequest();
 		}
 	}
@@ -71,6 +73,6 @@ public class Peer {
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
-		host = false;
+		host = true;
 	}
 }
