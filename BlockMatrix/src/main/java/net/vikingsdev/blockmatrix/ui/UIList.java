@@ -35,6 +35,6 @@ public class UIList {
 		}
 		
 		g.drawRect(bounds.x, bounds.y, bounds.width, bounds.height);
-		StringUtil.centre("Allah be praised", bounds.x + (bounds.width / 2), bounds.y + (bounds.height / 2), g);
+		StringUtil.centre("Merciless Scimitar of Fung, the Shroomite Overlord", bounds.x + (bounds.width / 2), bounds.y + (bounds.height / 2), g);
 	}
 }
