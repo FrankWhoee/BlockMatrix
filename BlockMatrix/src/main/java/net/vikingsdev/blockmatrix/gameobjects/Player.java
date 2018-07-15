@@ -120,10 +120,6 @@ public class Player {
 	public void setTradeSlot(int tradeSlot) {
 		this.tradeSlot = tradeSlot;
 	}
-	
-	public boolean checkTradeStatus() {
-		return trade;
-	}
     
     //get name		//accessor implemented
 	//get inventory		//accessor implemented

@@ -1,5 +1,6 @@
 [
   {
+<<<<<<< HEAD
     "hash": "0000013895aedc690c65534511bf72105a922c5a92ed2e4a640e7e72541be059",
     "previousHash": "0",
     "data": "Genesis Block",
@@ -12,5 +13,19 @@
     "data": "{\"name\":\"TrippleNipple\",\"id\":9171407923706195968,\"activeSlot\":0,\"trade\":false,\"inventory\":[]}",
     "timeStamp": 1531689029420,
     "nonce": 129283
+=======
+    "hash": "000009a676d72fb8780e09c037514891688a8ef27ecc84c22f6bd7addb304801",
+    "previousHash": "0",
+    "data": "Genesis Block",
+    "timeStamp": 1531686856190,
+    "nonce": 4178019
+  },
+  {
+    "hash": "000006a01c795f17dcaf45d36b0d7ee9c1080dfb22760aa377c1bd2d1f6eba1d",
+    "previousHash": "000009a676d72fb8780e09c037514891688a8ef27ecc84c22f6bd7addb304801",
+    "data": "{\"name\":\"TrippleNipple\",\"id\":4252505991843173376,\"activeSlot\":0,\"trade\":false,\"inventory\":[]}",
+    "timeStamp": 1531686867394,
+    "nonce": 37392
+>>>>>>> master
   }
 ]

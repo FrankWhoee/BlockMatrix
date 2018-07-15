@@ -11,7 +11,7 @@ public class App {
 	public static void main(String[] args) {	
 
 		
-		// tester
+/*		// tester
 		Client client1 = new Client("localhost", 1500, "BeefyBoi");
 		Client client2 = new Client("localhost", 1500, "BlockchainBuster");
 		
