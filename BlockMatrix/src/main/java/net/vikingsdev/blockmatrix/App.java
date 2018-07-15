@@ -7,7 +7,10 @@ import net.vikingsdev.blockmatrix.networking.Peer;
 
 public class App {
 	public static void main(String[] args) {	
-		
+		Weapon w = new Weapon("peanus cake");
+		System.out.println(w.toJson());
+		Weapon pc = Weapon.fromJson(w.toJson());
+		System.out.print(pc.getName() + "....yeet");
 		System.out.println(System.getProperty("user.dir"));
 		
 		/*try {
@@ -40,6 +43,7 @@ public class App {
 		
 		System.out.println("Sender item: " + sender.getInventory().get(0));
 		System.out.println("Receiver item: " + receiver.getInventory().get(0));
+		
 		
 	}
 }

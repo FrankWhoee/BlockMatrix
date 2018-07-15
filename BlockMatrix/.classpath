@@ -25,5 +25,6 @@
 	<classpathentry kind="lib" path="res"/>
 	<classpathentry kind="lib" path="res/bcprov-jdk15on-160.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/3"/>
+	<classpathentry kind="lib" path="/BlockMatrix/BlockMatrix/res/flexjson-2.1.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
