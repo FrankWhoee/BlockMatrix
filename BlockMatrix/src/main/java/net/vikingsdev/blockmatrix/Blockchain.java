@@ -171,10 +171,7 @@ public class Blockchain {
 		try {
 			System.out.println(publicKey.getEncoded());
 			encrypted = splitBytes(blockchainJson.getBytes(),75);
-			for(int i = 0; i < encrypted.length; i++){
-				encrypted[i] = CryptoUtil.encrypt(publicKey, encrypted[i]);
-			}
-			//encrypted = 
+			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
