@@ -171,7 +171,13 @@ public class Blockchain {
 		try {
 			System.out.println(publicKey.getEncoded());
 			encrypted = splitBytes(blockchainJson.getBytes(),75);
-			
+			System.err.println("ENCRYPTING...");
+			for(int i = 0; i < encrypted.length; i++){
+				//System.out.write(encrypted[i]);
+				encrypted[i] = CryptoUtil.encrypt(publicKey, encrypted[i]);
+				//System.err.write(encrypted[i]);
+			}
+			//encrypted = 
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -180,10 +186,17 @@ public class Blockchain {
 		Old.delete();
 		File New = new File("../Save/save.json");
 		try {
+			System.err.println("WRITING TO FILE...");
 			PrintWriter out = new PrintWriter(New);
 			for(int c = 0; c < encrypted.length; c++) {
 				for(int r = 0; r < encrypted[c].length;r++) {
-					out.print(encrypted[c][r]);
+					out.write(encrypted[c][r]);
+				}
+				try {
+					System.err.write(CryptoUtil.decrypt(privateKey, encrypted[c]));
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
 				}
 			}
 			

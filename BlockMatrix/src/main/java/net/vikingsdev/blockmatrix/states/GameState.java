@@ -9,10 +9,11 @@ import net.vikingsdev.blockmatrix.ui.*;
 
 public class GameState extends State {
 	private UIOverlay inventory, settings, trading;
+	private int currHealth;
 	
 	public GameState(Game game) {
 		super(game);
-		
+		currHealth = 10;
 		inventory = new InventoryOverlay(720, 0, 560, 720, game);
 		settings = new SettingsOverlay(720, 0, 560, 720, game);
 		trading = new TradingOverlay(720, 0, 560, 720, game);
@@ -45,15 +46,30 @@ public class GameState extends State {
 		uim.addObject(new UIButton(192, 448, 256, 128, Assets.button[2], new UIListener() {
 			//Wage jihad on the infidels inshallah
 			@Override
-			public void onClick() {
-				//unused
+			public void onClick() {		//attack
+				dealDamage();
 			}
 		}));
 		
 		/* game.getMouse().setUIM(settings.getUIM());
 				settings.setActive(true); */
 	}
-
+	
+	//stuff for the attack button
+	private void dealDamage() {
+		int damage = super.game.getPlayer().getWeapon().getStats().get("Damage");
+		int addKills = damage/10;
+		if(damage - (addKills*10)>=currHealth){
+			addKills++;
+			currHealth = currHealth + 10 - damage;
+		}
+		else
+			currHealth -= damage;
+		super.game.getPlayer().getWeapon().addKills(addKills);
+		super.game.getPlayer().getWeapon().addClick();
+		super.game.getPlayer().getWeapon().update();
+	}
+	
 	@Override
 	public void tick() {
 	}
