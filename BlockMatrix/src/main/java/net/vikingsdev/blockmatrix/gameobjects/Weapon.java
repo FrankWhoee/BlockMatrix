@@ -24,10 +24,7 @@ public class Weapon extends Item{
 	private int kills;
 	private int clicks;
 
-	String prefix = "";
-	String proper = "";
-	String suffix = "";
-	String name2 = "";
+	private String prefix = "", proper = "", suffix = "", fullName = "";
 
 	AvailableEvents availableEvents = new AvailableEvents();
 	
@@ -39,14 +36,14 @@ public class Weapon extends Item{
     	this.availableClickTriggerable = availableEvents.getAvailableClickTriggerable();
     	this.availableKillTriggerable = availableEvents.getAvailableKillTriggerable();
     	kills = 0;
-        this.name2 = name;
+        this.fullName = name;
 		history = new ArrayList<Event>();
 		stats = new HashMap<String, Integer>();
         stats.put("Damage",1);		//i think weapon dmg needs to start at 1 lol, cuz for this mvp the point is all ur stats r tied up in ur weapon
         stats.put("Speed",1);
     }
     
-    public Weapon(String name, ArrayList<Event> history, HashMap<String,Integer> stats, int kills, int clicks, String prefix, String proper, String suffix, String name2, ArrayList<ClickTriggerable> availableClickTriggerable, ArrayList<KillTriggerable> availableKillTriggerable) {
+    public Weapon(String name, ArrayList<Event> history, HashMap<String,Integer> stats, int kills, int clicks, String prefix, String proper, String suffix, String fullName, ArrayList<ClickTriggerable> availableClickTriggerable, ArrayList<KillTriggerable> availableKillTriggerable) {
     	super(name);
     	this.history = history;
     	this.stats = stats;
@@ -55,7 +52,7 @@ public class Weapon extends Item{
     	this.prefix = prefix;
     	this.proper = proper;
     	this.suffix = suffix;
-    	this.name2 = name2;
+    	this.fullName = fullName;
     	this.availableClickTriggerable = availableClickTriggerable;
     	this.availableKillTriggerable =availableKillTriggerable;
     }

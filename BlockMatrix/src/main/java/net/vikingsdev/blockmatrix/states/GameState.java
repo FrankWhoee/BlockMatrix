@@ -111,6 +111,8 @@ public class GameState extends State {
 		else if(trading.isActive()) trading.render(g);
 		else uim.render(g);
 		
+		
+		
 		g.setFont(new Font("Verdana", Font.PLAIN, 24));
 		g.setColor(Color.LIGHT_GRAY);
 		StringUtil.centre(game.getPlayer().getName(), 300, 30, g);
