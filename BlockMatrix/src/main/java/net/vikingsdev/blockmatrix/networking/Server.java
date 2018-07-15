@@ -1,5 +1,6 @@
 package net.vikingsdev.blockmatrix.networking;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -62,14 +63,23 @@ public class Server {
 	
 	protected void stop() {
 		keepGoing = false;
-		/*Socket socket;
+		Socket socket;
 		
 		try {
 			socket = new Socket("localhost", port);
 			return;
 		} catch (Exception e) {
 			e.printStackTrace();
-		}*/
+		}
+	}
+	
+	private synchronized void broadcast(File file) {
+		for(int i = clients.size(); --i >= 0;) {
+			ClientThread ct = clients.get(i);
+			if(!ct.sendFile(file)) {
+				clients.remove(i);
+			}
+		}
 	}
 	
 	synchronized void remove(int id) {
@@ -158,7 +168,7 @@ public class Server {
 			}
 			catch(Exception e) {}
 		}
-		private boolean writeMsg(String msg) {
+		private boolean sendFile(File file) {
 			// if Client is still connected send the message to it
 			if(!socket.isConnected()) {
 				close();
@@ -166,7 +176,7 @@ public class Server {
 			}
 			// write the message to the stream
 			try {
-				sOutput.writeObject(msg);
+				sOutput.writeObject(file);
 			}
 			// if an error occurs, do not abort just inform the user
 			catch(IOException e) {

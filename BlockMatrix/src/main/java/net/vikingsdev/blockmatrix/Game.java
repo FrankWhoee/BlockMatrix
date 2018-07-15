@@ -134,7 +134,7 @@ public class Game implements Runnable{
 		double delta = 0;
 		long now;
 		long lastTick = System.nanoTime();
-		int timeMax = 1000;
+		int timeMax = 10000;
 		int frames = 0;
 		
 		while(running) {
