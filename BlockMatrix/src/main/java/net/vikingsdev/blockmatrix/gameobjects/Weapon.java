@@ -1,5 +1,6 @@
 package net.vikingsdev.blockmatrix.gameobjects;
 
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -23,10 +24,10 @@ public class Weapon extends Item{
 	private int kills;
 	private int clicks;
 
-	String prefix;
-	String proper;
-	String suffix;
-	String name2;
+	String prefix = "";
+	String proper = "";
+	String suffix = "";
+	String name2 = "";
 
 	AvailableEvents availableEvents = new AvailableEvents();
 	
@@ -45,7 +46,7 @@ public class Weapon extends Item{
         stats.put("Speed",1);
     }
     
-    public Weapon(String name, ArrayList<Event> history, HashMap<String,Integer> stats, int kills, int clicks, String prefix, String proper, String suffix, String thisName, ArrayList<ClickTriggerable> availableClickTriggerable, ArrayList<KillTriggerable> availableKillTriggerable) {
+    public Weapon(String name, ArrayList<Event> history, HashMap<String,Integer> stats, int kills, int clicks, String prefix, String proper, String suffix, String name2, ArrayList<ClickTriggerable> availableClickTriggerable, ArrayList<KillTriggerable> availableKillTriggerable) {
     	super(name);
     	this.history = history;
     	this.stats = stats;
@@ -54,7 +55,7 @@ public class Weapon extends Item{
     	this.prefix = prefix;
     	this.proper = proper;
     	this.suffix = suffix;
-    	this.name = thisName;
+    	this.name2 = name2;
     	this.availableClickTriggerable = availableClickTriggerable;
     	this.availableKillTriggerable =availableKillTriggerable;
     }
@@ -167,34 +168,57 @@ public class Weapon extends Item{
     	Gson gson = new Gson();
     	return gson.toJson(this);
     }
-    
-    /*
-     * {
-     * "availableClickTriggerable":[],
-     * "availableKillTriggerable":[{"modStats":{"Damage":1},
-	     * "modifier":"Sharp",
-	     * "name":"TenKills",
-	     * "region":0}
-	 * ],
-     * "clicks":0,
-     * "history":[],
-     * "kills":0,
-     * "name":"peanus cake",
-     * "prefix":"",
-     * "proper":"",
-     * "stats":{"Speed":1,"Damage":1},
-     * "suffix":""
-     * }
 
-     */
-    //public Weapon(String name, ArrayList<Event> history, HashMap<String,Integer> stats, int kills, int clicks, String prefix, String proper, String suffix, String thisName, ArrayList<ClickTriggerable> availableClickTriggerable, ArrayList<KillTriggerable> availableKillTriggerable) {
     
     
     public static Weapon fromJson(String json) {
+    	Gson gson = new Gson();
+
     	JsonParser jp = new JsonParser();
     	JsonObject jo = jp.parse(json).getAsJsonObject();
     	
+    	String name = jo.get("name").getAsString();
     	
+    	Type eventType = new TypeToken<ArrayList<Event>>(){}.getType();
+    	ArrayList<Event> history = gson.fromJson(jo.get("history"), eventType);
+    	
+    	Type statsMapType = new TypeToken<HashMap<String,Integer>>(){}.getType();
+    	HashMap<String,Integer> stats = gson.fromJson(jo.get("stats"), statsMapType);
+    	
+    	int kills = jo.get("kills").getAsInt();
+    	int clicks = jo.get("clicks").getAsInt();
+    	
+    	/*
+    	 * {
+    	 * "history":[],
+    	 * "stats":{"Speed":1,"Damage":1},
+    	 * "kills":0,
+    	 * "clicks":0,
+    	 * "name2":"peanus cake",
+    	 * "availableEvents":{"availableClickTriggerable":[],
+    	 * "availableKillTriggerable":[
+    	 * 	{"killsReq":10,"region":0,"modifier":"Sharp","modStats":{"Damage":1},"name":"TenKills"}
+    	 * 	],
+    	 * 
+    	 * "availableByName":{"TenKills":{"killsReq":10,"region":0,"modifier":"Sharp","modStats":{"Damage":1},"name":"TenKills"}}},"availableClickTriggerable":[],"availableKillTriggerable":[{"killsReq":10,"region":0,"modifier":"Sharp","modStats":{"Damage":1},"name":"TenKills"}],"name":"peanus cake"}
+
+    	 */
+    	
+    	
+    	String prefix = jo.get("prefix").getAsString();
+    	String proper = jo.get("proper").getAsString();
+    	String suffix = jo.get("suffix").getAsString();
+    	String name2 = jo.get("name2").getAsString();
+    	
+    	Type clickTriggerableType = new TypeToken<ArrayList<ClickTriggerable>>(){}.getType();
+    	ArrayList<ClickTriggerable> availableClickTriggerable = gson.fromJson(jo.get("availableClickTriggerable"), clickTriggerableType);
+    	
+    	Type killTriggerableType = new TypeToken<ArrayList<KillTriggerable>>(){}.getType();
+    	ArrayList<KillTriggerable> availableKillTriggerable = gson.fromJson(jo.get("availableKillTriggerable"), killTriggerableType);
+    	
+    	Weapon output = new Weapon(name, history, stats, kills, clicks, prefix, proper, suffix, name2, availableClickTriggerable, availableKillTriggerable);
+    	
+    	return output;
     }
     
     /*List of stuff to add (roughly in high to low priority)
