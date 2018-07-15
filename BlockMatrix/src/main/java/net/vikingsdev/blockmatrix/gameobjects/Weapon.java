@@ -33,6 +33,7 @@ public class Weapon extends Item{
 	
     public Weapon(String name) {
     	super(name);
+    	proper = super.name;
     	this.availableClickTriggerable = availableEvents.getAvailableClickTriggerable();
     	this.availableKillTriggerable = availableEvents.getAvailableKillTriggerable();
     	kills = 0;
@@ -74,7 +75,7 @@ public class Weapon extends Item{
     }
 
     public String getName() {
-        return name;
+        return fullName;
     }
     
 	public int getKills() {
@@ -112,16 +113,16 @@ public class Weapon extends Item{
     }
     
     private void updateName(Event event) {
-    	if(event.getRegion() == 0) {
-    		if(prefix == null) {
+    	if(event.getRegion() == Event.TITLE_PREFIX) {
+    		if(prefix.equals("")) {
     			prefix = event.getModifier();
     		}
     		else
     			prefix = prefix + "-" + event.getModifier();
     	}
     	
-    	else if(event.getRegion() == 1) {
-    		if(proper == null) {
+    	else if(event.getRegion() == Event.TITLE_PROPER) {
+    		if(proper.equals("")) {
     			proper = event.getModifier();
     		}
     		else
@@ -129,14 +130,14 @@ public class Weapon extends Item{
     	}
     	
     	else{
-    		if(suffix == null) {
+    		if(suffix.equals("")) {
     			suffix = event.getModifier();
     		}
     		else
     			suffix = suffix + "-" + event.getModifier();
     	}
     	super.name = prefix + " " + proper + " " + suffix;
-    	this.name = super.name;
+    	this.fullName = super.name;
     }
 	
     public void update(){
