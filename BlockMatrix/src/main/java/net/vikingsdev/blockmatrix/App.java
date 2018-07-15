@@ -9,6 +9,8 @@ public class App {
 
 		System.out.println(System.getProperty("user.dir"));
 		
+		Blockchain.parseLocalJson();
+		
 		//add our blocks to the playerChain ArrayList:
 		
 		Blockchain.playerchain.add(new Block("Genesis Block", "0"));
