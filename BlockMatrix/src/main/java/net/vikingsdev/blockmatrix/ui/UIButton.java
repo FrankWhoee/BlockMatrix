@@ -27,7 +27,7 @@ public class UIButton {
 	}
 	
 	public void render(Graphics g) {
-		g.drawImage(texture[state], bounds.x, bounds.y, bounds.width, bounds.height, null);
+		if(texture != null) g.drawImage(texture[state], bounds.x, bounds.y, bounds.width, bounds.height, null);
 	}
 	
 	public void onMouseMove(MouseEvent e) {

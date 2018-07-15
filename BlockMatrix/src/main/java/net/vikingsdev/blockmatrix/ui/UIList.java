@@ -6,15 +6,18 @@ import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.util.ArrayList;
 
+import net.vikingsdev.blockmatrix.Game;
 import net.vikingsdev.blockmatrix.gameobjects.Item;
 import net.vikingsdev.blockmatrix.utils.StringUtil;
 
 public class UIList {
+	private Game game;
 	private ArrayList<Item> list;
 	private Rectangle bounds;
 	
-	public UIList(int x, int y, int width, int height, ArrayList<Item> list) {
-		this.list = list;
+	public UIList(int x, int y, int width, int height, Game game) {
+		this.game = game;
+		list = game.getPlayer().getInventory();
 		
 		bounds = new Rectangle(x, y, width, height);
 	}
@@ -25,16 +28,19 @@ public class UIList {
 	
 	public void render(Graphics g) {
 		// set formatting
-		g.setFont(new Font("Verdana", Font.BOLD, 16));
 		g.setColor(Color.WHITE);
+		g.setFont(new Font("Verdana", Font.BOLD, 16));
 		
 		// loop through list and draw the text
 		for(int i = 0; i < list.size(); i++) {
-			g.drawRect(bounds.x - (bounds.width / 2) , bounds.y + (i * 64), bounds.width, bounds.height);
-			StringUtil.centre(list.get(i).getName(), bounds.x + (bounds.height / 2), bounds.y + (i * 64) + (bounds.width / 2), g);
+			if(game.getPlayer().getActiveSlot() == i) {
+				g.setColor(Color.LIGHT_GRAY);
+				g.fillRect(bounds.x , bounds.y + (i * 64), bounds.width, bounds.height);
+				g.setColor(Color.WHITE);
+			}
+			
+			g.drawRect(bounds.x , bounds.y + (i * 64), bounds.width, bounds.height);
+			StringUtil.centre(list.get(i).getName(), bounds.x + (bounds.width / 2), bounds.y + (i * 64) + (bounds.height / 2), g);
 		}
-		
-		g.drawRect(bounds.x, bounds.y, bounds.width, bounds.height);
-		StringUtil.centre("Large Stick of Fung", bounds.x + (bounds.width / 2), bounds.y + (bounds.height / 2), g);
 	}
 }

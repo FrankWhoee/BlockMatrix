@@ -4,6 +4,7 @@ import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 
 import net.vikingsdev.blockmatrix.gameobjects.Player;
+import net.vikingsdev.blockmatrix.gameobjects.Weapon;
 import net.vikingsdev.blockmatrix.gfx.Assets;
 import net.vikingsdev.blockmatrix.gfx.Display;
 import net.vikingsdev.blockmatrix.input.KeyManager;
@@ -68,6 +69,11 @@ public class Game implements Runnable{
 		Assets.init();
 		
 		gameState.init();
+		player.getInventory().add(new Weapon("Sword"));
+		player.getInventory().add(new Weapon("Spear"));
+		player.getInventory().add(new Weapon("Shiv"));
+		player.getInventory().add(new Weapon("Scimitar"));
+		player.setActiveSlot(0);
 	}
 	
 	private void update() {
@@ -93,7 +99,6 @@ public class Game implements Runnable{
 		g.clearRect(0, 0, width, height);
 		
 		// render zone
-		g.drawImage(Assets.gameBG, 0, 0, null);
 		
 		if(State.getState() != null) State.getState().render(g);
 		
