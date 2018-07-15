@@ -31,10 +31,6 @@ public class Weapon extends Item{
         stats.put("Speed",1);
     }
 
-    public String getName() {
-        return name;
-    }
-
     public HashMap<String, Integer> getStats() {
         return stats;
     }

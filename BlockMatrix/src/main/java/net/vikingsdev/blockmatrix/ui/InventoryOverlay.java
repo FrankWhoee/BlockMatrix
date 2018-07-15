@@ -12,7 +12,7 @@ public class InventoryOverlay extends UIOverlay {
 	public InventoryOverlay(int x, int y, int width, int height, Game game) { 
 		super(x, y, width, height, game);
 		
-		invenDisp = new UIList(912, 0, 128, 64, game.getPlayer().getInventory());
+		invenDisp = new UIList(1040, 0, 384, 64, game.getPlayer().getInventory());
 	}
 	 
 	@Override
