@@ -17,6 +17,8 @@ public class InventoryOverlay extends UIOverlay {
 	 
 	@Override
 	public void init() {
+		invenDisp.init();
+		
 		uim.addObject(new UIButton(732, 12, 64, 64, Assets.button[7], new UIListener() {
 			//Back
 			@Override
