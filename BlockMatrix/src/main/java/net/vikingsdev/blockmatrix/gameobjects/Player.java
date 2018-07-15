@@ -11,7 +11,11 @@ public class Player {
     private String name;
     private Long id;
 	private ArrayList<Item> inventory = new ArrayList<Item>();
+<<<<<<< HEAD
 	private int activeSlot = -1, tradeSlot = -1;
+=======
+	private int activeSlot = 0;
+>>>>>>> master
 	
     public Player(String name) {
         this.name = name;
@@ -54,6 +58,14 @@ public class Player {
     
     public Weapon getWeapon() {
     	return (Weapon)inventory.get(activeSlot);
+    }
+    
+    //FOR THE STATS DISPLAY
+    public int getDamage() {
+    	return getWeapon().getStats().get("Damage");
+    }
+    public String getWeaponName() {
+    	return getWeapon().getName();
     }
     
     public String toJsonString() {

@@ -14,6 +14,7 @@ public class Weapon extends Item{
 	String prefix;
 	String proper;
 	String suffix;
+	String name;
 
 	AvailableEvents availableEvents = new AvailableEvents();
 	
@@ -83,6 +84,7 @@ public class Weapon extends Item{
     			suffix = suffix + "-" + event.getModifier();
     	}
     	super.name = prefix + " " + proper + " " + suffix;
+    	this.name = super.name;
     }
 	
     public void update(){
