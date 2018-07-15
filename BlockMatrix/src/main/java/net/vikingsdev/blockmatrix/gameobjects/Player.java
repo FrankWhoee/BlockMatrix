@@ -10,8 +10,8 @@ public class Player {
 
     private String name;
     private Long id;
-	private ArrayList<Item> inventory = new ArrayList<Item>();
-	private int activeSlot = 0;
+	private ArrayList<Item> inventory = new ArrayList<Item>();	
+	private int activeSlot = 0, tradeSlot = -1;
 	
     public Player(String name) {
         this.name = name;
@@ -98,6 +98,14 @@ public class Player {
 
 	public void setActiveSlot(int activeSlot) {
 		this.activeSlot = activeSlot;
+	}
+
+	public int getTradeSlot() {
+		return tradeSlot;
+	}
+
+	public void setTradeSlot(int tradeSlot) {
+		this.tradeSlot = tradeSlot;
 	}
     
     //get name		//accessor implemented
