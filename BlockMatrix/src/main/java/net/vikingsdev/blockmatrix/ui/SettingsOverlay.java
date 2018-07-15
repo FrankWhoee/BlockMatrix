@@ -19,6 +19,7 @@ public class SettingsOverlay extends UIOverlay {
 			public void onClick() {
 				setActive(false);
 				game.getMouse().setUIM(game.getGameState().getUIM());
+				game.getGameState().getUIM().reset();
 			}
 		}));
 	} 
