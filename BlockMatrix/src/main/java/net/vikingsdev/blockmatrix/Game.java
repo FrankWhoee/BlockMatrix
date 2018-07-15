@@ -2,8 +2,10 @@ package net.vikingsdev.blockmatrix;
 
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
+import java.util.ArrayList;
 
 import net.vikingsdev.blockmatrix.gameobjects.Player;
+import net.vikingsdev.blockmatrix.gameobjects.TradeSequence;
 import net.vikingsdev.blockmatrix.gameobjects.Weapon;
 import net.vikingsdev.blockmatrix.gfx.Assets;
 import net.vikingsdev.blockmatrix.gfx.Display;
@@ -12,6 +14,8 @@ import net.vikingsdev.blockmatrix.input.MouseManager;
 import net.vikingsdev.blockmatrix.networking.Client;
 import net.vikingsdev.blockmatrix.networking.Server;
 import net.vikingsdev.blockmatrix.states.*;
+
+import javax.swing.*;
 
 public class Game implements Runnable{
 
@@ -44,6 +48,8 @@ public class Game implements Runnable{
 	private MouseManager mouse;
 	
 	private Client client;
+	
+	public ArrayList<Player> tradePlayers = new ArrayList<Player>();
 	
 	public Game(int width, int height, String title) {
 		this.width = width;
@@ -149,6 +155,9 @@ public class Game implements Runnable{
 		long lastTick = System.nanoTime();
 		int timeMax = 10000;
 		int frames = 0;
+		ArrayList<Player> allPlayers;
+		Player tradePartner;
+
 		
 		while(running) {
 			now = System.nanoTime();
@@ -167,27 +176,95 @@ public class Game implements Runnable{
 				/// check for trades
 				
 				/*INSERT FUNCTION TO UPDATE CHAIN*/
-				
-				Player tradingPlayer = null;
-				for(Block b : Blockchain.playerchain) {
-					Player p = Player.toPlayer(b.getData());
+				TradeSequence sequence = new TradeSequence();
+				allPlayers = Blockchain.getAllPlayers();
+				for(Player p : allPlayers) {
 					if(p.trade) {
-						tradingPlayer = p;
-						break;
+						this.tradePlayers.add(p);
 					}
 				}
-				if(tradingPlayer != null) {
-					//Found trading player. Do smt
+				if(tradePlayers.size()>1 && player.validTrade(tradePlayers)) {
+					tradePartner = player.playerToTradeWith(tradePlayers);
+					int mySelected;
+					boolean go = getYesOrNoBool("Do you want to initiate a trade?");
+					String sendThisTxt = System.getProperty("user.dir") + "/Communication/ToSend/Message.txt";
+					//set up client-client connection
+					
+					while(go) {		//there'll be an exit button all the time if they just want to bail on the trade except for after they confirm the trade
+						//select item, confirm
+						mySelected = getIntInRange(1,player.getInventory().size(),"Which item in your inventory do you want to trade?") -1;
+						Weapon selectedWeapon = (Weapon)(player.getInventory().get(mySelected)); //whatever weapon you choose
+						sequence.writing(selectedWeapon.toJson());
+						
+						
+						//send ur file, recieve the other person's
+						App.objMsgCh.sendMessage(tradePartner.getId() + "").addFile(sequence.writeAndGetFile(selectedWeapon.toJson()));
+						
+						
+						if (getYesOrNoBool("Do you want accept the trade?")){
+							player.getInventory().add(Weapon.fromJson(sequence.readToString()));
+							player.getInventory().remove(mySelected);
+							player.setActiveSlot(0);
+						}
+						else
+							continue;
+					}
 				}
-				
+				/*
 				Blockchain.read();
 				/// add trades to blockchain
 				frames = 0;
+				*/
 			}
 		}
 		
 		stop();
 	}
+	
+    public int getIntInRange(int a, int b, String textToAsk){
+        int input;
+        while (true){
+                input=getIntNoError(textToAsk);
+                if(a <= input && input <= b)
+                    return input;
+        }
+    }
+    
+    public int getIntNoError(String textToAsk){
+        while (true){
+            try{
+                return getInteger(textToAsk);
+            }catch(Exception e){
+            }
+        }
+    }
+	
+    public int getInteger(String text){
+        String s = JOptionPane.showInputDialog(null,text);
+        int x = Integer.parseInt(s);
+        return(x);
+   }
+	
+    public String getString(String text){
+        String s = JOptionPane.showInputDialog(null,text);
+        return (s);
+   }
+    
+    public Boolean getYesOrNoBool(String textToAsk){
+        String input;
+        while (true){
+            try{
+                input = getString(textToAsk);
+                if (input.equals("yes"))
+                    return true;
+                else if (input.equals("no"))
+                    return false;
+            }catch(Exception e){
+            }
+        }
+    }
+	
+	
 	
 	public synchronized void start() {
 		if(running) return;

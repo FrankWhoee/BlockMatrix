@@ -169,6 +169,24 @@ public class TradeSequence {
 		return -1;
 	}
 	
+	public File writeAndGetFile(String message) {
+		File fileToSend = null;
+		try {
+            //Whatever the file path is:
+            fileToSend = new File(DIR + "/ToSend/Message.txt");
+            FileOutputStream is = new FileOutputStream(fileToSend);
+            OutputStreamWriter osw = new OutputStreamWriter(is);    
+            Writer w = new BufferedWriter(osw);
+            w.write(message);
+            w.close();
+    	} catch (IOException e) {
+    		System.err.println("Problem writing to the file in ToSend");
+    	}
+    	return fileToSend;
+    }
+	
+	
+	
     public void writing(String message) {
     	try {
             //Whatever the file path is:
@@ -183,7 +201,7 @@ public class TradeSequence {
     	}
     }
     
-    private String readToString(){
+    public String readToString(){
     	try {
             //Whatever the file path is:
             File fileToRead = new File(DIR + "/Recieved/Message.txt");
