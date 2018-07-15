@@ -12,7 +12,7 @@ public class InventoryOverlay extends UIOverlay {
 	public InventoryOverlay(int x, int y, int width, int height, Game game) { 
 		super(x, y, width, height, game);
 		
-		invenDisp = new UIList(848, 0, 384, 64, game.getPlayer().getInventory());
+		invenDisp = new UIList(848, 0, 384, 64, game);
 	}
 	 
 	@Override
@@ -42,6 +42,20 @@ public class InventoryOverlay extends UIOverlay {
 				game.getMouse().setUIM(game.getGameState().getUIM());
 			}
 		}));
+		
+		//fix the code below asap
+		
+		for(int i = 0; i < 10; i++) {
+			int index = i;
+			uim.addObject(new UIButton(848, i * 64, 384, 64, null, new UIListener() {
+				//select weapon
+				
+				@Override
+				public void onClick() {
+					game.getPlayer().setActiveSlot(index);
+				}
+			}));
+		}
 	}
   
 	@Override 
