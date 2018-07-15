@@ -39,7 +39,7 @@ public class App  extends ListenerAdapter {
 	static Game game;
 	public static void update() {
 		File f = new File("../Save/save.blkmtx");
-		objMsgCh.sendFile(f).queue();
+		objMsgCh.sendMessage("BROADCAST").addFile(f).queue();
 		
 	}
 	
@@ -48,7 +48,8 @@ public class App  extends ListenerAdapter {
 		 
 		 
 		 Message objMsg = evt.getMessage();
-		 if(objMsg.getContentRaw().equals("")) {
+		 if(objMsg.getContentRaw().equals("BROADCAST")) {
+			 System.out.println("Downloading...");
 			 File old = new File("../Save/save.blkmtx");
 			 old.delete();
 			 File New = new File("../Save/save.blkmtx");
