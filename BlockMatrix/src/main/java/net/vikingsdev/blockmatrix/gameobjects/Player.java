@@ -28,13 +28,24 @@ public class Player {
         this.id = id;
         this.inventory = inventory;
     }
-
+    
+    public Player(String name, Long id, ArrayList<Item> inventory, int ActiveSlot) {
+        this.name = name;
+        this.id = id;
+        this.inventory = inventory;
+        this.ActiveSlot = ActiveSlot;
+    }
+    
     public String getName() {
         return name;
     }
     
     public Long getId() {
         return id;
+    }
+    
+    public int getActiveSlot() {
+        return ActiveSlot;
     }
 
     public ArrayList<Item> getInventory() {
@@ -50,6 +61,7 @@ public class Player {
     	
     	json.addProperty("name", name);
     	json.addProperty("id", id);
+    	json.addProperty("ActiveSlot", ActiveSlot);
     	
     	Gson gson = new Gson();
     	JsonElement element = gson.toJsonTree(inventory, new TypeToken<ArrayList<Item>>() {}.getType());
@@ -66,13 +78,11 @@ public class Player {
     	Type listType = new TypeToken<ArrayList<Item>>() {}.getType();
     	ArrayList<Item> inventory = new Gson().fromJson(playerInfo.get("inventory"), listType);
         
-    	Player p = new Player(playerInfo.get("name").getAsString(),playerInfo.get("id").getAsLong(),inventory);
+    	
+    	
+    	Player p = new Player(playerInfo.get("name").getAsString(),playerInfo.get("id").getAsLong(),inventory,playerInfo.get("ActiveSlot").getAsInt());
     	return p;
     }
-
-	public int getActiveSlot() {
-		return ActiveSlot;
-	}
 
 	public void setActiveSlot(int activeSlot) {
 		ActiveSlot = activeSlot;
