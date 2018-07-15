@@ -12,7 +12,7 @@ public class InventoryOverlay extends UIOverlay {
 	public InventoryOverlay(int x, int y, int width, int height, Game game) { 
 		super(x, y, width, height, game);
 		
-		invenDisp = new UIList(912, 0, 128, 64, game.getPlayer().getInventory());
+		invenDisp = new UIList(848, 0, 384, 64, game.getPlayer().getInventory());
 	}
 	 
 	@Override
@@ -34,13 +34,8 @@ public class InventoryOverlay extends UIOverlay {
 			}
 		}));  
 		
-<<<<<<< Updated upstream
-		uim.addObject(new UIButton(720 - 128, 592, 256, 128, Assets.button[4], new UIListener() {
-			// trade button
-=======
 		uim.addObject(new UIButton(592, 592, 256, 128, Assets.button[4], new UIListener() {
 			// equip button
->>>>>>> Stashed changes
 			@Override
 			public void onClick() {
 				setActive(false);

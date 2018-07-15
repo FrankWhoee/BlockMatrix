@@ -7,6 +7,7 @@ import java.awt.Rectangle;
 import java.util.ArrayList;
 
 import net.vikingsdev.blockmatrix.gameobjects.Item;
+import net.vikingsdev.blockmatrix.utils.StringUtil;
 
 public class UIList {
 	private ArrayList<Item> list;
@@ -29,11 +30,11 @@ public class UIList {
 		
 		// loop through list and draw the text
 		for(int i = 0; i < list.size(); i++) {
-			g.drawRect(bounds.x - (bounds.width / 2) , bounds.y + i * 64, bounds.width, bounds.height);
-			g.drawString(list + "", bounds.x , bounds.y + i * 64 + (bounds.height/2));
+			g.drawRect(bounds.x - (bounds.width / 2) , bounds.y + (i * 64), bounds.width, bounds.height);
+			StringUtil.centre(list.get(i).getName(), bounds.x + (bounds.height / 2), bounds.y + (i * 64) + (bounds.width / 2), g);
 		}
 		
-		g.drawRect(bounds.x - (bounds.width / 2) , bounds.y, bounds.width, bounds.height);
-		g.drawString(list + "", bounds.x , bounds.y + (bounds.height/2));
+		g.drawRect(bounds.x, bounds.y, bounds.width, bounds.height);
+		StringUtil.centre("Allah be praised", bounds.x + (bounds.width / 2), bounds.y + (bounds.height / 2), g);
 	}
 }
