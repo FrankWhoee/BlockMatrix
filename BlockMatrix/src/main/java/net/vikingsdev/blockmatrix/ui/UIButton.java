@@ -26,28 +26,38 @@ public class UIButton {
 		state = RESTING;
 	}
 	
+	private int clickBuffer = 0;
+	
+	//ghetto click buffer
+	
+	public void update() {
+		if(clickBuffer < 5) {
+			clickBuffer++;
+			state = CLICKING;
+		}else if(state == CLICKING) state = HOVERING;
+	}
+	
 	public void render(Graphics g) {
+		update(); //temporary
 		if(texture != null) g.drawImage(texture[state], bounds.x, bounds.y, bounds.width, bounds.height, null);
 	}
 	
 	public void onMouseMove(MouseEvent e) {
 		if(bounds.contains(e.getX(), e.getY())) state = HOVERING;
-		else state = RESTING;
+		else reset();
 	}
 	
 	public void onMousePress(MouseEvent e) {
 		if(bounds.contains(e.getX(), e.getY())) state = CLICKING;
-		else state = RESTING;
+		else reset();
 	}
 	
 	public void onMouseRelease(MouseEvent e) {
-		if(state == CLICKING) {
-			onClick();
-			state = HOVERING;
-		}
+		if(state != RESTING) onClick();
 	}
 	
 	public void onClick() {
+		clickBuffer = 0;
 		uil.onClick();
 	}
 }

@@ -10,8 +10,9 @@ public class Player {
 
     private String name;
     private Long id;
-	private ArrayList<Item> inventory = new ArrayList<Item>();	
-	private int activeSlot = 0, tradeSlot = -1;
+	private ArrayList<Item> inventory = new ArrayList<Item>();
+
+	private int activeSlot = -1, tradeSlot = -1;
 	
     public Player(String name) {
         this.name = name;
