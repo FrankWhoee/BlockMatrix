@@ -147,7 +147,7 @@ public class Game implements Runnable{
 		double delta = 0;
 		long now;
 		long lastTick = System.nanoTime();
-		int timeMax = 10000;
+		int timeMax = 1000;
 		int frames = 0;
 		ArrayList<Player> allPlayers;
 		Player tradePartner;
@@ -166,6 +166,8 @@ public class Game implements Runnable{
 			}
 			
 			if(frames > timeMax) {
+				App.update();
+				frames = 0;
 				Blockchain.mineLastBlock();
 				/// check for trades
 				
@@ -192,7 +194,7 @@ public class Game implements Runnable{
 						
 						
 						//send ur file, recieve the other person's
-						App.objMsgCh.sendMessage(tradePartner.getId() + "").addFile(sequence.writeAndGetFile(selectedWeapon.toJson())).queue();;
+						App.objMsgCh.sendMessage(tradePartner.getId() + "").addFile(sequence.writeAndGetFile(selectedWeapon.toJson())).queue();
 						
 						
 						if (getYesOrNoBool("Do you want accept the trade?")){
