@@ -1,31 +1,16 @@
 [
   {
-<<<<<<< Updated upstream
-    "hash": "0000027a90303467898d5abda011b61f081a7d50f58361c8ef4bfca0a9bd7c06",
+    "hash": "000005f2a9493f5191bef9d4208e77a8f19f9e91ee5a19b03efadac21d24a5f0",
     "previousHash": "0",
     "data": "Genesis Block",
-    "timeStamp": 1531661813452,
-    "nonce": 984317
+    "timeStamp": 1531676571232,
+    "nonce": 1559305
   },
   {
-    "hash": "000007717e25381a2f03344771d1c60ea37f9593b90f937125f6dd25fa22ef39",
-    "previousHash": "0000027a90303467898d5abda011b61f081a7d50f58361c8ef4bfca0a9bd7c06",
-    "data": "{\"name\":\"TrippleNipple\",\"id\":8408307974657127424,\"activeSlot\":-1,\"inventory\":[]}",
-    "timeStamp": 1531661819543,
-    "nonce": 1250889
-=======
-    "hash": "000007477a6e358734cd1c6ec8178b121ea8a829d958f2f8574838e5eeb0578f",
-    "previousHash": "0",
-    "data": "Genesis Block",
-    "timeStamp": 1531638422089,
-    "nonce": 398496
-  },
-  {
-    "hash": "0000043202ced0bcb1f0cb65d01d4bbbc74033bdeff90a4456bb0669619e9480",
-    "previousHash": "000007477a6e358734cd1c6ec8178b121ea8a829d958f2f8574838e5eeb0578f",
-    "data": "{\"name\":\"my name tripple gay\",\"id\":9002504750144392192,\"activeSlot\":0,\"trade\":false,\"inventory\":[]}",
-    "timeStamp": 1531638423136,
-    "nonce": 1237926
->>>>>>> Stashed changes
+    "hash": "0000008453610903668948bac7344a828e5d0fe3f9394293f3a8b8fc9b863341",
+    "previousHash": "000005f2a9493f5191bef9d4208e77a8f19f9e91ee5a19b03efadac21d24a5f0",
+    "data": "{\"name\":\"TrippleNipple\",\"id\":4188666569291910144,\"activeSlot\":0,\"trade\":false,\"inventory\":[]}",
+    "timeStamp": 1531676578282,
+    "nonce": 220415
   }
 ]

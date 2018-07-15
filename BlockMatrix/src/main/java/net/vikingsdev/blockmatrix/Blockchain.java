@@ -237,6 +237,11 @@ public class Blockchain {
 //		}
 //	}
 	
+	public static String toJson() {
+		String blockchainJson = new GsonBuilder().setPrettyPrinting().create().toJson(playerchain);
+		return blockchainJson;
+	}
+	
 	public static void save() {
 		String blockchainJson = new GsonBuilder().setPrettyPrinting().create().toJson(playerchain);
 		File Old = new File("../Save/" + localFilename);
