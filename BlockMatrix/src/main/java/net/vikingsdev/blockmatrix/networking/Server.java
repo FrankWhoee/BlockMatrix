@@ -1,19 +1,20 @@
 package net.vikingsdev.blockmatrix.networking;
 
-import java.io.File;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-
-import net.vikingsdev.blockmatrix.gameobjects.Player;
 
 public class Server {
 	private static int uniqueID; //Server ID
 	private ArrayList<ClientThread> clients;
+	
+	private ServerGUI serverGUI;
+	private SimpleDateFormat sdf;
 	
 	public static final int DEFAULT_PORT = 1500;
 	private int port;
@@ -21,17 +22,26 @@ public class Server {
 	private boolean keepGoing; //Server will run until the thread is stopped
 	
 	public Server(int port) {
+		this(port, null);
+	}
+	
+	public Server(int port, ServerGUI serverGUI) {
+		this.serverGUI = serverGUI;
 		this.port = port;
+		
+		sdf = new SimpleDateFormat("HH:mm:ss");
+		clients = new ArrayList<ClientThread>();
 	}
 	
 	public void start() {
 		keepGoing = true;
 		
-		try {
+		try{
 			ServerSocket serverSocket = new ServerSocket(port);
-			
+
 			while(keepGoing) {
-				System.out.println("Server on port " + port);
+				display("Server waiting for Clients on port " + port + ".");
+				
 				Socket socket = serverSocket.accept();
 				
 				if(!keepGoing) break;
@@ -41,11 +51,13 @@ public class Server {
 				ct.start();
 			}
 			
-			try {
+			//Stop
+			
+			try{
 				serverSocket.close();
-				
 				for(ClientThread ct : clients) {
-					try{
+					
+					try {
 						ct.sInput.close();
 						ct.sOutput.close();
 						ct.socket.close();
@@ -53,11 +65,17 @@ public class Server {
 						e.printStackTrace();
 					}
 				}
-			}catch(Exception e) {
-				e.printStackTrace();
 			}
-		}catch(IOException e) {
+			catch(Exception e) {
+				e.printStackTrace();
+				display("Exception closing the server and clients: " + e);
+			}
+		}
+		
+		catch (IOException e) {
 			e.printStackTrace();
+            String msg = sdf.format(new Date()) + " Exception on Server Socket: " + e + "\n";
+			display(msg);
 		}
 	}
 	
@@ -71,6 +89,12 @@ public class Server {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+	
+	private void display(String msg) {
+		String time = sdf.format(new Date()) + " " + msg;
+		if(serverGUI == null) System.out.println(time);
+		else serverGUI.appendEvent(time + "\n");
 	}
 	
 	private synchronized void broadcast(String file) {
@@ -168,6 +192,7 @@ public class Server {
 			}
 			catch(Exception e) {}
 		}
+		
 		private boolean sendFile(String file) {
 			// if Client is still connected send the message to it
 			if(!socket.isConnected()) {
