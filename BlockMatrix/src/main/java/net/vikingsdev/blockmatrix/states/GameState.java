@@ -5,6 +5,7 @@ import java.awt.Font;
 import java.awt.Graphics;
 
 import net.vikingsdev.blockmatrix.Game;
+import net.vikingsdev.blockmatrix.gameobjects.Event;
 import net.vikingsdev.blockmatrix.gfx.Assets;
 import net.vikingsdev.blockmatrix.ui.*;
 import net.vikingsdev.blockmatrix.utils.StringUtil;
@@ -116,8 +117,13 @@ public class GameState extends State {
 			g.drawString(game.getPlayer().getWeaponName(), 880, 470);
 			
 			g.setColor(new Color(255, 70, 70));
-			g.drawString("Damage: " + game.getPlayer().getDamage(), 880, 495);
-			g.drawString("Kills: " + game.getPlayer().getWeapon().getKills(), 880, 520);
+			g.drawString("Damage: " + game.getPlayer().getDamage(), 880, 500);
+			g.drawString("Kills: " + game.getPlayer().getWeapon().getKills(), 880, 525);
+			
+			for(int i = 0; i < game.getPlayer().getWeapon().getHistory().size(); i++) {
+				Event e = game.getPlayer().getWeapon().getHistory().get(i);
+				g.drawString(e.getName(), 880 + i * 30, 555);
+			}
 		}
 		
 		g.setFont(new Font("Verdana", Font.PLAIN, 24));
