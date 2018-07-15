@@ -57,13 +57,13 @@ public class Client {
 		
 		//Sending our username to the server
 		
-		try{
+		/*try{
 			sOutput.writeObject(username);
 		}catch (IOException e) {
 			e.printStackTrace();
 			disconnect();
 			return false;
-		}
+		}*/
 		
 		//Return successful!
 		
