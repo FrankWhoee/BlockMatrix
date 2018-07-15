@@ -1,5 +1,5 @@
 package net.vikingsdev.blockmatrix.gameobjects;
-
+//this entire class is unused
 public class Trade {
 
 	private Player sender, receiver;
