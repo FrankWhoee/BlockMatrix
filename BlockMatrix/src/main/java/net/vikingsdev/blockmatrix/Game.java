@@ -68,7 +68,7 @@ public class Game implements Runnable{
 		Blockchain.playerchain.get(0).mineBlock(Blockchain.difficulty);
 		
 		System.out.println("Registering player...");
-		Blockchain.register("my name tripple gay");
+		Blockchain.register("TrippleNipple");
 		player = Player.toPlayer(Blockchain.playerchain.get(1).getData());
 		
 		System.out.println("Player's name: " + player.getName());

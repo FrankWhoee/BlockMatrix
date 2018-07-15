@@ -89,7 +89,7 @@ public class GameState extends State {
 	public void render(Graphics g) {
 		g.drawImage(Assets.eventBackground,768,0,null);
 		g.drawImage(Assets.forestBG,0,32,null);
-		g.drawImage(Assets.orc,128,32,null);
+		g.drawImage(Assets.orc,116,32,null);
 		g.drawImage(Assets.statsBackground, 832, 384, null);
 		
 		// stats rendering
