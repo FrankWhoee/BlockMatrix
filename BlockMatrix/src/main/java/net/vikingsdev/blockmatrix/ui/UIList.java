@@ -25,7 +25,7 @@ public class UIList {
 	
 	public void render(Graphics g) {
 		// set formatting
-		g.setFont(new Font("CourierNew", Font.PLAIN, 14));
+		g.setFont(new Font("Verdana", Font.BOLD, 16));
 		g.setColor(Color.WHITE);
 		
 		// loop through list and draw the text
@@ -35,6 +35,6 @@ public class UIList {
 		}
 		
 		g.drawRect(bounds.x, bounds.y, bounds.width, bounds.height);
-		StringUtil.centre("Merciless Scimitar of Fung, the Shroomite Overlord", bounds.x + (bounds.width / 2), bounds.y + (bounds.height / 2), g);
+		StringUtil.centre("Large Stick of Fung", bounds.x + (bounds.width / 2), bounds.y + (bounds.height / 2), g);
 	}
 }
