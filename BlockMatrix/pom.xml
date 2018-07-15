@@ -17,7 +17,19 @@
   </properties>
 
   <dependencies>
-  
+  	
+    <dependency>
+	     <groupId>commons-io</groupId>
+	     <artifactId>commons-io</artifactId>
+	     <version>2.1</version>
+    </dependency>
+  	
+  	<dependency>
+    	<groupId>net.dv8tion</groupId>
+    	<artifactId>JDA</artifactId>
+    	<version>3.7.0_382</version>
+	</dependency>
+  	
   	<dependency>
     	<groupId>net.jxta</groupId>
     	<artifactId>jxta-jxse</artifactId>
@@ -45,4 +57,14 @@
       <scope>test</scope>
     </dependency>
   </dependencies>
+  
+  <repositories>
+  
+  	<repository>
+	    <id>jcenter</id>
+	    <name>jcenter-bintray</name>
+	    <url>http://jcenter.bintray.com</url>
+	</repository>
+  
+  </repositories>
 </project>

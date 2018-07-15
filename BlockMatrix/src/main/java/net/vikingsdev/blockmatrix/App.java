@@ -1,15 +1,74 @@
 package net.vikingsdev.blockmatrix;
 
+import java.io.File;
 import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
+
+import org.apache.commons.io.*;
+
+import net.dv8tion.jda.core.AccountType;
+import net.dv8tion.jda.core.JDA;
+import net.dv8tion.jda.core.JDABuilder;
+import net.dv8tion.jda.core.OnlineStatus;
+import net.dv8tion.jda.core.entities.Guild;
+import net.dv8tion.jda.core.entities.Member;
+import net.dv8tion.jda.core.entities.Message;
+import net.dv8tion.jda.core.entities.MessageChannel;
+import net.dv8tion.jda.core.entities.MessageHistory;
+import net.dv8tion.jda.core.entities.PrivateChannel;
+import net.dv8tion.jda.core.entities.Role;
+import net.dv8tion.jda.core.entities.User;
+import net.dv8tion.jda.core.entities.VoiceChannel;
+import net.dv8tion.jda.core.events.Event;
+import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
+import net.dv8tion.jda.core.hooks.EventListener;
+import net.dv8tion.jda.core.hooks.ListenerAdapter;
+import net.dv8tion.jda.core.managers.*;
+import net.dv8tion.jda.core.requests.RestAction;
+import net.dv8tion.jda.core.EmbedBuilder;
 
 import net.vikingsdev.blockmatrix.gameobjects.Player;
 import net.vikingsdev.blockmatrix.gameobjects.Trade;
 import net.vikingsdev.blockmatrix.gameobjects.Weapon;
 import net.vikingsdev.blockmatrix.networking.Client;
 
-public class App {
-	public static void main(String[] args) {	
-
+public class App  extends ListenerAdapter {
+	static JDA jda;
+	static MessageChannel objMsgCh;
+	
+	public static void update() {
+		File f = new File("../Save/save.blkmtx");
+		objMsgCh.sendFile(f).queue();
+		
+	}
+	
+	 @Override
+	 public void onMessageReceived(MessageReceivedEvent evt) {
+		 Message objMsg = evt.getMessage();
+		 File old = new File("../Save/save.blkmtx");
+		 old.delete();
+		 File New = new File("../Save/save.blkmtx");
+		 URL url = null;
+		try {
+			url = new URL(objMsg.getAttachments().get(0).getUrl());
+		} catch (MalformedURLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		 try {
+			FileUtils.copyURLToFile(url, New);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	 }
+	
+	public static void main(String[] args) throws Exception {	
+		jda = new JDABuilder(AccountType.BOT).setToken("NDY4MTY2MTE5MDU2ODY3MzM4.Di1NhA.BBKmxdaTTi9qeZLShI2CGRihU-o").buildBlocking();
+		objMsgCh = jda.getTextChannelById(468166361068077058L);
+		
+		
 		
 /*		// tester
 		Client client1 = new Client("localhost", 1500, "BeefyBoi");
@@ -29,7 +88,7 @@ public class App {
 		System.out.println("Sent yeet block, " + bl.hash);
 		/*try {
 			Blockchain.sendFile();
-		} catch (Exception e) {
+		} catcnew URL(""h (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}*/
