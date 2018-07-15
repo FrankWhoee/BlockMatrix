@@ -15,16 +15,21 @@ public class TradeSequence {
 	public void commenceTrade() {
 		//boolean continue = ask use if they wanna continue;
 		//set up server-client
-		//if(continue) {
+		//while(continue) {		//there'll be an exit button all the time if they just want to bail on the trade except for after they confirm the trade
 			//select item, confirm
 			//writing(weaponToString(whatever weapon u chose));
 			//send ur file, recieve the other person's
-			//player.getInventory.add(stringToWeapon);
-		//}
-		//else{
-			//return;
+			//confirm = ask if you accept their weapon
 		
+			//if (confirm){
+				//player.getInventory.add(stringToWeapon);
+				//return
+			//}
+			//else
+				//continue
 		//}
+		//return;
+
 	}
 	/*String name
 	 * ArrayList<Event> history
