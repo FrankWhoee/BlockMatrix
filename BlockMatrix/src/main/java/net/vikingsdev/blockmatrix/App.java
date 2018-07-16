@@ -59,10 +59,6 @@ public class App  extends ListenerAdapter {
 	 @Override
 	 public void onMessageReceived(MessageReceivedEvent evt) {
 		 Message objMsg = evt.getMessage();
-		 
-		 System.out.println("RECEIVED: " + objMsg.getContentRaw());
-		 objMsgCh.sendMessage("Received!").queue();
-		 
 		 if(objMsg.getContentRaw().equals("BROADCAST")) {
 			 System.out.println("Downloading...");
 			 File old = new File("../Save/save.blkmtx");
