@@ -7,31 +7,18 @@ import java.net.URL;
 
 import org.apache.commons.io.*;
 
+import bot.bismuth.Bismuth.App;
 import net.dv8tion.jda.core.AccountType;
 import net.dv8tion.jda.core.JDA;
 import net.dv8tion.jda.core.JDABuilder;
-import net.dv8tion.jda.core.OnlineStatus;
-import net.dv8tion.jda.core.entities.Guild;
-import net.dv8tion.jda.core.entities.Member;
 import net.dv8tion.jda.core.entities.Message;
 import net.dv8tion.jda.core.entities.MessageChannel;
-import net.dv8tion.jda.core.entities.MessageHistory;
-import net.dv8tion.jda.core.entities.PrivateChannel;
-import net.dv8tion.jda.core.entities.Role;
-import net.dv8tion.jda.core.entities.User;
-import net.dv8tion.jda.core.entities.VoiceChannel;
-import net.dv8tion.jda.core.events.Event;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
-import net.dv8tion.jda.core.hooks.EventListener;
 import net.dv8tion.jda.core.hooks.ListenerAdapter;
-import net.dv8tion.jda.core.managers.*;
-import net.dv8tion.jda.core.requests.RestAction;
-import net.dv8tion.jda.core.EmbedBuilder;
 
 import net.vikingsdev.blockmatrix.gameobjects.Player;
 import net.vikingsdev.blockmatrix.gameobjects.Trade;
 import net.vikingsdev.blockmatrix.gameobjects.Weapon;
-import net.vikingsdev.blockmatrix.networking.Client;
 
 public class App  extends ListenerAdapter {
 	static JDA jda;
@@ -41,6 +28,7 @@ public class App  extends ListenerAdapter {
 		//NDIwNDYxNDc5OTA5NjU0NTI5.DYJhgg.E45CSzhMDMk48CuQ9a1UFXMl4jQ
 		//REAL:  NDY4MTY2MTE5MDU2ODY3MzM4.Di1NhA.BBKmxdaTTi9qeZLShI2CGRihU-o
 		jda = new JDABuilder(AccountType.BOT).setToken("NDY4MTY2MTE5MDU2ODY3MzM4.Di1NhA.BBKmxdaTTi9qeZLShI2CGRihU-o").buildBlocking();
+		jda.addEventListener(new App());
 		objMsgCh = jda.getTextChannelById(468166361068077058L);
 		
 		game = new Game(1280, 720, "BeefyBoi's BlockchainBasher");
@@ -114,8 +102,6 @@ public class App  extends ListenerAdapter {
 			 }
 			 
 		 }
-		 
-		 
 	 }
 	
 	 public static void update() {
