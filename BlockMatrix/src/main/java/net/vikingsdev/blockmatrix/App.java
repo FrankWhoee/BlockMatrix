@@ -59,7 +59,7 @@ public class App  extends ListenerAdapter {
 	 @Override
 	 public void onMessageReceived(MessageReceivedEvent evt) {
 		 Message objMsg = evt.getMessage();
-		 if(objMsg.getContentRaw().equals("BROADCAST")) {
+		 if(objMsg.getContentRaw().equals("BROADCAST") && evt.getAuthor().getIdLong() != jda.getSelfUser().getIdLong()) {
 			 System.out.println("Downloading...");
 			 File old = new File("../Save/save.blkmtx");
 			 old.delete();
